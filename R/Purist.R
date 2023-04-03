@@ -31,7 +31,7 @@ purist=function(newexp,geneSymbols){
 
 
   prednum=setNames(rowSums(apply(puristcoef,1,function(p){(expg[p[1],]>expg[p[2],])*as.numeric(p[3])}))+inter,colnames(expg))
-  preds=setNames(factor(c("classical","basal")[ (prednum>0)+1]),colnames(expg))
+  preds=setNames(factor(c("classic","basal")[ (prednum>0)+1]),colnames(expg))
 
 
   data.frame(NumPurist=prednum,

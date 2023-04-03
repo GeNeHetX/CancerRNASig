@@ -1,12 +1,7 @@
-#' Title qEstimate, default using Puleo et al components
+#' Title qEstimate
 #'
-#' @param newexp A new expression dataset
-#' @param ICAgw ICA gene weights (S matrix)
-#' @param geneNormType Normalization of gene expression matrix (sc: sample scale is default)
-#' @param projNormType Normalization of components (raw:  is default)
-#' @param ming Minimum number of overlapping genes
 #'
-#' @return projected components
+#' @return 
 #' @export
 #'
 #' @examples
