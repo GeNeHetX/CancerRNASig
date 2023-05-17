@@ -6,7 +6,7 @@ RNA signature functions
 Install CancerRNASig_Rpackage by downloading the zip code : 
 
 ```bash
- Rscript -e "devtools::install_local('nameZipFile.zip')"
+ Rscript -e "devtools::install_local('CancerRNASig-main')"
 ```
 
 ## Usage
