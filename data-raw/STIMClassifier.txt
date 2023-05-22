@@ -1,0 +1,501 @@
+Gene ID	5 STIM clusters
+HORMAD2-AS1	Immune Classical
+LOC101929089	Immune Classical
+DCXR	Immune Classical
+KHK	Immune Classical
+APOM	Immune Classical
+SORD	Immune Classical
+ACADSB	Immune Classical
+APOC1	Immune Classical
+SLC27A5	Immune Classical
+TTR	Immune Classical
+LRG1	Immune Classical
+PCK2	Immune Classical
+RBP5	Immune Classical
+AMDHD1	Immune Classical
+NR1I3	Immune Classical
+AKR1C4	Immune Classical
+MIR4751	Immune Classical
+GLS2	Immune Classical
+KDM8	Immune Classical
+RCL1	Immune Classical
+CNDP1	Immune Classical
+APOC1P1	Immune Classical
+CFL2	Immune Classical
+CYP39A1	Immune Classical
+FOLH1B	Immune Classical
+LEAP2	Immune Classical
+GNMT	Immune Classical
+ACOX2	Immune Classical
+A1BG-AS1	Immune Classical
+CYP27A1	Immune Classical
+RDH16	Immune Classical
+CYB5A	Immune Classical
+GSTA2	Immune Classical
+DHODH	Immune Classical
+HSD17B6	Immune Classical
+LINC01146	Immune Classical
+ATF5	Immune Classical
+PIPOX	Immune Classical
+FXYD1	Immune Classical
+TTC36	Immune Classical
+APOC4-APOC2	Immune Classical
+PRG4	Immune Classical
+HAAO	Immune Classical
+ACSM5	Immune Classical
+APOC2	Immune Classical
+LEPR	Immune Classical
+GCDH	Immune Classical
+ABHD6	Immune Classical
+CYP2J2	Immune Classical
+ACSL1	Immune Classical
+SAA4	Immune Classical
+TDO2	Immune Classical
+CFHR1	Immune Classical
+TF	Immune Classical
+SRD5A2	Immune Classical
+ARID3C	Immune Classical
+C2-AS1	Immune Classical
+EHHADH	Immune Classical
+LY75-CD302	Immune Classical
+CETP	Immune Classical
+LOC100507053	Immune Classical
+GLTPD2	Immune Classical
+ZG16	Immune Classical
+CD302	Immune Classical
+HPR	Immune Classical
+NADK2	Immune Classical
+DIO1	Immune Classical
+GPLD1	Immune Classical
+PHYH	Immune Classical
+RGN	Immune Classical
+UROC1	Immune Classical
+CGREF1	Immune Classical
+CAT	Immune Classical
+UGT2B7	Immune Classical
+AHSG	Immune Classical
+AQP9	Immune Classical
+MAT1A	Immune Classical
+FMO3	Immune Classical
+SLC22A1	Immune Classical
+SHBG	Immune Classical
+MASP2	Immune Classical
+MT1X	Immune Classical
+KLKB1	Immune Classical
+LINC01093	Immune Classical
+HMGCL	Immune Classical
+DMGDH	Immune Classical
+LINC00238	Immune Classical
+GSTA1	Immune Classical
+A1BG	Immune Classical
+PLA2G12B	Immune Classical
+APOH	Immune Classical
+HAL	Immune Classical
+AZGP1	Immune Classical
+ALDH8A1	Immune Classical
+SLC51A	Immune Classical
+SLC38A4	Immune Classical
+LOC645434	Immune Classical
+ADI1	Immune Classical
+USH2A	Immune Classical
+NBPF13P	Immune Classical
+CTHRC1	Inflammatory Stroma
+POSTN	Inflammatory Stroma
+PPAPDC3	Inflammatory Stroma
+FAM198B	Inflammatory Stroma
+EMP3	Inflammatory Stroma
+THEMIS	Inflammatory Stroma
+RNASE2	Inflammatory Stroma
+RXFP1	Inflammatory Stroma
+ACTG2	Inflammatory Stroma
+LOX	Inflammatory Stroma
+WISP1	Inflammatory Stroma
+FABP2	Inflammatory Stroma
+MSC-AS1	Inflammatory Stroma
+TSPAN2	Inflammatory Stroma
+CLMP	Inflammatory Stroma
+GREM1	Inflammatory Stroma
+CLCA2	Inflammatory Stroma
+IGFL3	Inflammatory Stroma
+RAB23	Inflammatory Stroma
+PPP1R16B	Inflammatory Stroma
+FAP	Inflammatory Stroma
+WDFY1	Inflammatory Stroma
+AKAP5	Inflammatory Stroma
+NOX4	Inflammatory Stroma
+MSC	Inflammatory Stroma
+NTRK1	Inflammatory Stroma
+C12orf54	Inflammatory Stroma
+MEP1A	Inflammatory Stroma
+SLAMF8	Inflammatory Stroma
+PI15	Inflammatory Stroma
+GNB4	Inflammatory Stroma
+C20orf197	Inflammatory Stroma
+RAB31	Inflammatory Stroma
+EPYC	Inflammatory Stroma
+GPR68	Inflammatory Stroma
+LUM	Inflammatory Stroma
+FCER1G	Inflammatory Stroma
+EGFL6	Inflammatory Stroma
+PMP22	Inflammatory Stroma
+PLN	Inflammatory Stroma
+LHFPL2	Inflammatory Stroma
+GXYLT2	Inflammatory Stroma
+TNFSF4	Inflammatory Stroma
+FCGR2A	Inflammatory Stroma
+CD7	Inflammatory Stroma
+KRT5	Inflammatory Stroma
+MCTP1	Inflammatory Stroma
+LRCH2	Inflammatory Stroma
+GUCA1A	Inflammatory Stroma
+DES	Inflammatory Stroma
+IFNG	Inflammatory Stroma
+GLIPR1	Inflammatory Stroma
+PRR16	Inflammatory Stroma
+CYTIP	Inflammatory Stroma
+POPDC3	Inflammatory Stroma
+FCGR3A	Inflammatory Stroma
+CAPNS2	Inflammatory Stroma
+DOCK11	Inflammatory Stroma
+SERPINH1	Inflammatory Stroma
+IL12RB1	Inflammatory Stroma
+RIN2	Inflammatory Stroma
+LILRA6	Inflammatory Stroma
+PDE1B	Inflammatory Stroma
+LAX1	Inflammatory Stroma
+COL3A1	Inflammatory Stroma
+FSTL1	Inflammatory Stroma
+LMO2	Inflammatory Stroma
+BASP1	Inflammatory Stroma
+CCL5	Inflammatory Stroma
+FABP4	Inflammatory Stroma
+BEND6	Inflammatory Stroma
+SLA	Inflammatory Stroma
+PDPN	Inflammatory Stroma
+FGFBP1	Inflammatory Stroma
+GBP5	Inflammatory Stroma
+CCDC102B	Inflammatory Stroma
+IL2RA	Inflammatory Stroma
+IFI30	Inflammatory Stroma
+GZMB	Inflammatory Stroma
+LAPTM5	Inflammatory Stroma
+ASPN	Inflammatory Stroma
+KRT6A	Inflammatory Stroma
+FKBP14	Inflammatory Stroma
+THY1	Inflammatory Stroma
+LOC101927482	Inflammatory Stroma
+EVI2B	Inflammatory Stroma
+MYO1G	Inflammatory Stroma
+ITGB2	Inflammatory Stroma
+AIM2	Inflammatory Stroma
+LOC101926940	Inflammatory Stroma
+IDO1	Inflammatory Stroma
+PALLD	Inflammatory Stroma
+FPR3	Inflammatory Stroma
+DPEP1	Inflammatory Stroma
+SH2D1B	Inflammatory Stroma
+PDLIM3	Inflammatory Stroma
+MEDAG	Inflammatory Stroma
+CD3E	Inflammatory Stroma
+TWIST1	Inflammatory Stroma
+MMP2	Inflammatory Stroma
+SLC13A1	Hepati Stem-like
+CERS2	Hepati Stem-like
+SMYD2	Hepati Stem-like
+SCD5	Hepati Stem-like
+ANXA9	Hepati Stem-like
+LPGAT1	Hepati Stem-like
+HUNK	Hepati Stem-like
+GMNN	Hepati Stem-like
+DLK1	Hepati Stem-like
+LOC100506688	Hepati Stem-like
+SV2B	Hepati Stem-like
+FAIM	Hepati Stem-like
+TMEM156	Hepati Stem-like
+MAB21L2	Hepati Stem-like
+DCAF6	Hepati Stem-like
+FAM150B	Hepati Stem-like
+DEFB1	Hepati Stem-like
+PAQR5	Hepati Stem-like
+SMA5	Hepati Stem-like
+GUSBP3	Hepati Stem-like
+VEPH1	Hepati Stem-like
+FXYD6-FXYD2	Hepati Stem-like
+PDZK1P1	Hepati Stem-like
+SMAD5	Hepati Stem-like
+SFRP5	Hepati Stem-like
+MKKS	Hepati Stem-like
+DEFB132	Hepati Stem-like
+NEURL3	Hepati Stem-like
+SEC14L6	Hepati Stem-like
+KAAG1	Hepati Stem-like
+SNAP25-AS1	Hepati Stem-like
+EGLN1	Hepati Stem-like
+AQP1	Hepati Stem-like
+MAN2A1	Hepati Stem-like
+FXYD2	Hepati Stem-like
+HOMER2	Hepati Stem-like
+FGF12	Hepati Stem-like
+LOC145783	Hepati Stem-like
+GALNT18	Hepati Stem-like
+MBOAT4	Hepati Stem-like
+SFT2D2	Hepati Stem-like
+TRPC5OS	Hepati Stem-like
+CDC20B	Hepati Stem-like
+VPS41	Hepati Stem-like
+LOC102724084	Hepati Stem-like
+RPRD1A	Hepati Stem-like
+ATP1A1	Hepati Stem-like
+OLAH	Hepati Stem-like
+S100A1	Hepati Stem-like
+DCDC2	Hepati Stem-like
+CLLU1	Hepati Stem-like
+SNRPN	Hepati Stem-like
+HN1L	Hepati Stem-like
+VAT1L	Hepati Stem-like
+LOC647859	Hepati Stem-like
+SNURF	Hepati Stem-like
+CHST9	Hepati Stem-like
+DSEL	Hepati Stem-like
+SLC39A6	Hepati Stem-like
+BLOC1S5	Hepati Stem-like
+TSPAN6	Hepati Stem-like
+FMO1	Hepati Stem-like
+RBPMS-AS1	Hepati Stem-like
+CHST4	Hepati Stem-like
+C1QL4	Hepati Stem-like
+PDZK1	Hepati Stem-like
+PIK3AP1	Hepati Stem-like
+MARVELD2	Hepati Stem-like
+GDNF	Hepati Stem-like
+ATP1A1-AS1	Hepati Stem-like
+SYNGR1	Hepati Stem-like
+PSG3	Hepati Stem-like
+FAM135B	Hepati Stem-like
+GNB5	Hepati Stem-like
+MAEL	Hepati Stem-like
+ANO6	Hepati Stem-like
+AQP4	Hepati Stem-like
+SCARB2	Hepati Stem-like
+SLC25A30	Hepati Stem-like
+WARS2	Hepati Stem-like
+SPP1	Hepati Stem-like
+RIC8B	Hepati Stem-like
+TMEM72	Hepati Stem-like
+TACC1	Hepati Stem-like
+DSTYK	Hepati Stem-like
+GLIS3	Hepati Stem-like
+KLHDC9	Hepati Stem-like
+LOC101928233	Hepati Stem-like
+APCDD1	Hepati Stem-like
+PIGC	Hepati Stem-like
+ZNF669	Hepati Stem-like
+LRRN4	Hepati Stem-like
+NUAK2	Hepati Stem-like
+KCNMA1	Hepati Stem-like
+LYPD1	Hepati Stem-like
+AKR1C1	Hepati Stem-like
+CRLF2	Hepati Stem-like
+LINC00113	Hepati Stem-like
+LAT2	Hepati Stem-like
+TM4SF4	Hepati Stem-like
+SRI	Tumor Classical
+LOC102723885	Tumor Classical
+WBSCR22	Tumor Classical
+IL1R2	Tumor Classical
+SLC25A40	Tumor Classical
+TMEM159	Tumor Classical
+MET	Tumor Classical
+PINLYP	Tumor Classical
+ST7	Tumor Classical
+CANT1	Tumor Classical
+CKLF	Tumor Classical
+CKLF-CMTM1	Tumor Classical
+TALDO1	Tumor Classical
+PDIA2	Tumor Classical
+NUDT16P1	Tumor Classical
+SMPD2	Tumor Classical
+BCCIP	Tumor Classical
+VASP	Tumor Classical
+TSPO	Tumor Classical
+GTF2E2	Tumor Classical
+NSG1	Tumor Classical
+ST7-OT3	Tumor Classical
+UNC50	Tumor Classical
+LYZ	Tumor Classical
+BSG	Tumor Classical
+TMBIM1	Tumor Classical
+TMEM238	Tumor Classical
+TK1	Tumor Classical
+TES	Tumor Classical
+RBM48	Tumor Classical
+TRIM54	Tumor Classical
+ST7-AS1	Tumor Classical
+PPARG	Tumor Classical
+LOC389641	Tumor Classical
+SLC35A1	Tumor Classical
+BRI3	Tumor Classical
+HN1	Tumor Classical
+RRAS	Tumor Classical
+SNX9	Tumor Classical
+ST7-AS2	Tumor Classical
+DHX32	Tumor Classical
+C11orf86	Tumor Classical
+ZNF530	Tumor Classical
+PPIL6	Tumor Classical
+DHDH	Tumor Classical
+TM4SF1-AS1	Tumor Classical
+AGR2	Tumor Classical
+DNTTIP1	Tumor Classical
+OCIAD2	Tumor Classical
+KLHL35	Tumor Classical
+SRPK1	Tumor Classical
+REEP3	Tumor Classical
+ZNF816-ZNF321P	Tumor Classical
+GPD2	Tumor Classical
+CHRNA5	Tumor Classical
+MCU	Tumor Classical
+STK39	Tumor Classical
+NUPR1L	Tumor Classical
+SLC7A11	Tumor Classical
+TBC1D8B	Tumor Classical
+SPATA32	Tumor Classical
+SERPINB1	Tumor Classical
+DBF4	Tumor Classical
+KCCAT333	Tumor Classical
+FUNDC1	Tumor Classical
+LHPP	Tumor Classical
+CAPZA2	Tumor Classical
+SLMO2	Tumor Classical
+PBK	Tumor Classical
+LY6E	Tumor Classical
+PAK1	Tumor Classical
+SMAGP	Tumor Classical
+EZR-AS1	Tumor Classical
+PEX7	Tumor Classical
+CD24	Tumor Classical
+MAP3K14-AS1	Tumor Classical
+ZNF321P	Tumor Classical
+MLX	Tumor Classical
+ARHGAP18	Tumor Classical
+RAB22A	Tumor Classical
+TMEM54	Tumor Classical
+STK26	Tumor Classical
+PYCR1	Tumor Classical
+S100A6	Tumor Classical
+MAD2L1	Tumor Classical
+ADPRHL1	Tumor Classical
+CEBPZOS	Tumor Classical
+TMCO3	Tumor Classical
+PLAC1	Tumor Classical
+POC1A	Tumor Classical
+OTUB1	Tumor Classical
+TM2D1	Tumor Classical
+TMEM179B	Tumor Classical
+GALNT3	Tumor Classical
+SYS1-DBNDD2	Tumor Classical
+TFRC	Tumor Classical
+MPZL2	Tumor Classical
+TPRG1-AS2	Tumor Classical
+FKBP1A-SDCBP2	Tumor Classical
+ERGIC3	Tumor Classical
+RBM6	Desert-like
+FAM156A	Desert-like
+PNISR	Desert-like
+LOC613037	Desert-like
+FAM156B	Desert-like
+NPIPA7	Desert-like
+NPIPA8	Desert-like
+NPIPA1	Desert-like
+CDK5RAP3	Desert-like
+AHSA2	Desert-like
+HSF4	Desert-like
+NPIPB6	Desert-like
+RBM25	Desert-like
+AGAP6	Desert-like
+ZNF276	Desert-like
+PILRB	Desert-like
+TTLL3	Desert-like
+NPIPA5	Desert-like
+AGAP4	Desert-like
+PLA2G4B	Desert-like
+CCDC14	Desert-like
+NPIPA2	Desert-like
+FAM193B	Desert-like
+NPIPA3	Desert-like
+ZDHHC11	Desert-like
+AFG3L1P	Desert-like
+WASH3P	Desert-like
+ENGASE	Desert-like
+EMILIN3	Desert-like
+D2HGDH	Desert-like
+TUBGCP6	Desert-like
+MIR4750	Desert-like
+CCNL2	Desert-like
+ASMTL-AS1	Desert-like
+MAPK8IP3	Desert-like
+CROCC	Desert-like
+NPIPB5	Desert-like
+LINC01125	Desert-like
+CRYGS	Desert-like
+STAG3L5P-PVRIG2P-PILRB	Desert-like
+DNHD1	Desert-like
+MALAT1	Desert-like
+WASH7P	Desert-like
+NPIPB8	Desert-like
+PNN	Desert-like
+AGAP5	Desert-like
+TAF1C	Desert-like
+LUC7L3	Desert-like
+WDR27	Desert-like
+NPIPB3	Desert-like
+ENTHD2	Desert-like
+HERC2P9	Desert-like
+AGAP11	Desert-like
+ALS2CL	Desert-like
+NPIPB11	Desert-like
+LUC7L	Desert-like
+PDCL3P4	Desert-like
+ATP2A1	Desert-like
+CCER2	Desert-like
+FANCA	Desert-like
+AGAP9	Desert-like
+ZNF37BP	Desert-like
+PCGF3	Desert-like
+DNAH1	Desert-like
+ZASP	Desert-like
+TBC1D3F	Desert-like
+LOC150776	Desert-like
+AMY2B	Desert-like
+CTGLF12P	Desert-like
+JMJD7-PLA2G4B	Desert-like
+TBC1D3	Desert-like
+LINC01355	Desert-like
+LOC102723859	Desert-like
+LOC102724862	Desert-like
+TBC1D3K	Desert-like
+LOC101060389	Desert-like
+TBC1D3L	Desert-like
+TBC1D3C	Desert-like
+LOC401320	Desert-like
+ACAP3	Desert-like
+NKTR	Desert-like
+CFAP44	Desert-like
+LENG8	Desert-like
+TBC1D3H	Desert-like
+LOC101060321	Desert-like
+OGT	Desert-like
+MIR6859-3	Desert-like
+MIR6859-2	Desert-like
+MIR6859-4	Desert-like
+MIR6859-1	Desert-like
+ATHL1	Desert-like
+NPIPB15	Desert-like
+ACIN1	Desert-like
+MICALL2	Desert-like
+TBC1D3B	Desert-like
+WASH2P	Desert-like
+SCNN1D	Desert-like
+KIAA0895L	Desert-like
+ZNF692	Desert-like
+PKD1P6	Desert-like
