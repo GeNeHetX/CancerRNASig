@@ -148,10 +148,10 @@ addgs(geneset=drugbank,type="Drug",src="DrugBankDec2022",id="DrugBank")%>%
 addgs(geneset=list(PSCcaf=scan("ECMsignature_PMID34548310.txt",what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")
 
 
-listSig=list(geneset=gsignatures$geneset,annotation=as.data.frame(gsignatures[2:4]))
+signatures=list(geneset=gsignatures$geneset,annotation=as.data.frame(gsignatures[2:4]))
 
 # write_json(toJSON(listSig), "geneSetSignatures.json", pretty = T) 
 # .geneSetSignatures=fromJSON(read_json("geneSetSignatures.json",simplifyVector=T))
 # usethis::use_data(.geneSetSignatures,internal=T,overwrite=T)
 
-usethis::use_data(listSig,internal=T,overwrite=T)
+usethis::use_data(signatures,internal=FALSE,overwrite=T)
