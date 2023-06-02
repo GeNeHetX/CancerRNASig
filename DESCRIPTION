@@ -4,5 +4,5 @@ Title: Molecular signature computation function
 Version: 0.0.1.0
 RoxygenNote: 7.2.3
 Depends: 
-    R (>= 2.10)
+    R (>= 3.5.0)
 LazyData: true
