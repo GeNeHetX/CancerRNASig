@@ -1,5 +1,5 @@
 # ---
-
+# source("data-raw/DATASET.R")
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 #load and func
@@ -147,13 +147,28 @@
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # DrugBank 
 {
-  setwd(.refpath)
-  fils=list.files("drugBank")
-  drugbank=setNames(lapply(fils,\(f){scan(paste0("drugBank/",f),what="character",sep="\n")}),sub(".txt$","",fils))
+  #setwd(.refpath)
+  fils=list.files(file.path(.refpath,"drugBank"))
+  drugbank=setNames(lapply(fils,\(f){scan(file.path(.refpath,"drugBank",f),what="character",sep="\n")}),sub(".txt$","",fils))
 }
 
 
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# cancer atlas
+{
+  canceratlasMP=as.list(openxlsx::read.xlsx(file.path(.refpath,"41586_2023_6130_MOESM6_ESM.xlsx"),sheet=1))
+  names(canceratlasMP)=gsub("\\.{2,3}",".",  gsub("-|\\/|\\(|\\)",".",names(canceratlasMP)))
 
+  canceratlasRobNMF=as.list(openxlsx::read.xlsx(file.path(.refpath,"41586_2023_6130_MOESM6_ESM.xlsx"),sheet=2))
+
+  }
+
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# ECM
+{
+  ECMHELMS=fromJSON(read_json(file.path(.refpath,"ECM_Helms_genesets.json"),simplifyVector=T))
+}
 
 
 gsignatures=list(
@@ -186,10 +201,21 @@ addgs(geneset=Biclassgenes,type="CCK",src="Sia.etal;PMID.23295441",id="CCK_Sia13
 addgs(geneset=drugbank,type="Drug",src="DrugBankDec2022",id="DrugBank")%>%
 
 
-addgs(geneset=list(PSCcaf=scan("ECMsignature_PMID34548310.txt",what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")
 
 
-signatures=list(geneset=gsignatures$geneset,annotation=as.data.frame(gsignatures[2:4]))
+
+addgs(geneset=list(PSCcaf=scan(file.path(.refpath,"ECMsignature_PMID34548310.txt"),what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")%>%
+
+
+addgs(geneset=canceratlasMP,type="Cancer",src="Gavish.etal;PMID.37258682",id="CCCA_MetaProg")
+
+
+
+
+signatures=list(geneset=gsignatures$geneset,
+  annotation=as.data.frame(gsignatures[2:4]),
+  CancerAtlasAll=canceratlasRobNMF
+  )
 
 # write_json(toJSON(listSig), "geneSetSignatures.json", pretty = T) 
 # .geneSetSignatures=fromJSON(read_json("geneSetSignatures.json",simplifyVector=T))
