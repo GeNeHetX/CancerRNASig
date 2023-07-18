@@ -114,6 +114,17 @@
 }
 
 
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# Pan-cancer T cell atlas Y.CHU 
+{
+  table=read.csv(file.path(.refpath,'41591_2023_2371_MOESM3_ESM.csv'), sep=';')
+  table=table[1:25,2:9]
+  colnames(table)=table[1,]
+  table=table[-1,]
+  PanCK_Tcellatlas=as.list(table)
+  PanCK_Tcellatlas =lapply(PanCK_Tcellatlas, function(x) x[x!=""])
+}
+
 
 
 
@@ -145,7 +156,9 @@ addgs(geneset=Biclassgenes,type="CCK",src="Sia.etal;PMID.23295441",id="CCK_Sia13
 addgs(geneset=drugbank,type="Drug",src="DrugBankDec2022",id="DrugBank")%>%
 
 
-addgs(geneset=list(PSCcaf=scan("ECMsignature_PMID34548310.txt",what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")
+addgs(geneset=list(PSCcaf=scan("ECMsignature_PMID34548310.txt",what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")%>%
+
+addgs(geneset=PanCK_Tcellatlas,type='Immu', src='Yanshuo.Chu;PMID.37248301',id="IMMU_Tcellatlas")
 
 
 signatures=list(geneset=gsignatures$geneset,annotation=as.data.frame(gsignatures[2:4]))
