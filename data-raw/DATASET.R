@@ -117,7 +117,8 @@
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # Pan-cancer T cell atlas Y.CHU 
 {
-  table=read.csv(file.path(.refpath,'41591_2023_2371_MOESM3_ESM.csv'), sep=';')
+  # table=read.csv(file.path(.refpath,'41591_2023_2371_MOESM3_ESM.csv'), sep=';')
+  table=read.csv('41591_2023_2371_MOESM3_ESM.csv', sep=';')
   table=table[1:25,2:9]
   colnames(table)=table[1,]
   table=table[-1,]
