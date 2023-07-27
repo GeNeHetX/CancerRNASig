@@ -1,5 +1,5 @@
 # ---
-
+# source("data-raw/DATASET.R")
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 #load and func
@@ -32,13 +32,28 @@
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # PDAC
-{ print(load(file.path(.refpath,"ChanSengYueSigs.RData")))
+{ 
+  # print(load(file.path(.refpath,"ChanSengYueSigs.RData")))
+  # write_json(toJSON(ChanSengYueSigs),file.path(.refpath, "ChanSengYueSigs.json"), pretty = T) 
+  ChanSengYueSigs=fromJSON(read_json(file.path(.refpath, "ChanSengYueSigs.json"),simplifyVector=T))
+
+
   rnami=c(1,2,6,10)
   rnam=c("ClassicalA","BasallikeA","ClassicalB","BasallikeB")
   names(ChanSengYueSigs)[rnami]=rnam
 
-  print(load(file.path(.refpath,"pdxGeneL.RData")))
-  print(load(file.path(.refpath,"puleoG.RData")))
+  # print(load(file.path(.refpath,"pdxGeneL.RData")))
+  # write_json(toJSON(pdxGeneL),file.path(.refpath, "pdxGeneL.json"), pretty = T) 
+  pdxGeneL=fromJSON(read_json(file.path(.refpath, "pdxGeneL.json"),simplifyVector=T))
+
+  # print(load(file.path(.refpath,"puleoG.RData")))
+  # write_json(toJSON(puleoG),file.path(.refpath, "puleoG.json"), pretty = T) 
+  puleoG=fromJSON(read_json(file.path(.refpath, "puleoG.json"),simplifyVector=T))
+
+
+
+
+
   puleoG=lapply(puleoG,\(x){ unique(unlist(strsplit(x," /// ")))})
 
   a=read.delim(file.path(.refpath,"PDAssigner_human_annot.txt"),as.is=T,header=F,sep="\t")[,2:1]
@@ -59,6 +74,24 @@
   allmoffsigtab=read.delim(file.path(.refpath,"moffittMetagene.txt"),sep="\t",as.is=T)
   allmoffsig=setNames(split(allmoffsigtab$symbol,allmoffsigtab$factor),colnames(allmoffsigtab)[3:16])
   names(allmoffsig) = gsub("^F.+_","",names(allmoffsig))
+
+  #Hwang
+  {
+    a=read.xlsx(file.path(.refpath,"41588_2022_1134_MOESM4_ESM.xlsx"), sheet=2,startRow = 3)[,-1]
+
+    HwangMarkG=as.list(a[-1,])
+
+
+    b=sub("^X.+","",colnames(a));for(i in 1:length(b)) if(b[i]=="")b[i]=b[i-1];
+
+
+    names(HwangMarkG)=sub("\\/","", sub(" ","",sub(")","",sub("-|\\/|\\(","",
+      paste(sub("Fibroblast","Fibro",sub("Malignant.","Malign",sub("\\.programs","",b))),
+        as.character(a[1,]),sep=".")))))
+
+    
+
+  }
 
 }
 # --- --- --- --- --- --- --- --- --- --- --- ---
@@ -81,7 +114,13 @@
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # IMMUNE
 {
-  print(load(file.path(.refpath,"mcpgenes.RData")))
+
+
+  # print(load(file.path(.refpath,"mcpgenes.RData")))
+  # write_json(toJSON(mcpgenes),file.path(.refpath, "mcpgenes.json"), pretty = T) 
+  mcpgenes=fromJSON(read_json(file.path(.refpath, "mcpgenes.json"),simplifyVector=T))
+
+
   mcpgenes=setNames(mcpgenes[,c(2,1,3)],c("class","gene","ENTREZID"))
 
 
@@ -108,25 +147,40 @@
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # DrugBank 
 {
-  setwd(.refpath)
-  fils=list.files("drugBank")
-  drugbank=setNames(lapply(fils,\(f){scan(paste0("drugBank/",f),what="character",sep="\n")}),sub(".txt$","",fils))
+  #setwd(.refpath)
+  fils=list.files(file.path(.refpath,"drugBank"))
+  drugbank=setNames(lapply(fils,\(f){scan(file.path(.refpath,"drugBank",f),what="character",sep="\n")}),sub(".txt$","",fils))
 }
 
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
+# cancer atlas
+{
+  canceratlasMP=as.list(openxlsx::read.xlsx(file.path(.refpath,"41586_2023_6130_MOESM6_ESM.xlsx"),sheet=1))
+  names(canceratlasMP)=gsub("\\.{2,3}",".",  gsub("-|\\/|\\(|\\)",".",names(canceratlasMP)))
+
+  canceratlasRobNMF=as.list(openxlsx::read.xlsx(file.path(.refpath,"41586_2023_6130_MOESM6_ESM.xlsx"),sheet=2))
+
+  }
+
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# ECM
+{
+  ECMHELMS=fromJSON(read_json(file.path(.refpath,"ECM_Helms_genesets.json"),simplifyVector=T))
+}
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
 # Pan-cancer T cell atlas Y.CHU 
 {
-  # table=read.csv(file.path(.refpath,'41591_2023_2371_MOESM3_ESM.csv'), sep=';')
-  table=read.csv('41591_2023_2371_MOESM3_ESM.csv', sep=';')
+  table=read.csv(file.path(.refpath,'41591_2023_2371_MOESM3_ESM.csv'), sep=';')
+  # table=read.csv('41591_2023_2371_MOESM3_ESM.csv', sep=';')
   table=table[1:25,2:9]
   colnames(table)=table[1,]
   table=table[-1,]
   PanCK_Tcellatlas=as.list(table)
   PanCK_Tcellatlas =lapply(PanCK_Tcellatlas, function(x) x[x!=""])
 }
-
-
 
 
 gsignatures=list(
@@ -141,6 +195,8 @@ addgs(geneset=pdxGeneL,type="PDAC",src="Nicolle.etal;PMID.29186684",id="PDAC_PDX
 addgs(geneset=puleoG,type="PDAC",src="Puleo.etal;PMID.30165049",id="PDAC_Puleo")%>%
 addgs(geneset=pdassigner,type="PDAC",src="Collisson.etal;PMID.21460848",id="PDAC_PDAssigner")%>%
 addgs(geneset=allmoffsig,type="PDAC",src="Moffitt.etal;PMID.26343385",id="PDAC_Moffitt15")%>%
+addgs(geneset=baileyMarkG,type="PDAC",src="Bailey.etal;PMID.26909576",id="PDAC_Bailey16")%>%
+addgs(geneset=HwangMarkG,type="PDAC",src="Hwang.etal;PMID.35902743",id="PDAC_Hwang22")%>%
 
 addgs(geneset=turleyCaf,type="CAF",src="Dominguez.etal;PMID.31699795",id="CAF_Turley20")%>%
 addgs(geneset=FMGcd2020,type="CAF",src="Kieffer.etal;PMID.32434947",id="CAF_FMG20")%>%
@@ -157,12 +213,19 @@ addgs(geneset=Biclassgenes,type="CCK",src="Sia.etal;PMID.23295441",id="CCK_Sia13
 addgs(geneset=drugbank,type="Drug",src="DrugBankDec2022",id="DrugBank")%>%
 
 
-addgs(geneset=list(PSCcaf=scan("ECMsignature_PMID34548310.txt",what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")%>%
+addgs(geneset=list(PSCcaf=scan(file.path(.refpath,"ECMsignature_PMID34548310.txt"),what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")%>%
 
-addgs(geneset=PanCK_Tcellatlas,type='Immu', src='Yanshuo.Chu;PMID.37248301',id="IMMU_Tcellatlas")
+addgs(geneset=canceratlasMP,type="Cancer",src="Gavish.etal;PMID.37258682",id="CCCA_MetaProg")%>%
+
+addgs(geneset=PanCK_Tcellatlas,type='Immu', src='Chu.etal;PMID.37248301',id="IMMU_Tcellatlas")
 
 
-signatures=list(geneset=gsignatures$geneset,annotation=as.data.frame(gsignatures[2:4]))
+
+signatures=list(geneset=gsignatures$geneset,
+  annotation=as.data.frame(gsignatures[2:4]),
+  CancerAtlasAll=canceratlasRobNMF
+  )
+
 
 # write_json(toJSON(listSig), "geneSetSignatures.json", pretty = T) 
 # .geneSetSignatures=fromJSON(read_json("geneSetSignatures.json",simplifyVector=T))
