@@ -27,18 +27,23 @@
 #' @export
 #'
 #' @examples
-genesymUniqExp = function(newexp,geneSymbols,scoreFunc=rowSds){
-   .checkGeneExp(newexp)
-    if(nrow(newexp)!=length(geneSymbols)){
+genesymUniqExp = function(newexp,geneSymbols,scoreFunc=NULL){
+
+   E=CancerRNASig:::.checkGeneExp(newexp)
+    if(nrow(E)!=length(geneSymbols)){
         stop("Rows of newexp (expected to be genes) should have the same length as the proposed geneSymbols")
     }
-    .getugm(newexp,geneSymbols,scoreFunc(newexp))
-
+    w=NA
+    if(is.null(scoreFunc)){
+        w=matrixStats::rowSds(E,useNames = T)
+    }else{
+        w=scoreFunc(E)
+    }
+    CancerRNASig:::.getugm(E,geneSymbols,w)
 }
 
+
 .checkGeneExp=function(newexp){
-
-
     if(!is.matrix(newexp)&!is.data.frame(newexp)){
         stop("newexp should be a matrix or dataframe")
     }
@@ -47,4 +52,5 @@ genesymUniqExp = function(newexp,geneSymbols,scoreFunc=rowSds){
     if(nrow(E) < ncol(E)){
         warning("There are less rows than columns, genes are expected to be in lines (in the old bioinfomartics fashion)")
     }
+    invisible(E)
 }
