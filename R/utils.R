@@ -37,7 +37,9 @@ genesymUniqExp = function(newexp,geneSymbols,scoreFunc=rowSds){
 }
 
 .checkGeneExp=function(newexp){
-    if(!is.matrix(newexp)|!is.data.frame(newexp)){
+
+
+    if(!is.matrix(newexp)&!is.data.frame(newexp)){
         stop("newexp should be a matrix or dataframe")
     }
     E=as.matrix(newexp)
