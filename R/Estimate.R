@@ -5,8 +5,7 @@
 #' @export
 #'
 #' @examples
-qEstimate=function (ds, platform = c("illumina","affymetrix", "agilent"
-    ))
+Estimate=function (ds, platform = c("illumina","affymetrix", "agilent"))
 {
   require(estimate)
 
@@ -35,9 +34,9 @@ qEstimate=function (ds, platform = c("illumina","affymetrix", "agilent"
         m[, j] <- rank(m[, j], ties.method = "average")
     }
     m <- 10000 * m/Ng
-    gs <- as.matrix(estimate::SI_geneset[, -1], dimnames = NULL)
+    gs <- as.matrix(CancerRNASig::estimategenes[, -1], dimnames = NULL)
     N.gs <- 2
-    gs.names <- row.names(estimate::SI_geneset)
+    gs.names <- row.names(CancerRNASig::estimategenes)
     score.matrix <- matrix(0, nrow = N.gs, ncol = Ns)
     for (gs.i in 1:N.gs) {
         gene.set <- gs[gs.i, ]
@@ -86,37 +85,8 @@ qEstimate=function (ds, platform = c("illumina","affymetrix", "agilent"
     names(score.data) <- sample.names
     row.names(score.data) <- gs.names
     estimate.score <- apply(score.data, 2, sum)
-    if (platform != "affymetrix") {
-        score.data <- rbind(score.data, estimate.score)
-        rownames(score.data) <- c("StromalScore", "ImmuneScore",
-            "ESTIMATEScore")
-    }
-    else {
-        convert_row_estimate_score_to_tumor_purity <- function(x) {
-            stopifnot(is.numeric(x))
-            cos(0.6049872018 + 0.0001467884 * x)
-        }
-        est.new <- NULL
-        for (i in 1:length(estimate.score)) {
-            est_i <- convert_row_estimate_score_to_tumor_purity(estimate.score[i])
-            est.new <- rbind(est.new, est_i)
-            if (est_i >= 0) {
-                next
-            }
-            else {
-                message(paste(sample.names[i], ": out of bounds",
-                  sep = ""))
-            }
-        }
-        colnames(est.new) <- c("TumorPurity")
-        estimate.t1 <- cbind(estimate.score, est.new)
-        x.bad.tumor.purities <- estimate.t1[, "TumorPurity"] <
-            0
-        estimate.t1[x.bad.tumor.purities, "TumorPurity"] <- NA
-        score.data <- rbind(score.data, t(estimate.t1))
-        rownames(score.data) <- c("StromalScore", "ImmuneScore",
-            "ESTIMATEScore", "TumorPurity")
-    }
+    score.data <- rbind(score.data, estimate.score)
+    rownames(score.data) <- c("StromalScore", "ImmuneScore","ESTIMATEScore")
+
     return(score.data)
 }
-# qEstimate(tcgaexp)

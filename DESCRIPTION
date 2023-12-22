@@ -1,8 +1,11 @@
 Package: CancerRNASig
 Type: Package
-Title: Molecular signature computation function
-Version: 0.0.2
+Title: RNA signatures for phenotyping in oncology
+Version: 0.0.5
+Atuhors: Remy NICOLLE, Camille Pignolet, Audrey Beaufils
+License: Creative Commons Attribution-NonCommercial (CC BY-NC)
 RoxygenNote: 7.2.3
 Depends: 
+    MASS, matrixStats, 
     R (>= 3.5.0)
 LazyData: true

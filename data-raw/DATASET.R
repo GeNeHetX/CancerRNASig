@@ -189,6 +189,7 @@ gsignatures=list(
   src=c(),
   id=c()
   )
+
 gsignatures=gsignatures%>%
 addgs(geneset=ChanSengYueSigs,type="PDAC",src="Chan-Seng-Yue.etal;PMID.31932696",id="PDAC_CSY20")%>%
 addgs(geneset=pdxGeneL,type="PDAC",src="Nicolle.etal;PMID.29186684",id="PDAC_PDXph1")%>%
@@ -226,9 +227,24 @@ signatures=list(geneset=gsignatures$geneset,
   CancerAtlasAll=canceratlasRobNMF
   )
 
-
+usethis::use_data(signatures,internal=FALSE,overwrite=T)
 # write_json(toJSON(listSig), "geneSetSignatures.json", pretty = T) 
 # .geneSetSignatures=fromJSON(read_json("geneSetSignatures.json",simplifyVector=T))
 # usethis::use_data(.geneSetSignatures,internal=T,overwrite=T)
+# write.table(estimate::SI_geneset,file="data-raw/refData/SI_geneset.tsv",sep="\t")
+estimategenes=read.delim(file.path(.refpath,'SI_geneset.tsv'),sep="\t",header=T,colClasses="character")
 
-usethis::use_data(signatures,internal=FALSE,overwrite=T)
+mcpgenes=read.delim(file.path(.refpath,'mcpgenes.tsv'),sep="\t",header=T,colClasses="character")
+
+puleoICAgw=read.delim(file.path(.refpath,"puleogw.tsv"),sep="\t",header=T)
+
+
+#usethis::use_data(signatures,.puleoICAgw,.estimategenes,.mcpgenes,internal=FALSE,overwrite=T)
+
+usethis::use_data(puleoICAgw,estimategenes,mcpgenes,internal=TRUE,overwrite=T)
+
+# library(devtools)
+# source("data-raw/DATASET.R")
+# build()
+# install()
+# reload(pkg = ".", quiet = FALSE)
