@@ -14,7 +14,7 @@
 #' @examples
 coexpScore=function(newexp,genesetlist){
 
-    E=as.matrix(newexp)
+    E=CancerRNASig:::.checkGeneExp(newexp)
     E=E[which(matrixStats::rowSds(E)> (10^-12)),]
     E <- t(base::scale(t(E), center=TRUE, scale = FALSE))
 
@@ -27,7 +27,7 @@ coexpScore=function(newexp,genesetlist){
     genesetNames <- names(genesetFiltered)
 
     genesetScores <- sapply(genesetFiltered, function(pa,E){
-        return((matrixStats::colSums2(E[pa, , drop=FALSE])**2))
+        return((matrixStats::colSums2(E[pa, , drop=FALSE])))
     }, E = E)
 
     genesetScores
