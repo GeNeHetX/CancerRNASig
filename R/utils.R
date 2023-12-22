@@ -29,10 +29,10 @@
 #' @examples
 genesymUniqExp = function(newexp,geneSymbols,scoreFunc=rowSds){
    .checkGeneExp(newexp)
-    if(nrow(E)!=length(geneSymbols)){
+    if(nrow(newexp)!=length(geneSymbols)){
         stop("Rows of newexp (expected to be genes) should have the same length as the proposed geneSymbols")
     }
-    .getugm(E,geneSymbols,scoreFunc(E))
+    .getugm(newexp,geneSymbols,scoreFunc(newexp))
 
 }
 
