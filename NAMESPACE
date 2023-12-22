@@ -5,7 +5,7 @@ export(genesymUniqExp)
 export(mcpcount)
 export(MCPcounter)
 
-export(Purist)
+export(purist)
 export(qProjICA)
 
 export(coexpScore)
