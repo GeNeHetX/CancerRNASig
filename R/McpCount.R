@@ -16,7 +16,7 @@ MCPcounter=function(genemat){
                     "Neutrophils", "Endothelial", "Fibroblasts")
 
 
-  features = subset(CancerRNASig:::.mcpgenes, get("HUGO symbols") %in%
+  features = subset(CancerRNASig:::mcpgenes, get("HUGO symbols") %in%
                       rownames(genemat))
   features = split(features[, "HUGO symbols"], features[,"Cell population"])
   missing.populations = setdiff(markers.names, names(features))

@@ -71,16 +71,20 @@ coexpScore=function(newexp,genesetlist){
     thisigscore=coregScore(E,list(a=setdiff(gset,c(otherset,g))))
     othesigscore=coregScore(E,list(b=otherset))
     blm=lm(E[g,]~othesigscore)
+    alm=lm(E[g,]~thisigscore)
+
     balm=lm(E[g,]~othesigscore+thisigscore)
-    residlm=lm(blm$residuals~thisigscore)
+    residbalm=lm(blm$residuals~thisigscore)
+    residablm=lm(alm$residuals~othesigscore)
 
     df=data.frame(gene=g,
         otheR2=summary(blm)$r.squared,
         othePv=summary(blm)$coefficients[2,4],
-        gsetR2=summary(lm(E[g,]~thisigscore))$r.squared,
+        gsetR2=summary(alm)$r.squared,
         bothR2=summary(balm)$r.squared,
-        residR2=summary(residlm)$r.squared,
-        residPv=summary(residlm)$coefficients[2,4],
+        residotR2=summary(residbalm)$r.squared,
+        residtoR2=summary(residablm)$r.squared,
+        residPv=summary(residbalm)$coefficients[2,4],
         anova=anova(blm,balm)[2,6]
     )
     df$deltaR=df$gsetR2 -df$otheR2
@@ -112,12 +116,27 @@ if(F){
     siga=sample(comclg,10)
     sigb=sample(comclg,10)
     
+    same10=.twowaycomp(sample(comclg,10),sample(comclg,10))
+    diff10=.twowaycomp(sample(comclg,10),sample(comclg2,10))
+    boxplot(same10[,c("residotR2","residtoR2")])
+    boxplot(diff10[,c("residotR2","residtoR2")])
+
     boxplot(list(
-    same10=.twowaycomp(sample(comclg,10),sample(comclg,10))$residR2,
-    same10=.twowaycomp(sample(comclg,100),sample(comclg,100))$residR2,
-    diff10=.twowaycomp(sample(comclg,10),sample(comclg2,10))$residR2,
-    diff50=.twowaycomp(sample(comclg,50),sample(comclg2,50))$residR2,
-    diff100=.twowaycomp(sample(comclg,100),sample(comclg2,100))$residR2
+    same10=.twowaycomp(sample(comclg,10),sample(comclg,10))$residotR2,
+    same10=.twowaycomp(sample(comclg,100),sample(comclg,100))$residotR2,
+    diff10=.twowaycomp(sample(comclg,10),sample(comclg2,10))$residotR2,
+    diff50=.twowaycomp(sample(comclg,50),sample(comclg2,50))$residotR2,
+    diff100=.twowaycomp(sample(comclg,100),sample(comclg2,100))$residotR2
+    ))
+
+
+    
+    boxplot(list(
+    same10=.twowaycomp(sample(comclg,10),sample(comclg,10))$residtoR2,
+    same10=.twowaycomp(sample(comclg,100),sample(comclg,100))$residtoR2,
+    diff10=.twowaycomp(sample(comclg,10),sample(comclg2,10))$residtoR2,
+    diff50=.twowaycomp(sample(comclg,50),sample(comclg2,50))$residtoR2,
+    diff100=.twowaycomp(sample(comclg,100),sample(comclg2,100))$residtoR2
     ))
 
 
