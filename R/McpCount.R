@@ -16,9 +16,9 @@ MCPcounter=function(genemat){
                     "Neutrophils", "Endothelial", "Fibroblasts")
 
 
-  features = subset(CancerRNASig:::mcpgenes, get("HUGO symbols") %in%
-                      rownames(genemat))
-  features = split(features[, "HUGO symbols"], features[,"Cell population"])
+  markers <- CancerRNASig:::mcpgenes
+  features = subset(markers, markers$HUGO.symbols %in%rownames(genemat))
+  features = split(features[, "HUGO.symbols"], features[,"Cell.population"])
   missing.populations = setdiff(markers.names, names(features))
   features = features[intersect(markers.names, names(features))]
   if (length(missing.populations) > 0) {
@@ -58,11 +58,9 @@ mcpcount =function(newexp,geneSymbols){
                     "NK", "B.lineage", "Mono.lineage", "Myeloid.dendritic",
                     "Neutrophils", "Endothelial", "Fibroblasts")
 
-
-  features = subset(CancerRNASig:::mcpgenes, get("HUGO symbols") %in%
-                      rownames(genemat))
-  features = split(features[, "HUGO symbols"], features[,
-                                                        "Cell population"])
+  markers <- CancerRNASig:::mcpgenes
+  features = subset(markers, markers$HUGO.symbols %in%rownames(genemat))
+  features = split(features[, "HUGO.symbols"], features[,"Cell.population"])
   missing.populations = setdiff(markers.names, names(features))
   features = features[intersect(markers.names, names(features))]
   if (length(missing.populations) > 0) {
