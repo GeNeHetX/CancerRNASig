@@ -59,7 +59,7 @@ mcpcount =function(newexp,geneSymbols){
                     "Neutrophils", "Endothelial", "Fibroblasts")
 
 
-  features = subset(CancerRNASig:::.mcpgenes, get("HUGO symbols") %in%
+  features = subset(CancerRNASig:::mcpgenes, get("HUGO symbols") %in%
                       rownames(genemat))
   features = split(features[, "HUGO symbols"], features[,
                                                         "Cell population"])
