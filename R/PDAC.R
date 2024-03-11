@@ -8,12 +8,12 @@
 #' @export
 #'
 #' @examples
-PDAC=function(newexp,system=c("puleo","pamg","purist")){
+# PDAC=function(newexp,system=c("puleo","pamg","purist")){
 
-  .checkGeneExp(newexp)
+#   .checkGeneExp(newexp)
 
 
-}
+# }
 
 
 # #' Title Purist

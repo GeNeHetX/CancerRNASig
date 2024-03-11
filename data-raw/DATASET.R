@@ -128,6 +128,26 @@
     GeneralImmu=toupper(read.xlsx(file.path(.refpath,"JCI121924.sdt1-6.xlsx"),sheet=6)[,1]))
 
 
+
+  # Pan-cancer T cell atlas Y.CHU 
+
+  table=read.csv(file.path(.refpath,'41591_2023_2371_MOESM3_ESM.csv'), sep=';')
+  # table=read.csv('41591_2023_2371_MOESM3_ESM.csv', sep=';')
+  table=table[1:25,2:9]
+  colnames(table)=table[1,]
+  table=table[-1,]
+  PanCK_Tcellatlas=as.list(table)
+  PanCK_Tcellatlas =lapply(PanCK_Tcellatlas, function(x) x[x!=""])
+
+
+  # Pan-cancer Neutrophils, Wu PMID.38447573
+  # table=read.xlsx(file.path(.refpath,'1-s2.0-S0092867424001260-mmc2.xlsx'),sheet=2)
+  tab=read.delim(file.path(.refpath,'1-s2.0-S0092867424001260-mmc2_sheet2.txt'), sep='\t')
+  # tab$ok=tab$Adjusted.P.value< 10^-20 #& tab$Log2.Fold.Change> log2(1.5)
+  # tapply(  tab$ok, tab$Cluster, sum)
+  PanCanNeutroWu=lapply(split(tab,tab$Cluster),\(x)x[which(rank(x$Adjusted.P.value,ties.method="first")<100),"Gene"] )
+
+
 }
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # CCK: Cjholangiocarcnoma
@@ -170,17 +190,7 @@
   ECMHELMS=fromJSON(read_json(file.path(.refpath,"ECM_Helms_genesets.json"),simplifyVector=T))
 }
 
-# --- --- --- --- --- --- --- --- --- --- --- ---
-# Pan-cancer T cell atlas Y.CHU 
-{
-  table=read.csv(file.path(.refpath,'41591_2023_2371_MOESM3_ESM.csv'), sep=';')
-  # table=read.csv('41591_2023_2371_MOESM3_ESM.csv', sep=';')
-  table=table[1:25,2:9]
-  colnames(table)=table[1,]
-  table=table[-1,]
-  PanCK_Tcellatlas=as.list(table)
-  PanCK_Tcellatlas =lapply(PanCK_Tcellatlas, function(x) x[x!=""])
-}
+
 
 
 gsignatures=list(
@@ -218,7 +228,10 @@ addgs(geneset=list(PSCcaf=scan(file.path(.refpath,"ECMsignature_PMID34548310.txt
 
 addgs(geneset=canceratlasMP,type="Cancer",src="Gavish.etal;PMID.37258682",id="CCCA_MetaProg")%>%
 
-addgs(geneset=PanCK_Tcellatlas,type='Immu', src='Chu.etal;PMID.37248301',id="IMMU_Tcellatlas")
+addgs(geneset=PanCK_Tcellatlas,type='Immu', src='Chu.etal;PMID.37248301',id="IMMU_Tcellatlas")%>%
+
+addgs(geneset=PanCanNeutroWu,type='Immu', src='Wu.etal;PMID.38447573',id="IMMU_Neutroatlas")
+
 
 
 
