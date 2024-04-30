@@ -51,7 +51,7 @@ mcpcount =function(newexp,geneSymbols){
     if(nrow(newexp)!= length(geneSymbols)){
       stop("geneSymbols should be a vector of gene symbols exactly corresponding to each row of the newexp dataset")
     }
-  genemat=CancerRNASig:::.getugm(newexp,geneSymbols,rowSds(as.matrix(newexp)))
+  genemat=CancerRNASig:::.getugm(newexp,geneSymbols,rowSds(as.matrix(newexp),useNames=T))
 
 
   markers.names = c("Tcells", "CD8Tcells", "Cytotox.lymph",
