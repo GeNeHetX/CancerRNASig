@@ -12,7 +12,7 @@ purist=function(newexp,geneSymbols){
   if(nrow(newexp)!= length(geneSymbols)){
     stop("geneSymbols should be a vector of gene symbols exactly corresponding to each row of the newexp dataset")
   }
-  expg=qutils::getUniqueGeneMat(newexp,geneSymbols,rowSds(as.matrix(newexp)))
+  expg=qutils::getUniqueGeneMat(newexp,geneSymbols,matrixStats::rowSds(as.matrix(newexp),useNames = TRUE))
 
   inter=-6.815
 
