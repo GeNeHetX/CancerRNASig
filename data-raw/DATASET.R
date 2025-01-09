@@ -190,8 +190,33 @@
   ECMHELMS=fromJSON(read_json(file.path(.refpath,"ECM_Helms_genesets.json"),simplifyVector=T))
 }
 
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# Fibroblast Atlas
+
+tab_fibro=openxlsx::read.xlsx(file.path(.refpath,"mmc3.xlsx"),sheet=2)
+
+### Nomage des clusters à leur signature biologique
+fibroSigs <- c("c01", "c02", "c03", "c04", "c05", "c06", "c07", "c08", "c09", "c10",
+          "c11", "c12", "c13", "c14", "c15", "c16", "c17", "c18", "c19", "c20")
+
+#SMC = smooth muscle cells
+names(fibroSigs) <- c("SMC_MYH11", "LaminaPropriaFibro_ADAMDEC",
+                      "Progenitor-like-fibro_COL15A1", "MyoFibro_LRRC15",
+                      "Progenitor-like-fibroblast_PI16", "AlveolarFibro_ADH1B+",
+                      "InflaFibro_IL6", "Pericyte", "Fibro_CTNNB1",
+                      "SynovialLiningFibro_PRG4", "MyoFibro_HOPX", "Mesothelial",
+                      "InflaFibro_HGF", "InflaFibro_HSPA6", "EpithelialCryptFibro_SOX6",
+                      "MyoFibro_SFRP2", "ProlifevrativeFibro_STMN1",
+                      "SMC_HHIP", "Myofibro_MMP1", "ApFibro_CD74"
+                      )
+
+tab_fibro$clusterName <- names(fibroSigs[as.numeric(sub("c", "", tab_fibro$cluster))])
 
 
+FibroAtlasSigs <- split(tab_fibro[,"gene"],tab_fibro$clusterName)
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# Aggreg sigs
 
 gsignatures=list(
   geneset=list(),
@@ -230,7 +255,9 @@ addgs(geneset=canceratlasMP,type="Cancer",src="Gavish.etal;PMID.37258682",id="CC
 
 addgs(geneset=PanCK_Tcellatlas,type='Immu', src='Chu.etal;PMID.37248301',id="IMMU_Tcellatlas")%>%
 
-addgs(geneset=PanCanNeutroWu,type='Immu', src='Wu.etal;PMID.38447573',id="IMMU_Neutroatlas")
+addgs(geneset=PanCanNeutroWu,type='Immu', src='Wu.etal;PMID.38447573',id="IMMU_Neutroatlas")%>%
+
+addgs(geneset=FibroAtlasSigs, type="Fibroblast", src="Yang-Gao.etal;PMID.39303725", id="FibroAtlasGao")
 
 
 
