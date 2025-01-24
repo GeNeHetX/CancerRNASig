@@ -283,8 +283,44 @@ puleoICAgw=read.delim(file.path(.refpath,"puleogw.tsv"),sep="\t",header=T)
 
 usethis::use_data(puleoICAgw,estimategenes,mcpgenes,internal=TRUE,overwrite=T)
 
-# library(devtools)
-# source("data-raw/DATASET.R")
-# build()
-# install()
-# reload(pkg = ".", quiet = FALSE)
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# UPDATE README AND DATA FILES
+### Write signature in json file for python or other langages
+write_json(toJSON(signatures), "./data-raw/geneSetSignatures.json", pretty = T) 
+
+update_RMD <- function(tab_summary){
+  # Read README + keep all texte before "Table des Signatures"
+  readme_file <- "./README.md"
+  readme_content <- readLines(readme_file)
+  title_index <- grep("## Table des Signatures", readme_content)
+  if (length(title_index) > 0) {
+    readme_content <- readme_content[1:(title_index[1]-2)]
+  }
+  
+  #  Add Signatures informations to README
+  md_table <- knitr::kable(tab_summary, format = "markdown", col.names = c("Annotation", "Source", "Type", "NumberOfSignatures"))
+  cat(readme_content, file = readme_file, sep = "\n")
+  cat("\n## Table des Signatures\n", file = readme_file, append = TRUE)
+  cat(md_table, file = readme_file, append = TRUE)
+  cat(paste0("\n\nlast update: ",format(Sys.Date(), "%d/%m/%Y"),"\n"), file = readme_file, append = TRUE)
+}
+
+# Summary table with signatures informations
+tab_summary <- signatures$annotation %>%
+  group_by(id, src, type) %>%
+  summarise(
+    type = unique(type),
+    nb_signatures = n()
+  ) %>%
+  ungroup()
+colnames(tab_summary) <- c("Annotation","Source","Type","NumberOfSignatures")
+
+# Update files with sigs infos
+write.csv(tab_summary, "./data-raw/sigs_summary.csv", row.names = FALSE)
+update_RMD(tab_summary)
+
+#library(devtools)
+#source("data-raw/DATASET.R")
+#build()
+#install()
+#reload(pkg = ".", quiet = FALSE)
