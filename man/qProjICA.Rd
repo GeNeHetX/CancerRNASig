@@ -6,14 +6,14 @@
 \usage{
 qProjICA(
   newexp,
-  ICAgw = qutils:::.puleoICAgw,
+  ICAgw = CancerRNASig:::puleoICAgw,
   geneNormType = "sc",
   projNormType = "raw",
   ming = 500
 )
 }
 \arguments{
-\item{newexp}{A new expression dataset}
+\item{newexp}{A new expression dataset, should be gene symbol in rows}
 
 \item{ICAgw}{ICA gene weights (S matrix)}
 

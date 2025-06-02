@@ -324,3 +324,29 @@ update_RMD(tab_summary)
 #build()
 #install()
 #reload(pkg = ".", quiet = FALSE)
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# LOAD GEMPRED MODEL
+GWM=readRDS("../GWM.rds")
+usethis::use_data(GWM, overwrite = TRUE)
+
+refAvg=readRDS("../refAvg.rds")
+usethis::use_data(refAvg, overwrite = TRUE)
+
+
+gp2ica=readRDS(file="../gp2ica.rds")
+gp2lm=readRDS(file="../gp2lm.rds")
+gp2genes=readRDS(file="../gp2genes.rds")
+
+
+compw=coef(gp2lm)[-1]
+gp2SingleGW=scale(crossprod(compw,t(gp2ica$S[,names(compw)]))[1,])
+
+GP2model=list(ICA=gp2ica,
+              LM=gp2lm,
+              genes=gp2genes,
+              simplified=setNames(gp2SingleGW[,1], rownames(gp2SingleGW)),
+              cutoff=-0.4519201
+)
+
+usethis::use_data(GP2model, overwrite = TRUE)
