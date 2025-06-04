@@ -183,6 +183,13 @@
 
   }
 
+{
+  #Cell Atlas Organoid :
+  atlas_organoid_df = read.xlsx(file.path(.refpath, "Cell_Atlas_Organoid.xlsx"),sheet=5)
+  atlas_organoidVec = lapply(atlas_organoid_df, function(x) as.character(x))
+  names(atlas_organoidVec) = paste0("Atlas_OrganoidVec_", colnames(atlas_organoid_df))
+}
+}
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # ECM
