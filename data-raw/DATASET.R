@@ -208,8 +208,8 @@ fibroSigs <- c("c01", "c02", "c03", "c04", "c05", "c06", "c07", "c08", "c09", "c
 
 #SMC = smooth muscle cells
 names(fibroSigs) <- c("SMC_MYH11", "LaminaPropriaFibro_ADAMDEC",
-                      "Progenitor-like-fibro_COL15A1", "MyoFibro_LRRC15",
-                      "Progenitor-like-fibroblast_PI16", "AlveolarFibro_ADH1B+",
+                      "Progenitor_like_fibro_COL15A1", "MyoFibro_LRRC15",
+                      "Progenitor_like_fibroblast_PI16", "AlveolarFibro_ADH1B+",
                       "InflaFibro_IL6", "Pericyte", "Fibro_CTNNB1",
                       "SynovialLiningFibro_PRG4", "MyoFibro_HOPX", "Mesothelial",
                       "InflaFibro_HGF", "InflaFibro_HSPA6", "EpithelialCryptFibro_SOX6",
