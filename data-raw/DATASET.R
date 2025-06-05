@@ -8,6 +8,7 @@
   library(jsonlite)
   library(qutils)
   library(openxlsx)
+  library(dplyr)
 
   addgs=function(gsobj,geneset,type,src,id,addIDtoNameList=T){
     if(length(type)==1){type=rep(type,length(geneset))}
@@ -187,7 +188,7 @@
   #Cell Atlas Organoid :
   atlas_organoid_df = read.xlsx(file.path(.refpath, "41588_2025_2182_MOESM3_ESM.xlsx"),sheet=5)
   atlas_organoidVec = lapply(atlas_organoid_df, function(x) as.character(x))
-  names(atlas_organoidVec) = paste0("Atlas_OrganoidVec_", colnames(atlas_organoid_df))
+  names(atlas_organoidVec) = paste0("atlas_organoidVec_", colnames(atlas_organoid_df))
 }
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
@@ -220,6 +221,155 @@ tab_fibro$clusterName <- names(fibroSigs[as.numeric(sub("c", "", tab_fibro$clust
 
 
 FibroAtlasSigs <- split(tab_fibro[,"gene"],tab_fibro$clusterName)
+
+
+{
+# Busslinger.etal;PMID: 33691112:
+load_and_process_excel_sheets <- function(file_paths) {
+  all_sheets_list <- list() 
+
+  for (file_path in file_paths) {
+    filename <- tools::file_path_sans_ext(basename(file_path)) 
+    filename <- gsub(" ", ".", filename)
+    shortname <- substr(filename, 18, nchar(filename)) 
+    sheets <- getSheetNames(file_path)
+
+    file_sheets <- lapply(sheets, function(sheet) {
+      data <- read.xlsx(file_path, sheet = sheet, startRow = 7)
+      dataf = data[which(data$padj < 0.05),]
+      first_column <- dataf[, 1]
+      processed_column <- sapply(first_column, function(x) {
+        strsplit(as.character(x), "__chr")[[1]][1]
+      })
+      res = unlist(processed_column)
+      names(res) = NULL
+      return(res)
+    })
+
+    names(file_sheets) <- lapply(sheets, function(sheet) {
+      paste0(shortname, "_", sheet)
+    })
+    all_sheets_list <- c(all_sheets_list, file_sheets)
+  }
+  return(all_sheets_list)
+}
+
+file_paths <- c(
+  file.path(.refpath, "BUSSLINGER HUMAN DUODENUM NORMAL CELLS SINGLE CELL.xlsx"),
+  file.path(.refpath, "BUSSLINGER HUMAN STOMACH NORMAL CELLS SINGLE CELL.xlsx")
+)
+busi <- load_and_process_excel_sheets(file_paths)
+}
+
+{
+# Z.Ma.etal;PMID: 34695382,
+file_path = file.path(.refpath, "MA MOUSE STOMACH NORMAL CELLS SINGLE CELL.xlsx")
+filename <- tools::file_path_sans_ext(basename(file_path))
+filename <- gsub(" ", ".", filename)
+gast_norm_mouse = read.xlsx(file_path)
+clusters <- split(gast_norm_mouse$gene, gast_norm_mouse$cluster)
+shortname <- substr(filename, 10, nchar(filename)) 
+names(clusters) <- paste0(shortname, "_", names(clusters))
+
+file_path = file.path(.refpath, "MA MOUSE STOMACH SPEM SIGNATURES.xlsx")
+filename2 <- tools::file_path_sans_ext(basename(file_path))
+filename2 <- gsub(" ", ".", filename2)
+gast_spem_mouse =  read.xlsx(file_path)
+add_list = list(gast_spem_mouse[,2], gast_spem_mouse[,3])
+shortname2 <- substr(filename2, 10, nchar(filename2)) 
+names(add_list) = paste0(shortname2, "_", colnames(gast_spem_mouse)[2:3])
+add_list <- lapply(add_list, function(x) {x[!is.na(x)] })
+
+ma_mouse= c(clusters, add_list)
+}
+
+
+{
+# Y.Schlesinger;PMID:32908137
+schl=read.xlsx(file.path(.refpath, 'SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx'), startRow = 2)
+schl = schl[which(schl$p_val_adj < 0.05),]
+table_schl=read.xlsx(file.path(.refpath, 'SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx'), startRow = 10)
+table_schl=table_schl[1:15,8:9]
+colnames(table_schl) = c('cluster', 'cell')
+table_schl$cell[table_schl$cluster == "19"] <- "unknown_clut19"
+
+split_rows <- function(row) {
+ clusters <- unlist(strsplit(as.character(row['cluster']), "_"))
+  cell <- as.character(row['cell'])
+  new_rows <- data.frame(cluster = clusters, cell = cell, stringsAsFactors = FALSE)
+  return(new_rows)
+}
+new_rows_1 <- split_rows(table_schl[1, ])
+new_rows_2 <- split_rows(table_schl[2, ])
+table_schl <- table_schl[-c(1, 2), ]
+table_schl <- rbind(new_rows_1, new_rows_2, table_schl)
+schl$cell =  table_schl$cell[match(schl$cluster, table_schl$cluster)]
+
+schle <- split(schl$gene, schl$cell)
+filename3 <- tools::file_path_sans_ext(basename(file.path(.refpath, 'SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx')))
+filename3 <- gsub(" ", ".", filename3)
+shortname3 <- substr(filename3, 19, nchar(filename3)) 
+names(schle) <- paste0(shortname3, "_", names(schle))
+}
+
+
+{
+# Y.Schlesinger;PMID:38908487
+mmc4 = read.xlsx(file.path(.refpath, 'mmc4.xlsx'))
+mmc4 = mmc4[which(mmc4$p_val_adj < 0.05),]
+filename4 <- tools::file_path_sans_ext(basename(file.path(.refpath, 'mmc4.xlsx')))
+df = data.frame(cell_type=c('Aft3_pop', 'ApoE/C_pop', 'LCN2_pop', 'Acinar_S', 'Tesc_pop', 'Wfdc18_1_pop', 'Obp2b_pop', 'Wnt_res', 'Yap_responsive', 'Apo/Tesc_pop', 'Wfdc18_2_pop', 'EMT_pop', 'Acinar-i', 'Cxcl1-2_pop', 'IFN_responsive', 'Prolif', 'Ciliated'))
+df$cluster = names(table(mmc4$cluster))
+mmc4$cell_type = df$cell_type[match(mmc4$cluster, df$cluster)]
+clusters3 <- split(mmc4$gene, mmc4$cell_type)
+# names(clusters3) <- paste0(filename4, "_", names(clusters3))
+}
+
+
+{
+# H.Nie;PMID:38177426
+scIBD = readRDS(file.path(.refpath, 'scIBD.deg_by_major_cluster.rds'))
+toto <- lapply(scIBD, function(x) {
+  vec <- x[, 1]
+  names(vec) <- x[, 2]
+  return(vec)
+})
+
+regrouped <- tapply(unlist(toto), names(unlist(toto)), function(x) x)
+regrouped_list <- lapply(unique(names(unlist(toto))), function(name) {
+  values <- unlist(toto)[names(unlist(toto)) == name]
+  values
+})
+# names(regrouped_list) <- paste0("scIBD_", unique(names(unlist(toto))))
+names(regrouped_list) = unique(names(unlist(toto)))
+gene = lapply(regrouped_list, as.vector)
+names(gene) = gsub(" ", ".", names(gene)) 
+}
+
+{
+# A.Sathe;PMID:32060101
+  Sathetab1 = read.xlsx(file.path(.refpath,'Supplementary table S6.xlsx'))
+  Sathe1vec <- split(Sathetab1[, 'gene'], Sathetab1$cluster)
+  # names(Sathe1vec) = paste0("Sathe_scrna_",c("gastricTumorCell_1", "gastricTumorCell_2", "normal"))
+  names(Sathe1vec) = c("gastricTumorCell_1", "gastricTumorCell_2", "normal")
+  Sathe1vec = lapply(Sathe1vec, unlist)
+}
+
+{
+# J.Kim;PMID:35087207
+  kimtab1 = read.xlsx(file.path(.refpath,'KIM_scRNAGatricCarcniogegenisis.xlsx'))
+  kim1vec <- split(kimtab1[, 'DEGs'], kimtab1$State)
+  # names(kim1vec) = paste0("KIM_scRNAGatricCarcniogegenisis_cell",names(kim1vec))
+  kim1vec = lapply(kim1vec, unlist)
+}
+
+{
+# K.Bockerstett;PMID:31481545
+  boktab = read.xlsx(file.path(.refpath,'BockerstettGut.xlsx'))
+  bokvec <- lapply(split(boktab$gene, boktab$cell), function(x) unlist(x, use.names = FALSE))
+  # names(bokvec) <- paste0("BockerstettGut", gsub(" ", "_", names(bokvec)))
+  names(bokvec) <- gsub(" ", "_", names(bokvec))
+}
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # Aggreg sigs
@@ -263,8 +413,17 @@ addgs(geneset=PanCK_Tcellatlas,type='Immu', src='Chu.etal;PMID.37248301',id="IMM
 
 addgs(geneset=PanCanNeutroWu,type='Immu', src='Wu.etal;PMID.38447573',id="IMMU_Neutroatlas")%>%
 
-addgs(geneset=FibroAtlasSigs, type="Fibroblast", src="Yang-Gao.etal;PMID.39303725", id="FibroAtlasGao")
+addgs(geneset=FibroAtlasSigs, type="Fibroblast", src="Yang-Gao.etal;PMID.39303725", id="FibroAtlasGao")%>%
 
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="G.Busslinger.etal;PMID: 33691112", id='BUSSLINGER.HUMAN')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="Z.Ma.etal;PMID: 34695382", id='MA.MOUSE.STOMACH')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="Y.Schlesinger;PMID:32908137", id='SCHLESINGER.MOUSE')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="Y.Schlesinger;PMID:38908487", id='mmc4')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="H.Nie;PMID:38177426", id='scIBD')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="A.Sathe;PMID:32060101", id='Sathe.scrna')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="J.Kim;PMID:35087207", id='KIM.scRNAGatricCarcniogegenisis.cell')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="K.Bockerstett;PMID:31481545", id='BockerstettGut')%>%
+addgs(geneset=atlas_organoidVec, type="Organoid", src="Xu.etal;PMID: 40355592", id='OrganoidAtlas')
 
 
 
