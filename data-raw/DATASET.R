@@ -418,7 +418,7 @@ addgs(geneset=FibroAtlasSigs, type="Fibroblast", src="Yang-Gao.etal;PMID.3930372
 addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="G.Busslinger.etal;PMID: 33691112", id='BUSSLINGER.HUMAN')%>%
 addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="Z.Ma.etal;PMID: 34695382", id='MA.MOUSE.STOMACH')%>%
 addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="Y.Schlesinger;PMID:32908137", id='SCHLESINGER.MOUSE')%>%
-addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="Y.Schlesinger;PMID:38908487", id='mmc4')%>%
+addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="Y.Schlesinger;PMID:38908487", id='ductal_pancreas_mouse_atlas')%>%
 addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="H.Nie;PMID:38177426", id='scIBD')%>%
 addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="A.Sathe;PMID:32060101", id='Sathe.scrna')%>%
 addgs(geneset=FibroAtlasSigs, type="scrnaNormalDigestive", src="J.Kim;PMID:35087207", id='KIM.scRNAGatricCarcniogegenisis.cell')%>%
@@ -463,11 +463,11 @@ update_RMD <- function(tab_summary){
   }
   
   #  Add Signatures informations to README
-  md_table <- knitr::kable(tab_summary, format = "markdown", col.names = c("Annotation", "Source", "Type", "NumberOfSignatures"))
+  md_table <- knitr::kable(tab_summary, col.names = c("Annotation", "Source", "Type", "NumberOfSignatures")) %>% kableExtra::footnote(general = paste0("last update: ",format(Sys.Date(), "%d/%m/%Y"),"\n"))
   cat(readme_content, file = readme_file, sep = "\n")
   cat("\n## Table des Signatures\n", file = readme_file, append = TRUE)
   cat(md_table, file = readme_file, append = TRUE)
-  cat(paste0("\n\nlast update: ",format(Sys.Date(), "%d/%m/%Y"),"\n"), file = readme_file, append = TRUE)
+  #cat(paste0("\n\nlast update: ",format(Sys.Date(), "%d/%m/%Y"),"\n"), file = readme_file, append = TRUE)
 }
 
 # Summary table with signatures informations
