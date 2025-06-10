@@ -65,7 +65,7 @@ A [json file](https://github.com/GeNeHetX/CancerRNASig/blob/main/data-raw/geneSe
 | PDAC_Puleo                           | Puleo et al.; PMID:30165049        | PDAC                 |                    10 |
 | SCHLESINGER.MOUSE                    | Y.Schlesinger; PMID:32908137       | scrnaNormalDigestive |                    20 |
 | Sathe.scrna                          | A.Sathe; PMID:32060101             | scrnaNormalDigestive |                    20 |
-| mmc4                                 | Y.Schlesinger; PMID:38908487       | scrnaNormalDigestive |                    20 |
+| ductal_pancreas_mouse_atlas          | Y.Schlesinger; PMID:38908487       | scrnaNormalDigestive |                    20 |
 | scIBD                                | H.Nie; PMID:38177426               | scrnaNormalDigestive |                    20 |
 
 last update: 05/06/2025
