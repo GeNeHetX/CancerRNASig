@@ -35,7 +35,7 @@ GemPred = function(newexp, geneSymbols, q=0.75){
 .lunch_GremPred<- function(name,counts){
     tmp_table <- counts[,c(name)]
     names(tmp_table) <- row.names(counts)
-    pred = GemPred2(as.matrix(tmp_table))
+    pred = GemPred_simplified(as.matrix(tmp_table))
     return(pred)
 }
 
@@ -122,8 +122,8 @@ GemPred2=function(dat,useGeneSym=T,mingenes=500,compScale=F,preScale=F){
 
 }
 
-GemPred_Lucie=function(dat,useGeneSym=T,mingenes=500){
-  #data(GP2model_simple)
+GemPred_simplified=function(dat,useGeneSym=T,mingenes=500){
+  data(GP2model_simple)
   if(useGeneSym){
     gp2GW=GP2model_simple$GeneSymbol
   }else{
