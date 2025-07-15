@@ -23,12 +23,15 @@ GemPred = function(newexp, geneSymbols, q=0.75){
   gempred_df <- do.call(rbind,res_list)
 
   # Compute sensitivity
-  gempred_df$sensitivityGem <- "gp-"
-  q3 <- quantile(gempred_df$gp2sc,probs = q)
-  gempred_df[gempred_df$gp2sc>=q3,"sensitivityGem"] <- "gp+"
-  gempred_df$sensitivityGem <- as.factor(gempred_df$sensitivityGem)
-  res = gempred_df[,c("gp2sc","sensitivityGem")]
+  #gempred_df$sensitivityGem <- "gp-"
+  #q3 <- quantile(gempred_df$gp2sc,probs = q)
+  #gempred_df[gempred_df$gp2sc>=q3,"sensitivityGem"] <- "gp+"
+  #gempred_df$sensitivityGem <- as.factor(gempred_df$sensitivityGem)
+  #res = gempred_df[,c("gp2sc","sensitivityGem")]
   
+  # Add gempred score from biopsi model (Lise)
+
+  res <- gempred_df
   return(res)
 }
 
@@ -53,42 +56,7 @@ GemPred = function(newexp, geneSymbols, q=0.75){
 }
 
 
-
-GemPred1=function(dat){
-  data(GWM)
-  data(refAvg)
-  w=c(-2.428483,0,0,1.716179,0,0)
-
-
-  # expg=getUniqueGeneMat(dat$exp,dat$probeannot[rownames(dat$exp),dat$genecol],rowSds(as.matrix(dat$exp)))
-  comg = intersect(rownames(dat),rownames(GWM))
-  if(length(comg)<5000 ){
-    return("Too few gene in common. (Gene Symbols are used)")
-  }
-  invs = MASS::ginv(as.matrix(GWM[comg, ]))
-  v=as.matrix(dat[comg,])
-
-  sscP=((t( invs %*% scale(v)) %*% w)[,1])*100
-  rawP=(t( invs %*% (v)) %*% w)[,1]
-
-
-
-  wwcomg=intersect(comg,rownames(refAvg))
-  wwinvs = MASS::ginv(as.matrix(GWM[wwcomg, ]))
-
-  vn=as.matrix(((dat[wwcomg,]-refAvg[wwcomg,"avg"])/refAvg[wwcomg,"sd"]))
-  # vn=(((pancg[wwcomg,]-pancgRefAvg[wwcomg,"avg"])/pancgRefAvg[wwcomg,"sd"]))
-  refedP=((t( wwinvs %*% ((as.matrix(dat[wwcomg,]-refAvg[wwcomg,"avg"])/refAvg[wwcomg,"sd"]))) %*% w)[,1])- -0.0786
-
-  # c(rawP=rawP,
-  data.frame(sscP=sscP, refedP=refedP,
-             prob=dnorm(abs(apply(vn,2,mean))),
-             setNames(data.frame(t((invs %*% v)[which(w !=0),])),c("senscomp","prolifcomp"))
-  )
-
-}
-
-GemPred2=function(dat,useGeneSym=T,mingenes=500,compScale=F,preScale=F){
+GemPred_full=function(dat,useGeneSym=T,mingenes=500,compScale=F,preScale=F){
   data(GP2model)
   if(useGeneSym){
     gp2GW=CancerRNASig:::.getUGM(GP2model$ICA$S,GP2model$genes,apply(GP2model$ICA$S,1,max))
@@ -135,9 +103,9 @@ GemPred_simplified=function(dat,useGeneSym=T,mingenes=500){
     return(paste("Too few gene in common. (",length(comg2),")"))
   }
   v2=dat[comg2,]
-  gp2Sr=crossprod(GP2model_simple$simplified[comg2] , v2)[1,]
+  gp2Sc=crossprod(GP2model_simple$simplified[comg2] , v2)[1,]
 
-  res <- data.frame(gp2sc=gp2Sr,
+  res <- data.frame(gp2sc=gp2Sc,
              row.names=colnames(dat)
   )
 
