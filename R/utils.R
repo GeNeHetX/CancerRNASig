@@ -1,17 +1,3 @@
-.getugm=function (m, g, w) 
-{
-    if (!all.equal(nrow(m), length(g), length(w))) {
-        stop("nrow of m should be equal to lenght of g and w")
-    }
-    i = order(w, decreasing = T)
-    oki = i[which(!duplicated(g[i]) & !g[i] %in% c("---", " ", 
-        "", NA))]
-    okm = m[oki, ]
-    rownames(okm) = g[oki]
-    okm
-}
-
-
 #' Title genesymUniqExp
 #'
 #' This function aims to obtain a gene expression matrix with a unique gene expression value
@@ -40,6 +26,19 @@ genesymUniqExp = function(newexp,geneSymbols,scoreFunc=NULL){
         w=scoreFunc(E)
     }
     CancerRNASig:::.getugm(E,geneSymbols,w)
+}
+
+.getugm=function (m, g, w) 
+{
+    if (!all.equal(nrow(m), length(g), length(w))) {
+        stop("nrow of m should be equal to lenght of g and w")
+    }
+    i = order(w, decreasing = T)
+    oki = i[which(!duplicated(g[i]) & !g[i] %in% c("---", " ", 
+        "", NA))]
+    okm = m[oki, ]
+    rownames(okm) = g[oki]
+    okm
 }
 
 

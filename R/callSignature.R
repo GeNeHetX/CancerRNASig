@@ -2,7 +2,7 @@
 #' 
 #' @param newexp gene expression matrix/dataframe, sample in columns, gene in rows
 #' @param geneSymbols gene symbols, a vector of same length as the number of rows in newex
-#' @param signature signature to apply, can be Gempred or Puleo
+#' @param signature signature to apply, can be Gempred, Puleo, McpCount or Purist
 #' @param toNorm normlisation to apply if needed, can be none(by default), uq or vst 
 #' @param toScale scale, can be raw, sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center (none by default)
 #'
@@ -13,7 +13,7 @@
 #' @export
 
 
-callSignature = function (matrix, geneSymbols, signature = c("Gempred", "Puleo"), toNorm="none", toScale="none"){
+callSignature = function (matrix, geneSymbols, signature = c("Gempred", "Puleo", "McpCount", "Purist"), toNorm="none", toScale="none"){
   
   # -- Input validation & coercions -------------------------------------------------
   if (!is.matrix(matrix))
@@ -33,28 +33,32 @@ callSignature = function (matrix, geneSymbols, signature = c("Gempred", "Puleo")
   )
 
   # -- Scaling -----------------------------------------------------------------
-  data <- CancerRNASig:::.qNormalize(data, toScale)
+  data <- .qNormalize(data, toScale)
 
   # -- Signatures ---------------------------------------------------
   res <- switch(sig,
-    # McpCount = {
-    #   message("Launching McpCount prediction")
-    #   data_u <- getUniqueGeneMat(data, geneSymbols, rowMeans(data))
-    #   CancerRNASig::MCPcounter(data_u)
-    # },
+    McpCount = {
+      message("Launching McpCount prediction")
+      #data_u <- getUniqueGeneMat(data, geneSymbols, rowMeans(data))
+      .mcpcount(data, geneSymbols)
+    },
     Puleo = {
       message("Launching Puleo prediction")
-      CancerRNASig::qProjICA(getUniqueGeneMat(data, geneSymbols, rowMeans(data)))
+      #raw data, no normalisation
+      .qProjICA(getUniqueGeneMat(data, geneSymbols, rowMeans(data)))
     },
-    # Purist = {
-    #   message("Launching Purist prediction")
-    #   CancerRNASig::purist(data, geneSymbols)
-    # },
+    Purist = {
+      message("Launching Purist prediction")
+      .purist(data, geneSymbols)
+    },
+    ## add estimate signature
     Gempred = {
       message("Launching GemPred prediction")
-      CancerRNASig::GemPred(data, geneSymbols)
+      .gemPred(data, geneSymbols)
     },
-    stop("Unreachable state – unknown signature. Please choose from 'Gempred' or 'Puleo.")  # sécurité
+    ## add gempred_biopsi
+    
+    stop("Unreachable state – unknown signature. Please choose from 'Gempred', 'Puleo', 'McpCount' or 'Purist'.")  # sécurité
   )
   
   res

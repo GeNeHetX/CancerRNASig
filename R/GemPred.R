@@ -6,14 +6,14 @@
 #' @param geneSymbols gene symbols, a vector of same length as the number of rows in newex
 #'
 #' @return a data frame with row names as colnames of newexp, first column is gempred score, second is gempred sensitivity conclusion
-#'
+#' @keywords internal
+#' 
 #' @examples
 #' # Example of how to call GemPred
 #' # result <- GemPred(newexp = gene_expression_matrix, geneSymbols = gene_symbols)
 #'
-#' @export
 
-GemPred = function(newexp, geneSymbols, q=0.75){
+.gemPred = function(newexp, geneSymbols){
   
   newexp_GS = qutils::getUniqueGeneMat(newexp, geneSymbols, rowMeans(newexp))
 
@@ -38,7 +38,7 @@ GemPred = function(newexp, geneSymbols, q=0.75){
 .lunch_GremPred<- function(name,counts){
     tmp_table <- counts[,c(name)]
     names(tmp_table) <- row.names(counts)
-    pred = GemPred_simplified(as.matrix(tmp_table))
+    pred = .gemPred_simplified(as.matrix(tmp_table))
     return(pred)
 }
 
@@ -56,7 +56,7 @@ GemPred = function(newexp, geneSymbols, q=0.75){
 }
 
 
-GemPred_full=function(dat,useGeneSym=T,mingenes=500,compScale=F,preScale=F){
+.gemPred_full=function(dat,useGeneSym=T,mingenes=500,compScale=F,preScale=F){
   data(GP2model)
   if(useGeneSym){
     gp2GW=CancerRNASig:::.getUGM(GP2model$ICA$S,GP2model$genes,apply(GP2model$ICA$S,1,max))
@@ -90,7 +90,7 @@ GemPred_full=function(dat,useGeneSym=T,mingenes=500,compScale=F,preScale=F){
 
 }
 
-GemPred_simplified=function(dat,useGeneSym=T,mingenes=500){
+.gemPred_simplified=function(dat,useGeneSym=T,mingenes=500){
   data(GP2model_simple)
   if(useGeneSym){
     gp2GW=GP2model_simple$GeneSymbol
