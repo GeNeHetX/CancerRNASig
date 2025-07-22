@@ -1,6 +1,8 @@
 # CancerRNASig
 RNA signature functions
 
+!!!! NEED TO BE UPDATE !!!!
+
 ## Installation
 
 Install CancerRNASig_Rpackage by downloading the zip code : 
