@@ -515,3 +515,8 @@ GP2model=list(ICA=gp2ica,
 )
 
 usethis::use_data(GP2model, overwrite = TRUE)
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# LOAD GEMPRED_BIOPSY MODEL
+t_GemPred_Biopsy <- read.csv("~/GitHub/CancerRNASig/data-raw/refData/t_GemPred_Biopsy.csv", sep=";")
+usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE)
