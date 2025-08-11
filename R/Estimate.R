@@ -5,7 +5,7 @@
 #' @export
 #'
 #' @examples
-Estimate=function (ds, platform = c("illumina","affymetrix", "agilent"))
+.estimate=function (ds, platform = c("illumina","affymetrix", "agilent"))
 {
   require(estimate)
 

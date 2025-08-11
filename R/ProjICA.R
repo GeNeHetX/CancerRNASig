@@ -8,10 +8,10 @@
 #' @param ming Minimum number of overlapping genes
 #'
 #' @return projected components
-#' @export
+#' @keywords internal
 #'
 #' @examples
-qProjICA=function(newexp,ICAgw=CancerRNASig:::puleoICAgw,geneNormType="sc",projNormType="raw",ming=500){
+.qProjICA=function(newexp,ICAgw=CancerRNASig:::puleoICAgw,geneNormType="sc",projNormType="raw",ming=500){
 
   comg = intersect(rownames(newexp), rownames(ICAgw))
 

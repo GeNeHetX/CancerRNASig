@@ -4,10 +4,12 @@
 #' @param geneSymbols gene symbols, a vector of same length as the number of rows in newex
 #'
 #' @return a data frame with row names as colnames of newexp, first column is purist subtype, second is purist score
-#' @export
+#' @keywords internal
 #'
 #' @examples
-purist=function(newexp,geneSymbols){
+#' 
+
+.purist=function(newexp,geneSymbols){
 
   if(nrow(newexp)!= length(geneSymbols)){
     stop("geneSymbols should be a vector of gene symbols exactly corresponding to each row of the newexp dataset")
