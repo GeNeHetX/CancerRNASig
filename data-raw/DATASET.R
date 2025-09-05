@@ -402,7 +402,7 @@ addgs(geneset=ImmuneL,type="Immu",src="Rodrigues.etal;PMID.30179225",id="IMMU_Ge
 addgs(geneset=STIMgenes,type="CCK",src="MartinSerrano.etal;PMID.35584893",id="CCK_STIM")%>%
 addgs(geneset=Biclassgenes,type="CCK",src="Sia.etal;PMID.23295441",id="CCK_Sia13")%>%
 
-addgs(geneset=drugbank,type="Drug",src="DrugBankDec2022",id="DrugBank")%>%
+#addgs(geneset=drugbank,type="Drug",src="DrugBankDec2022",id="DrugBank")%>%
 
 
 addgs(geneset=list(PSCcaf=scan(file.path(.refpath,"ECMsignature_PMID34548310.txt"),what="character",sep="\n")),type="ECM",src="Helms.etal;PMID.34548310",id="ECM_Helms22")%>%
@@ -449,6 +449,42 @@ puleoICAgw=read.delim(file.path(.refpath,"puleogw.tsv"),sep="\t",header=T)
 usethis::use_data(puleoICAgw,estimategenes,mcpgenes,internal=TRUE,overwrite=T)
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
+# LOAD GEMPRED MODEL
+#GWM=readRDS("../GWM.rds")
+#usethis::use_data(GWM, overwrite = TRUE)
+
+# refAvg=readRDS("../refAvg.rds")
+# usethis::use_data(refAvg, overwrite = TRUE)
+
+
+# gp2ica=readRDS(file="../gp2ica.rds")
+# gp2lm=readRDS(file="../gp2lm.rds")
+# gp2genes=readRDS(file="../gp2genes.rds")
+
+
+# compw=coef(gp2lm)[-1]
+# gp2SingleGW=scale(crossprod(compw,t(gp2ica$S[,names(compw)]))[1,])
+
+# GP2model=list(ICA=gp2ica,
+#               LM=gp2lm,
+#               genes=gp2genes,
+#               simplified=setNames(gp2SingleGW[,1], rownames(gp2SingleGW)),
+#               cutoff=-0.4519201
+# )
+# usethis::use_data(GP2model, overwrite = TRUE)
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# LOAD GEMPRED SIMPLIFIED MODEL
+GP2model_simple <- read.csv(file.path(.refpath,"GP2model_simplified.csv"), sep=",")
+usethis::use_data(GP2model_simple, overwrite = TRUE)
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# LOAD GEMPRED_BIOPSY MODEL
+t_GemPred_Biopsy <- read.csv("~/GitHub/CancerRNASig/data-raw/refData/t_GemPred_Biopsy.csv", sep=";")
+usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE)
+
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
 # UPDATE README AND DATA FILES
 ### Write signature in json file for python or other langages
 write_json(toJSON(signatures), "./data-raw/geneSetSignatures.json", pretty = T) 
@@ -490,33 +526,3 @@ update_RMD(tab_summary)
 #install()
 #reload(pkg = ".", quiet = FALSE)
 
-# --- --- --- --- --- --- --- --- --- --- --- ---
-# LOAD GEMPRED MODEL
-GWM=readRDS("../GWM.rds")
-usethis::use_data(GWM, overwrite = TRUE)
-
-refAvg=readRDS("../refAvg.rds")
-usethis::use_data(refAvg, overwrite = TRUE)
-
-
-gp2ica=readRDS(file="../gp2ica.rds")
-gp2lm=readRDS(file="../gp2lm.rds")
-gp2genes=readRDS(file="../gp2genes.rds")
-
-
-compw=coef(gp2lm)[-1]
-gp2SingleGW=scale(crossprod(compw,t(gp2ica$S[,names(compw)]))[1,])
-
-GP2model=list(ICA=gp2ica,
-              LM=gp2lm,
-              genes=gp2genes,
-              simplified=setNames(gp2SingleGW[,1], rownames(gp2SingleGW)),
-              cutoff=-0.4519201
-)
-
-usethis::use_data(GP2model, overwrite = TRUE)
-
-# --- --- --- --- --- --- --- --- --- --- --- ---
-# LOAD GEMPRED_BIOPSY MODEL
-t_GemPred_Biopsy <- read.csv("~/GitHub/CancerRNASig/data-raw/refData/t_GemPred_Biopsy.csv", sep=";")
-usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE)
