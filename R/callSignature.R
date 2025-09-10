@@ -2,7 +2,7 @@
 #' 
 #' @param newexp gene expression matrix/dataframe, sample in columns, gene in rows
 #' @param geneSymbols gene symbols, a vector of same length as the number of rows in newex
-#' @param signature signature to apply, can be Gempred, GempredBiopsy, Puleo, McpCount or Purist
+#' @param signature signature to apply, can be Gempred, tGempred, Puleo, Mcpcount or Purist
 #' @param toNorm normlisation to apply if needed, can be none (by default), uq or vst 
 #' @param toScale scale to apply if needed, can be none (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center
 #'
@@ -13,17 +13,19 @@
 #' @export
 
 
-callSignature = function (matrix, geneSymbols, signature = c("Gempred", "GempredBiopsy", "Puleo", "McpCount", "Purist"), toNorm="none", toScale="none"){
+callSignature = function (matrix, geneSymbols, signature = NULL, toNorm="none", toScale="none"){
   
   # -- Input validation & coercions -------------------------------------------------
   if (!is.matrix(matrix))
     matrix <- as.matrix(matrix)
-  if (all(grepl("^ENSG", rownames(data))))
+  if (!all(grepl("^ENSG", rownames(matrix))))
     stop("Row names of input matrix should be ENSG ids.")
   if (!is.character(geneSymbols))
     stop("geneSymbols must be a character vector.")
-
-  sig     <- match.arg(signature)
+  
+  if (is.null(signature)) stop("You must specify a signature: 'Gempred', 'tGempred', 'Puleo', 'Mcpcount', or 'Purist'.")
+  sig <- match.arg(signature, choices = c("Gempred", "tGempred", "Puleo", "Mcpcount", "Purist"))
+  
   toNorm  <- match.arg(toNorm)
   toScale <- match.arg(toScale)
   
@@ -35,40 +37,38 @@ callSignature = function (matrix, geneSymbols, signature = c("Gempred", "Gempred
   )
 
   # -- Scaling -----------------------------------------------------------------
-  data <- .qNormalize(data, toScale)
-
-  # -- GeneSymbol -----------------------------------------------------------------
+  data <- qutils::qNormalize(data, toScale)
 
   # -- Signatures ---------------------------------------------------
   res <- switch(sig,
-    McpCount = {
-      message("Launching McpCount prediction")
+    Mcpcount = {
+      message("Launching Mcpcount prediction")
       #data_u <- getUniqueGeneMat(data, geneSymbols, rowMeans(data))
-      .mcpcount(data, geneSymbols)
+      CancerRNASig:::.mcpcount(data, geneSymbols)
     },
     Puleo = {
       message("Launching Puleo prediction")
       #raw data, no normalisation
-      .qProjICA(getUniqueGeneMat(data, geneSymbols, rowMeans(data)))
+      .qProjICA(qutils::getUniqueGeneMat(data, geneSymbols, rowMeans(data)))
     },
     Purist = {
       message("Launching Purist prediction")
-      .purist(data, geneSymbols)
+      CancerRNASig:::.purist(data, geneSymbols)
     },
     ## add estimate signature 
 
     #need ENSG or Gene Symbols
     Gempred = {
-      message("Launching GemPred prediction")
-      .gemPred(data, geneSymbols)
+      message("Launching Gemred prediction")
+      CancerRNASig:::.gemPred(data, geneSymbols)
     },
     ## add GempredBiopsy - need ENSG
-    GempredBiopsy = {
-      message("Launching GemPred Biopsy prediction")
-      .GemPred_biopsy(data, gnt="raw",pnt="raw")
+    tGempred = {
+      message("Launching tGempred prediction")
+      CancerRNASig:::.GemPred_biopsy(data, gnt="raw",pnt="raw")
     },
     
-    stop("Unreachable state – unknown signature. Please choose from 'Gempred', 'GempredBiopsy', 'Puleo', 'McpCount' or 'Purist'.")  # sécurité
+    stop("Unreachable state – unknown signature. Please choose from 'Gempred', 'tGempred', 'Puleo', 'Mcpcount' or 'Purist'.")  # sécurité
   )
   
   res

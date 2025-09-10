@@ -560,7 +560,7 @@ update_RMD(tab_summary)
 
 #library(devtools)
 #source("data-raw/DATASET.R")
-devtools::build()   # construit le package
+#devtools::build()   # construit le package
 #devtools::install() # installe le package
 #devtools::load_all()# recharge le package dans la session
 
