@@ -29,4 +29,3 @@ projected components
 \description{
 Title Simple ICA projection, default using Puleo et al components
 }
-\keyword{internal}

@@ -7,7 +7,7 @@
 callSignature(
   matrix,
   geneSymbols,
-  signature = c("Gempred", "Puleo", "McpCount", "Purist"),
+  signature = c("Gempred", "GempredBiopsy", "Puleo", "McpCount", "Purist"),
   toNorm = "none",
   toScale = "none"
 )
@@ -15,11 +15,11 @@ callSignature(
 \arguments{
 \item{geneSymbols}{gene symbols, a vector of same length as the number of rows in newex}
 
-\item{signature}{signature to apply, can be Gempred, Puleo, McpCount or Purist}
+\item{signature}{signature to apply, can be Gempred, GempredBiopsy, Puleo, McpCount or Purist}
 
-\item{toNorm}{normlisation to apply if needed, can be none(by default), uq or vst}
+\item{toNorm}{normlisation to apply if needed, can be none (by default), uq or vst}
 
-\item{toScale}{scale, can be raw, sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center (none by default)}
+\item{toScale}{scale to apply if needed, can be none (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center}
 
 \item{newexp}{gene expression matrix/dataframe, sample in columns, gene in rows}
 }

@@ -4,7 +4,7 @@
 \alias{.gemPred}
 \title{Title GemPred}
 \usage{
-.gemPred(newexp, geneSymbols, q = 0.75)
+.gemPred(newexp, geneSymbols)
 }
 \arguments{
 \item{newexp}{gene expression matrix/dataframe, sample in columns, gene in rows}
