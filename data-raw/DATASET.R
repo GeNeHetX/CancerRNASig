@@ -4,11 +4,24 @@
 # --- --- --- --- --- --- --- --- --- --- --- ---
 #load and func
 {
-  library(tidyr)
-  library(jsonlite)
-  library(qutils)
-  library(openxlsx)
-  library(dplyr)
+  # Required packages
+  required_packages <- c(
+    "tidyr", "jsonlite", "qutils", "openxlsx", "dplyr",
+    "usethis", "knitr", "kableExtra", "tools", "readxl" # readxl utile si tu utilises read_excel
+  )
+
+  # InstalL packages if needed
+  new_packages <- required_packages[!(required_packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) install.packages(new_packages)
+
+  # Load packages
+  lapply(required_packages, library, character.only = TRUE)
+
+  #library(tidyr)
+  #library(jsonlite)
+  #library(qutils)
+  #library(openxlsx)
+  #library(dplyr)
 
   addgs=function(gsobj,geneset,type,src,id,addIDtoNameList=T){
     if(length(type)==1){type=rep(type,length(geneset))}
@@ -395,8 +408,8 @@ addgs(geneset=FMGcd2020,type="Cancer-Associated Fibroblasts (CAF)",src="Kieffer.
 addgs(geneset=TuvesonCAFsc,type="Cancer-Associated Fibroblasts (CAF)",src="Elyada.etal;PMID.31197017",id="CAF_Tuveson19")%>%
 addgs(geneset=CAFgenesigsymL,type="Cancer-Associated Fibroblasts (CAF)",src="Neuzillet.etal;PMID.36102377",id="CAF_Neuzillet22")%>%
 
-addgs(geneset=split(mcpgenes[,2],mcpgenes[,1]),type="Immune",src="Becht.etal;PMID.27765066",id="IMMU_MCPcounter")%>%
-addgs(geneset=ImmuneL,type="Immu",src="Rodrigues.etal;PMID.30179225",id="IMMU_GenJCI121924")%>%
+addgs(geneset=split(mcpgenes[,2],mcpgenes[,1]),type="Immune Cells",src="Becht.etal;PMID.27765066",id="IMMU_MCPcounter")%>%
+addgs(geneset=ImmuneL,type="Immune Cells",src="Rodrigues.etal;PMID.30179225",id="IMMU_GenJCI121924")%>%
 
 
 addgs(geneset=STIMgenes,type="Cholangiocarcinoma (CCK)",src="MartinSerrano.etal;PMID.35584893",id="CCK_STIM")%>%
@@ -480,7 +493,7 @@ usethis::use_data(GP2model_simple, overwrite = TRUE)
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # LOAD GEMPRED_BIOPSY MODEL
-t_GemPred_Biopsy <- read.csv("~/GitHub/CancerRNASig/data-raw/refData/t_GemPred_Biopsy.csv", sep=";")
+t_GemPred_Biopsy <- read.csv(file.path(.refpath,"t_GemPred_Biopsy.csv"), sep=";")
 usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE)
 
 
@@ -490,20 +503,44 @@ usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE)
 write_json(toJSON(signatures), "./data-raw/geneSetSignatures.json", pretty = T) 
 
 update_RMD <- function(tab_summary){
-  # Read README + keep all texte before "Table des Signatures"
+  # Get README content
   readme_file <- "./README.md"
   readme_content <- readLines(readme_file)
-  title_index <- grep("## Table des Signatures", readme_content)
-  if (length(title_index) > 0) {
-    readme_content <- readme_content[1:(title_index[1]-2)]
-  }
+
+  # Find the position of the existing table (if any)
+  table_start <- grep("<table", readme_content)
+  table_end   <- grep("</table>", readme_content)
   
+  if(length(table_start) == 0 | length(table_end) == 0){
+    stop("Impossible to find the existing table in README.md")
+  }
+
+  # Header = content before the table
+  header <- readme_content[1:(table_start-1)]
+  # Footer = content after the table
+  footer <- readme_content[(table_end+1):length(readme_content)]
+  
+  # Create new table in markdown format
+  md_table <- knitr::kable(
+    tab_summary, 
+    format = "html", 
+    table.attr = 'style="border-bottom:0;"', 
+    col.names = c("Annotation", "Source", "Type", "NumberOfSignatures")
+  ) %>% 
+    kableExtra::kable_styling(full_width = F) %>%
+    kableExtra::footnote(
+      general = paste0("last update: ", format(Sys.Date(), "%d/%m/%Y"))
+    )
+  
+  # Write the updated content back to the README file
+  writeLines(c(header, md_table, footer), readme_file)
+
   #  Add Signatures informations to README
-  md_table <- knitr::kable(tab_summary, col.names = c("Annotation", "Source", "Type", "NumberOfSignatures")) %>% kableExtra::footnote(general = paste0("last update: ",format(Sys.Date(), "%d/%m/%Y"),"\n"))
-  cat(readme_content, file = readme_file, sep = "\n")
-  cat("\n## Table des Signatures\n", file = readme_file, append = TRUE)
-  cat(md_table, file = readme_file, append = TRUE)
-  #cat(paste0("\n\nlast update: ",format(Sys.Date(), "%d/%m/%Y"),"\n"), file = readme_file, append = TRUE)
+  #md_table <- knitr::kable(tab_summary, 
+  #  col.names = c("Annotation", "Source", "Type", "NumberOfSignatures")) %>% kableExtra::footnote(general = paste0("last update: ",format(Sys.Date(), "%d/%m/%Y"),"\n"))
+  #cat(readme_content, file = readme_file, sep = "\n")
+  #cat("\n## Available GeneSets\n", file = readme_file, append = TRUE)
+  #cat(md_table, file = readme_file, append = TRUE)
 }
 
 # Summary table with signatures informations
@@ -511,7 +548,8 @@ tab_summary <- signatures$annotation %>%
   group_by(id, src, type) %>%
   summarise(
     type = unique(type),
-    nb_signatures = n()
+    nb_signatures = n(),
+    .groups = "drop"
   ) %>%
   ungroup()
 colnames(tab_summary) <- c("Annotation","Source","Type","NumberOfSignatures")
@@ -522,7 +560,9 @@ update_RMD(tab_summary)
 
 #library(devtools)
 #source("data-raw/DATASET.R")
-#build()
-#install()
+devtools::build()   # construit le package
+#devtools::install() # installe le package
+#devtools::load_all()# recharge le package dans la session
+
 #reload(pkg = ".", quiet = FALSE)
 
