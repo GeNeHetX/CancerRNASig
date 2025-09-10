@@ -1,73 +1,282 @@
 # CancerRNASig
-RNA signature functions
+CancerRNASig is an R package designed to apply RNA-seq signatures to new datasets and to provide a curated collection of published gene signatures for cancer (mainly PDAC), stromal, and immune programs.
 
-!!!! NEED TO BE UPDATE !!!!
+## Installation & Usage
 
-## Installation
+Install CancerRNASig_R package can be installed using devtools : 
+```r
+# Install devtools if needed
+install.packages("devtools")
 
-Install CancerRNASig_Rpackage by downloading the zip code : 
+# Install CancerRNASig from GitHub
+devtools::install_github("GeNeHetX/CancerRNASig")
+```
 
 ```bash
  Rscript -e "devtools::install_github('GeNeHetX/CancerRNASig')"
 ```
+### Usage
+Load the package  and use the main function **callSignature** :
 
-## Usage
+```r
+library(CancerRNASig)
+res <- callSignature(
+  matrix       = raw_counts,       # expression matrix (ENSG in rows, samples in columns)
+  geneSymbols  = geneannot,        # vector of gene symbols
+  signature    = "Gempred",        # signature to apply
+  toNorm       = "uq",             # normalization (none, uq, vst)
+  toScale      = "sc"             # scaling (none, sc, gc, gsc, ssc)
+)
+```
 
- * **Purist** : Function compute the PurIST score (Purity Independent Subtyping of Tumors)
- 
-    → return a data frame with row names as colnames of newexp, first column is purist subtype, second is purist score
+
+To project your dataset onto ICA components, simply use the **.qProjICA** function.
+```r
+res <- .qProjICA(
+  newexp        = raw_counts,        # expression matrix (genes in rows, samples in columns)
+  ICAgw         = yourICAgw,           # ICA gene weights (default: Puleo et al.)
+  geneNormType  = "sc",                 # normalization of gene expression (sc: sample scale)
+  projNormType  = "raw",                # normalization of components (raw by default)
+  ming          = 500                   # minimum number of overlapping genes
+)
+```
+
+## Available Signatures
+The main function **callSignature()** applies several transcriptomic signatures.
+Each subsection below describes the method, the output and the publication link.
+
+ * **Purist** : 
+
+     → **Description**: PurIST (Purity Independent Subtyping of Tumors) is a transcriptomic classifier for pancreatic ductal adenocarcinoma that separates tumors into basal-like and classical subtypes independently of tumor purity. These subtypes have distinct prognostic and therapeutic implications.<br>
+    → **Output**: a data frame with samples as rows and two columns: the **purist score (NumPurist)** and the **purist class** (classic/basal) <br>
+    → [DOI: 10.1158/1078-0432.CCR-19-1467](https://pmc.ncbi.nlm.nih.gov/articles/PMC6942634/)
 <br></br>
 
- * **McpCount** : 
+ * **Mcpcount** : 
 
-     → return a data frame with samples in row and MCPcounter population quantification in columns
+     → **Description**: MCP-counter is a transcriptomic method that estimates the abundance of key immune and stromal cell populations from bulk RNA-seq data. It provides robust, sample-independent scores that enable cross-sample comparison and tumor microenvironment characterization.<br>
+     → **Output**: a data frame with samples as rows and the relative proportion of several immune and stroma cell populations (Tcells, CD8Tcells, Cytotox.lymph, NK, B.lineage, Mono.lineage, Myeloid.dendritic, Neutrophils, Endothelial, Fibroblasts) in columns.<br>
+     → [DOI: 10.1186/s13059-016-1070-5](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1070-5)
  <br></br>    
 
- * **ProjICA** : Function compute simple ICA projection (default using Puleo et al components)
+ * **Puleo** : 
 
-     → return projected components
- <br></br>    
+    → **Description**: A 403-gene transcriptomic signature derived from pancreatic ductal adenocarcinoma (PDAC) samples, designed to stratify tumors into five molecular subtypes: **Pure Classical, Immune Classical, Desmoplastic, Stroma-Activated, and Pure Basal-Like**. This classification integrates both tumor cell–intrinsic programs and tumor microenvironmental (stromal and immune) components. <br>
+     → **Output**: a data frame with samples as rows and the relative proportion of several immune and stroma cell populations (Exocrine, Endocrine, Classic, StromaActiv, Basal, StromaActivInflam, Immune, StromaInactive, ICA9) in columns. <br>
+     → [DOI: 10.1053/j.gastro.2018.08.033](https://pubmed.ncbi.nlm.nih.gov/30165049/)
+ <br></br>
 
- * **Estimate** : 
- 
-     → return score data
+ * **Gempred** : 
 
-## For none-R users
-A [json file](https://github.com/GeNeHetX/CancerRNASig/blob/main/data-raw/geneSetSignatures.json) is available with all the signatures. It contains the same data as the signatures.rda file and can be openned with other programming langages (Python).
+     → **Description**: GemPred is an RNA-based transcriptomic signature developed for pancreatic ductal adenocarcinoma that predicts sensitivity to adjuvant gemcitabine in PDAC patients. Patients with GemPred-positive tumors benefit significantly more from gemcitabine than GemPred-negative cases.<br>
+     → **Output**: a data frame with samples as rows and a single column containing the GemPred score.<br>
+     → [DOI: 10.1016/j.annonc.2020.10.601](https://www.sciencedirect.com/science/article/pii/S092375342043131X)
 
-## Table des Signatures
+* **tGempred** : 
 
-| Annotation                            | Source                             | Type                 | Nombre de Signatures |
-|:-------------------------------------|:-----------------------------------|:---------------------|----------------------:|
-| BUSSLINGER.HUMAN                     | G.Busslinger et al.; PMID:33691112 | scrnaNormalDigestive |                    20 |
-| BockerstettGut                       | K.Bockerstett; PMID:31481545       | scrnaNormalDigestive |                    20 |
-| CAF_FMG20                            | Kieffer et al.; PMID:32434947      | CAF                  |                     8 |
-| CAF_Neuzillet22                      | Neuzillet et al.; PMID:36102377    | CAF                  |                     4 |
-| CAF_Turley20                         | Dominguez et al.; PMID:31699795    | CAF                  |                     3 |
-| CAF_Tuveson19                        | Elyada et al.; PMID:31197017       | CAF                  |                     2 |
-| CCCA_MetaProg                        | Gavish et al.; PMID:37258682       | Cancer               |                    41 |
-| CCK_STIM                             | Martin Serrano et al.; PMID:35584893| CCK                 |                     5 |
-| CCK_Sia13                            | Sia et al.; PMID:23295441          | CCK                  |                     2 |
-| DrugBank                             | DrugBank Dec 2022                  | Drug                 |                     5 |
-| ECM_Helms22                          | Helms et al.; PMID:34548310        | ECM                  |                     1 |
-| FibroAtlasGao                        | Yang-Gao et al.; PMID:39303725     | Fibroblast           |                    20 |
-| IMMU_GenJCI121924                    | Rodrigues et al.; PMID:30179225    | Immu                 |                     2 |
-| IMMU_MCPcounter                      | Becht et al.; PMID:27765066        | Immu                 |                    10 |
-| IMMU_Neutroatlas                     | Wu et al.; PMID:38447573           | Immu                 |                    10 |
-| IMMU_Tcellatlas                      | Chu et al.; PMID:37248301          | Immu                 |                     8 |
-| KIM.scRNAGatricCarcniogegenisis.cell| J.Kim; PMID:35087207               | scrnaNormalDigestive |                    20 |
-| MA.MOUSE.STOMACH                     | Z.Ma et al.; PMID:34695382         | scrnaNormalDigestive |                    20 |
-| OrganoidAtlas                        | Xu et al.; PMID:40355592           | Organoid             |                    48 |
-| PDAC_Bailey16                        | Bailey et al.; PMID:26909576       | PDAC                 |                     4 |
-| PDAC_CSY20                           | Chan-Seng-Yue et al.; PMID:31932696| PDAC                 |                    12 |
-| PDAC_Hwang22                         | Hwang et al.; PMID:35902743        | PDAC                 |                    18 |
-| PDAC_Moffitt15                       | Moffitt et al.; PMID:26343385      | PDAC                 |                    14 |
-| PDAC_PDAssigner                      | Collisson et al.; PMID:21460848    | PDAC                 |                     3 |
-| PDAC_PDXph1                          | Nicolle et al.; PMID:29186684      | PDAC                 |                     2 |
-| PDAC_Puleo                           | Puleo et al.; PMID:30165049        | PDAC                 |                    10 |
-| SCHLESINGER.MOUSE                    | Y.Schlesinger; PMID:32908137       | scrnaNormalDigestive |                    20 |
-| Sathe.scrna                          | A.Sathe; PMID:32060101             | scrnaNormalDigestive |                    20 |
-| ductal_pancreas_mouse_atlas          | Y.Schlesinger; PMID:38908487       | scrnaNormalDigestive |                    20 |
-| scIBD                                | H.Nie; PMID:38177426               | scrnaNormalDigestive |                    20 |
+     → **Description**: tGemPred is an improved GemPred signature optimized for biopsy samples, using ICA deconvolution to remove contamination signals (e.g., blood) and enhance predictive performance.<br>
+     → **Output**: a data frame with samples as rows and a single column containing the tGemPred score.<br>
+     → DOI: coming soon
 
-last update: 05/06/2025
+### Note for scRNA-seq data
+These signatures are designed for **bulk RNA-seq** but can also be applied to **pseudo-bulk scRNA-seq data**.
+To use scRNA-seq data, first aggregate counts per sample or cluster (pseudo-bulk), normalize appropriately, and then apply callSignature
+
+## Available GeneSets
+All gene sets and their annotations are available in the **signatures** object included in the package.
+
+<table style="border-bottom:0; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;" class="table">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Annotation </th>
+   <th style="text-align:left;"> Source </th>
+   <th style="text-align:left;"> Type </th>
+   <th style="text-align:right;"> NumberOfSignatures </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> BUSSLINGER.HUMAN </td>
+   <td style="text-align:left;"> G.Busslinger.etal;PMID: 33691112 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BockerstettGut </td>
+   <td style="text-align:left;"> K.Bockerstett;PMID:31481545 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CAF_FMG20 </td>
+   <td style="text-align:left;"> Kieffer.etal;PMID.32434947 </td>
+   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CAF_Neuzillet22 </td>
+   <td style="text-align:left;"> Neuzillet.etal;PMID.36102377 </td>
+   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CAF_Turley20 </td>
+   <td style="text-align:left;"> Dominguez.etal;PMID.31699795 </td>
+   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CAF_Tuveson19 </td>
+   <td style="text-align:left;"> Elyada.etal;PMID.31197017 </td>
+   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CCCA_MetaProg </td>
+   <td style="text-align:left;"> Gavish.etal;PMID.37258682 </td>
+   <td style="text-align:left;"> Cancer </td>
+   <td style="text-align:right;"> 41 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CCK_STIM </td>
+   <td style="text-align:left;"> MartinSerrano.etal;PMID.35584893 </td>
+   <td style="text-align:left;"> Cholangiocarcinoma (CCK) </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CCK_Sia13 </td>
+   <td style="text-align:left;"> Sia.etal;PMID.23295441 </td>
+   <td style="text-align:left;"> Cholangiocarcinoma (CCK) </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ECM_Helms22 </td>
+   <td style="text-align:left;"> Helms.etal;PMID.34548310 </td>
+   <td style="text-align:left;"> Extracellular Matrix (ECM) </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FibroAtlasGao </td>
+   <td style="text-align:left;"> Yang-Gao.etal;PMID.39303725 </td>
+   <td style="text-align:left;"> Fibroblast </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> IMMU_GenJCI121924 </td>
+   <td style="text-align:left;"> Rodrigues.etal;PMID.30179225 </td>
+   <td style="text-align:left;"> Immune Cells </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> IMMU_MCPcounter </td>
+   <td style="text-align:left;"> Becht.etal;PMID.27765066 </td>
+   <td style="text-align:left;"> Immune Cells </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> IMMU_Neutroatlas </td>
+   <td style="text-align:left;"> Wu.etal;PMID.38447573 </td>
+   <td style="text-align:left;"> Immune Cells </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> IMMU_Tcellatlas </td>
+   <td style="text-align:left;"> Chu.etal;PMID.37248301 </td>
+   <td style="text-align:left;"> Immune Cells </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> KIM.scRNAGatricCarcniogegenisis.cell </td>
+   <td style="text-align:left;"> J.Kim;PMID:35087207 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MA.MOUSE.STOMACH </td>
+   <td style="text-align:left;"> Z.Ma.etal;PMID: 34695382 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> OrganoidAtlas </td>
+   <td style="text-align:left;"> Xu.etal;PMID: 40355592 </td>
+   <td style="text-align:left;"> Organoid </td>
+   <td style="text-align:right;"> 48 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC_Bailey16 </td>
+   <td style="text-align:left;"> Bailey.etal;PMID.26909576 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC_CSY20 </td>
+   <td style="text-align:left;"> Chan-Seng-Yue.etal;PMID.31932696 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 12 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC_Hwang22 </td>
+   <td style="text-align:left;"> Hwang.etal;PMID.35902743 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC_Moffitt15 </td>
+   <td style="text-align:left;"> Moffitt.etal;PMID.26343385 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC_PDAssigner </td>
+   <td style="text-align:left;"> Collisson.etal;PMID.21460848 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC_PDXph1 </td>
+   <td style="text-align:left;"> Nicolle.etal;PMID.29186684 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC_Puleo </td>
+   <td style="text-align:left;"> Puleo.etal;PMID.30165049 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SCHLESINGER.MOUSE </td>
+   <td style="text-align:left;"> Y.Schlesinger;PMID:32908137 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Sathe.scrna </td>
+   <td style="text-align:left;"> A.Sathe;PMID:32060101 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ductal_pancreas_mouse_atlas </td>
+   <td style="text-align:left;"> Y.Schlesinger;PMID:38908487 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> scIBD </td>
+   <td style="text-align:left;"> H.Nie;PMID:38177426 </td>
+   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 20 </td>
+  </tr>
+</tbody>
+<tfoot>
+<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
+<tr><td style="padding: 0; " colspan="100%">
+<sup></sup> last update: 10/09/2025</td></tr>
+</tfoot>
+</table>
+
+### For none-R users
+A [json file](https://github.com/GeNeHetX/CancerRNASig/blob/main/data-raw/geneSetSignatures.json) is available with all the signatures. It contains the same data as the signatures.rda file and can be openned with other programming langages like **Python**.
+
