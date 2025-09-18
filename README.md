@@ -1,9 +1,20 @@
 # CancerRNASig
-CancerRNASig is an R package designed to apply RNA-seq signatures to new datasets and to provide a curated collection of published gene signatures for cancer (mainly PDAC), stromal, and immune programs.
+CancerRNASig is an R package designed to facilitate the application of RNA-seq signatures published in the literature to your own datasets. It also provides an organized collection of published gene signatures related to cancer (mainly PDAC), stroma, and immunity.
 
+## Prerequisites
+```r
+install.packages("devtools")
+install.packages("utils", repos="http://r-forge.r-project.org", dependencies=TRUE) 
+install.packages("estimate", repos="http://r-forge.r-project.org", dependencies=TRUE)
+devtools::install_github("GeNeHetX/qutils")
+```
 ## Installation & Usage
+The CancerRNASig R package can be installed directly from GitHub in a terminal using Rscript:
+```bash
+Rscript -e "if (!require('devtools')) install.packages('devtools', repos='https://cloud.r-project.org'); devtools::install_github('GeNeHetX/CancerRNASig')"
 
-Install CancerRNASig_R package can be installed using devtools : 
+```
+or within an R environment:
 ```r
 # Install devtools if needed
 install.packages("devtools")
@@ -12,25 +23,77 @@ install.packages("devtools")
 devtools::install_github("GeNeHetX/CancerRNASig")
 ```
 
-```bash
- Rscript -e "devtools::install_github('GeNeHetX/CancerRNASig')"
-```
-### Usage
-Load the package  and use the main function **callSignature** :
+### Input formats
 
+**counts_matrix** : data frame or matrix containing gene expression values, with samples in columns and genes in rows. 
+```r
+### example of counts_matrix
+counts_matrix <- read.csv("my_dataset_expression_matrix.tsv.gz", sep="\t",header=TRUE)
+
+head(counts_matrix)
+                SAMPLE_001 SAMPLE_002 SAMPLE_003 SAMPLE_004
+ENSG00000160072      4          8         21          4
+ENSG00000234396      0          0          1          0
+ENSG00000225972    515        507        690        148
+ENSG00000224315      0          0          0          0
+ENSG00000198744     57        496        627         66
+ENSG00000279928    125        108       1499        681
+```
+
+**geneSymbols** : vector of gene symbols corresponding to your reference genome. This vector must have the **same length as the number of rows in counts_matrix**.
+```r
+### example of geneSymbols
+geneannot <- read.delim('geneAnnot.tsv', sep="\t")
+head(geneannot)
+                seqname   start     end strand          GeneID        GeneName
+ENSG00000160072       1 1471765 1497848      + ENSG00000160072          ATAD3B
+ENSG00000234396       1 2212523 2220738      + ENSG00000234396 ENSG00000234396
+ENSG00000225972       1  629062  629433      + ENSG00000225972        MTND1P23
+ENSG00000224315       1 8786211 8786913      - ENSG00000224315          RPL7P7
+ENSG00000198744       1  634376  634922      + ENSG00000198744        MTCO3P12
+ENSG00000279928       1  182696  184174      + ENSG00000279928        DDX11L17
+
+
+geneSymbols <- geneannot$GeneName
+head(geneSymbols)
+> "ATAD3B" "ENSG00000234396" "MTND1P23" "RPL7P7" "MTCO3P12" "DDX11L17"
+
+length(geneSymbols)
+> 61809
+dim(counts_matrix)[1]
+> 61809
+```
+
+**ICAgw** : data frame with your components in columns and your genes (ENSG IDs or gene symbols) in rows.
+```r
+### example of ICAgw
+head(CancerRNASig:::puleoICAgw[,1:3])
+>                 Exocrine  Endocrine    Classic
+CPB1              23.80349 -0.3141979  0.5453618
+CELA3A /// CELA3B 22.51492 -1.3706352  0.5733326
+PLA2G1B           21.70120 -0.6311313 -0.4521336
+CEL               21.36494  0.2416872 -0.8614301
+REG1B             21.04806  2.7321668 -1.1594257
+PNLIP             21.02681 -2.3157584  0.1250148
+
+```
+
+### Usage
+Load the package and use the main function **callSignature** :
 ```r
 library(CancerRNASig)
+
 res <- callSignature(
-  matrix       = raw_counts,       # expression matrix (ENSG in rows, samples in columns)
-  geneSymbols  = geneannot,        # vector of gene symbols
+  matrix       = counts_matrix,       # expression matrix (ENSG in rows, samples in columns)
+  geneSymbols  = geneSymbols,        # vector of gene symbols
   signature    = "Gempred",        # signature to apply
-  toNorm       = "uq",             # normalization (none, uq, vst)
-  toScale      = "sc"             # scaling (none, sc, gc, gsc, ssc)
+  normType       = "uq",             # normalization (raw, uq, vst)
+  scaleType      = "sc"             # scaling (raw, sc, gc, gsc, ssc)
 )
 ```
 
 
-To project your dataset onto ICA components, simply use the **.qProjICA** function.
+To project your dataset onto custom ICA components, simply use the **.qProjICA** function.
 ```r
 res <- .qProjICA(
   newexp        = raw_counts,        # expression matrix (genes in rows, samples in columns)
@@ -43,7 +106,7 @@ res <- .qProjICA(
 
 ## Available Signatures
 The main function **callSignature()** applies several transcriptomic signatures.
-Each subsection below describes the method, the output and the publication link.
+Each subsection below describes the method, the expected output, and provides the publication reference.
 
  * **Purist** : 
 
@@ -82,7 +145,7 @@ Each subsection below describes the method, the output and the publication link.
 These signatures are designed for **bulk RNA-seq** but can also be applied to **pseudo-bulk scRNA-seq data**.
 To use scRNA-seq data, first aggregate counts per sample or cluster (pseudo-bulk), normalize appropriately, and then apply callSignature
 
-## Available GeneSets
+## Available Gene Sets
 All gene sets and their annotations are available in the **signatures** object included in the package.
 
 <table style="border-bottom:0; width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;" class="table">
@@ -277,6 +340,6 @@ All gene sets and their annotations are available in the **signatures** object i
 </tfoot>
 </table>
 
-### For none-R users
-A [json file](https://github.com/GeNeHetX/CancerRNASig/blob/main/data-raw/geneSetSignatures.json) is available with all the signatures. It contains the same data as the signatures.rda file and can be openned with other programming langages like **Python**.
+### For non-R users
+A [json file](https://github.com/GeNeHetX/CancerRNASig/blob/main/data-raw/geneSetSignatures.json) is available with all the signatures. It contains the same data as the signatures.rda file and can be openned with other programming langages such as **Python**.
 
