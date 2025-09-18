@@ -3,9 +3,17 @@ CancerRNASig is an R package designed to facilitate the application of RNA-seq s
 
 ## Prerequisites
 ```r
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
 install.packages("devtools")
+
 install.packages("utils", repos="http://r-forge.r-project.org", dependencies=TRUE) 
+
 install.packages("estimate", repos="http://r-forge.r-project.org", dependencies=TRUE)
+
+BiocManager::install("DESeq2")
+
 devtools::install_github("GeNeHetX/qutils")
 ```
 ## Installation & Usage
