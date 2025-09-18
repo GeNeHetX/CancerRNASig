@@ -1,19 +1,19 @@
 #' Title callSignature
 #' 
-#' @param newexp gene expression matrix/dataframe, sample in columns, gene in rows
-#' @param geneSymbols gene symbols, a vector of same length as the number of rows in newex
+#' @param matrix gene expression matrix/dataframe, sample in columns, gene in rows
+#' @param geneSymbols gene symbols, a vector of same length as the number of rows in matrix
 #' @param signature signature to apply, can be Gempred, tGempred, Puleo, Mcpcount or Purist
-#' @param toNorm normlisation to apply if needed, can be none (by default), uq or vst 
-#' @param toScale scale to apply if needed, can be none (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center
+#' @param normType normlisation to apply if needed, can be raw (by default), uq or vst 
+#' @param scaleType scale to apply if needed, can be raw (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center
 #'
 #' @return a data frame with row names as colnames of newexp, columns are different according the signatures, can be signature score or/and signature conclusion
 #'
 #' @examples 
-#' callSignature(raw_counts,geneannot,signature="Gempred",toNorm="uq",scale="ssc")
+#' callSignature(matrix,geneannot,signature="Gempred",normType="uq",scale="ssc")
 #' @export
 
 
-callSignature = function (matrix, geneSymbols, signature = NULL, toNorm="none", toScale="none"){
+callSignature = function (matrix, geneSymbols, signature = NULL, normType="raw", scaleType="raw"){
   
   # -- Input validation & coercions -------------------------------------------------
   if (!is.matrix(matrix))
@@ -26,18 +26,18 @@ callSignature = function (matrix, geneSymbols, signature = NULL, toNorm="none", 
   if (is.null(signature)) stop("You must specify a signature: 'Gempred', 'tGempred', 'Puleo', 'Mcpcount', or 'Purist'.")
   sig <- match.arg(signature, choices = c("Gempred", "tGempred", "Puleo", "Mcpcount", "Purist"))
   
-  toNorm  <- match.arg(toNorm)
-  toScale <- match.arg(toScale)
+  normType  <- match.arg(normType, choices = c("raw", "uq", "vst"))
+  scaleType <- match.arg(scaleType, choices = c("raw", "gc", "sc", "gsc", "ssc"))
   
   # -- Normalisation ----------------------------------------------------------
-  data <- switch(toNorm,
+  data <- switch(normType,
     uq   = { message("Launching UQ normalisation") ; qutils::UQnorm(matrix) },
-    vst  = { message("Launching VST normalisation"); vst(matrix)       },
-    none = { message("No normalisation applied")   ; matrix                 }
+    vst  = { message("Launching VST normalisation"); DESeq2::vst(matrix)       },
+    raw = { message("No normalisation applied")   ; matrix                 }
   )
 
   # -- Scaling -----------------------------------------------------------------
-  data <- qutils::qNormalize(data, toScale)
+  data <- qutils::qNormalize(data, scaleType)
 
   # -- Signatures ---------------------------------------------------
   res <- switch(sig,
