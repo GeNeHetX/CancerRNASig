@@ -93,17 +93,20 @@
 .gemPred_simplified=function(dat,useGeneSym=T,mingenes=500){
   data(GP2model_simple)
   if(useGeneSym){
-    gp2GW=GP2model_simple$GeneSymbol
-  }else{
-    gp2GW=GP2model_simple$ENG_ID
-  }
-  comg2 = intersect(rownames(dat),rownames(gp2GW))
+    gp2GW=CancerRNASig:::.getUGM(GP2model_simple,GP2model_simple$GeneSymbol,apply(GP2model_simple,1,max))
 
+  }else{
+    gp2GW=GP2model_simple
+    row.names(gp2GW)=gp2GW$ENSG_ID
+  }
+
+  comg2 = intersect(rownames(dat),row.names(gp2GW))
+  
   if(length(comg2)<mingenes ){
     return(paste("Too few gene in common. (",length(comg2),")"))
   }
   v2=dat[comg2,]
-  gp2Sc=crossprod(GP2model_simple$simplified[comg2] , v2)[1,]
+  gp2Sc=crossprod(gp2GW[comg2,"weight"], v2)[1,]
 
   res <- data.frame(gp2sc=gp2Sc,
              row.names=colnames(dat)
