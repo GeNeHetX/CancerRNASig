@@ -1,6 +1,6 @@
 "Annotation","Source","Type","NumberOfSignatures"
-"BUSSLINGER.HUMAN","G.Busslinger.etal;PMID: 33691112","Normal Digestive scRNA-seq",20
-"BockerstettGut","K.Bockerstett;PMID:31481545","Normal Digestive scRNA-seq",20
+"BUSSLINGER.HUMAN","G.Busslinger.etal;PMID: 33691112","Normal Digestive scRNA-seq",36
+"BockerstettGut","K.Bockerstett;PMID:31481545","Normal Digestive scRNA-seq",10
 "CAF_FMG20","Kieffer.etal;PMID.32434947","Cancer-Associated Fibroblasts (CAF)",8
 "CAF_Neuzillet22","Neuzillet.etal;PMID.36102377","Cancer-Associated Fibroblasts (CAF)",4
 "CAF_Turley20","Dominguez.etal;PMID.31699795","Cancer-Associated Fibroblasts (CAF)",3
@@ -14,8 +14,8 @@
 "IMMU_MCPcounter","Becht.etal;PMID.27765066","Immune Cells",10
 "IMMU_Neutroatlas","Wu.etal;PMID.38447573","Immune Cells",10
 "IMMU_Tcellatlas","Chu.etal;PMID.37248301","Immune Cells",8
-"KIM.scRNAGatricCarcniogegenisis.cell","J.Kim;PMID:35087207","Normal Digestive scRNA-seq",20
-"MA.MOUSE.STOMACH","Z.Ma.etal;PMID: 34695382","Normal Digestive scRNA-seq",20
+"KIM.scRNAGatricCarcniogegenisis.cell","J.Kim;PMID:35087207","Normal Digestive scRNA-seq",7
+"MA.MOUSE.STOMACH","Z.Ma.etal;PMID: 34695382","Normal Digestive scRNA-seq",11
 "OrganoidAtlas","Xu.etal;PMID: 40355592","Organoid",48
 "PDAC_Bailey16","Bailey.etal;PMID.26909576","Pancreatic Ductal Adenocarcinoma (PDAC)",4
 "PDAC_CSY20","Chan-Seng-Yue.etal;PMID.31932696","Pancreatic Ductal Adenocarcinoma (PDAC)",12
@@ -24,7 +24,7 @@
 "PDAC_PDAssigner","Collisson.etal;PMID.21460848","Pancreatic Ductal Adenocarcinoma (PDAC)",3
 "PDAC_PDXph1","Nicolle.etal;PMID.29186684","Pancreatic Ductal Adenocarcinoma (PDAC)",2
 "PDAC_Puleo","Puleo.etal;PMID.30165049","Pancreatic Ductal Adenocarcinoma (PDAC)",10
-"SCHLESINGER.MOUSE","Y.Schlesinger;PMID:32908137","Normal Digestive scRNA-seq",20
-"Sathe.scrna","A.Sathe;PMID:32060101","Normal Digestive scRNA-seq",20
-"ductal_pancreas_mouse_atlas","Y.Schlesinger;PMID:38908487","Normal Digestive scRNA-seq",20
-"scIBD","H.Nie;PMID:38177426","Normal Digestive scRNA-seq",20
+"SCHLESINGER.MOUSE","Y.Schlesinger;PMID:32908137","Normal Digestive scRNA-seq",14
+"Sathe.scrna","A.Sathe;PMID:32060101","Normal Digestive scRNA-seq",3
+"ductal_pancreas_mouse_atlas","Y.Schlesinger;PMID:38908487","Normal Digestive scRNA-seq",17
+"scIBD","H.Nie;PMID:38177426","Normal Digestive scRNA-seq",96

@@ -170,13 +170,13 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:left;"> BUSSLINGER.HUMAN </td>
    <td style="text-align:left;"> G.Busslinger.etal;PMID: 33691112 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 36 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> BockerstettGut </td>
    <td style="text-align:left;"> K.Bockerstett;PMID:31481545 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CAF_FMG20 </td>
@@ -260,13 +260,13 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:left;"> KIM.scRNAGatricCarcniogegenisis.cell </td>
    <td style="text-align:left;"> J.Kim;PMID:35087207 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 7 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> MA.MOUSE.STOMACH </td>
    <td style="text-align:left;"> Z.Ma.etal;PMID: 34695382 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 11 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> OrganoidAtlas </td>
@@ -320,31 +320,31 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:left;"> SCHLESINGER.MOUSE </td>
    <td style="text-align:left;"> Y.Schlesinger;PMID:32908137 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 14 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Sathe.scrna </td>
    <td style="text-align:left;"> A.Sathe;PMID:32060101 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 3 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> ductal_pancreas_mouse_atlas </td>
    <td style="text-align:left;"> Y.Schlesinger;PMID:38908487 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 17 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> scIBD </td>
    <td style="text-align:left;"> H.Nie;PMID:38177426 </td>
    <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 20 </td>
+   <td style="text-align:right;"> 96 </td>
   </tr>
 </tbody>
 <tfoot>
 <tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
 <tr><td style="padding: 0; " colspan="100%">
-<sup></sup> last update: 10/09/2025</td></tr>
+<sup></sup> last update: 22/09/2025</td></tr>
 </tfoot>
 </table>
 

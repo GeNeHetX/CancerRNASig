@@ -334,8 +334,8 @@ filename4 <- tools::file_path_sans_ext(basename(file.path(.refpath, 'mmc4.xlsx')
 df = data.frame(cell_type=c('Aft3_pop', 'ApoE/C_pop', 'LCN2_pop', 'Acinar_S', 'Tesc_pop', 'Wfdc18_1_pop', 'Obp2b_pop', 'Wnt_res', 'Yap_responsive', 'Apo/Tesc_pop', 'Wfdc18_2_pop', 'EMT_pop', 'Acinar-i', 'Cxcl1-2_pop', 'IFN_responsive', 'Prolif', 'Ciliated'))
 df$cluster = names(table(mmc4$cluster))
 mmc4$cell_type = df$cell_type[match(mmc4$cluster, df$cluster)]
-clusters3 <- split(mmc4$gene, mmc4$cell_type)
-# names(clusters3) <- paste0(filename4, "_", names(clusters3))
+schle_mmc4 <- split(mmc4$gene, mmc4$cell_type)
+# names(schle_mmc4) <- paste0(filename4, "_", names(schle_mmc4))
 }
 
 
@@ -355,8 +355,8 @@ regrouped_list <- lapply(unique(names(unlist(toto))), function(name) {
 })
 # names(regrouped_list) <- paste0("scIBD_", unique(names(unlist(toto))))
 names(regrouped_list) = unique(names(unlist(toto)))
-gene = lapply(regrouped_list, as.vector)
-names(gene) = gsub(" ", ".", names(gene)) 
+scIBD_geneset = lapply(regrouped_list, as.vector)
+names(scIBD_geneset) = gsub(" ", ".", names(scIBD_geneset)) 
 }
 
 {
@@ -428,14 +428,14 @@ addgs(geneset=PanCanNeutroWu,type="Immune Cells", src='Wu.etal;PMID.38447573',id
 
 addgs(geneset=FibroAtlasSigs, type="Fibroblast", src="Yang-Gao.etal;PMID.39303725", id="FibroAtlasGao")%>%
 
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="G.Busslinger.etal;PMID: 33691112", id='BUSSLINGER.HUMAN')%>%
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="Z.Ma.etal;PMID: 34695382", id='MA.MOUSE.STOMACH')%>%
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="Y.Schlesinger;PMID:32908137", id='SCHLESINGER.MOUSE')%>%
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="Y.Schlesinger;PMID:38908487", id='ductal_pancreas_mouse_atlas')%>%
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="H.Nie;PMID:38177426", id='scIBD')%>%
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="A.Sathe;PMID:32060101", id='Sathe.scrna')%>%
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="J.Kim;PMID:35087207", id='KIM.scRNAGatricCarcniogegenisis.cell')%>%
-addgs(geneset=FibroAtlasSigs, type="Normal Digestive scRNA-seq", src="K.Bockerstett;PMID:31481545", id='BockerstettGut')%>%
+addgs(geneset=busi, type="Normal Digestive scRNA-seq", src="G.Busslinger.etal;PMID: 33691112", id='BUSSLINGER.HUMAN')%>%
+addgs(geneset=ma_mouse, type="Normal Digestive scRNA-seq", src="Z.Ma.etal;PMID: 34695382", id='MA.MOUSE.STOMACH')%>%
+addgs(geneset=schle, type="Normal Digestive scRNA-seq", src="Y.Schlesinger;PMID:32908137", id='SCHLESINGER.MOUSE')%>%
+addgs(geneset=schle_mmc4, type="Normal Digestive scRNA-seq", src="Y.Schlesinger;PMID:38908487", id='ductal_pancreas_mouse_atlas')%>%
+addgs(geneset=scIBD_geneset, type="Normal Digestive scRNA-seq", src="H.Nie;PMID:38177426", id='scIBD')%>%
+addgs(geneset=Sathe1vec, type="Normal Digestive scRNA-seq", src="A.Sathe;PMID:32060101", id='Sathe.scrna')%>%
+addgs(geneset=kim1vec, type="Normal Digestive scRNA-seq", src="J.Kim;PMID:35087207", id='KIM.scRNAGatricCarcniogegenisis.cell')%>%
+addgs(geneset=bokvec, type="Normal Digestive scRNA-seq", src="K.Bockerstett;PMID:31481545", id='BockerstettGut')%>%
 addgs(geneset=atlas_organoidVec, type="Organoid", src="Xu.etal;PMID: 40355592", id='OrganoidAtlas')
 
 
