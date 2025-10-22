@@ -1,30 +1,30 @@
 "Annotation","Source","Type","NumberOfSignatures"
-"BUSSLINGER.HUMAN","G.Busslinger.etal;PMID: 33691112","Normal Digestive scRNA-seq",36
-"BockerstettGut","K.Bockerstett;PMID:31481545","Normal Digestive scRNA-seq",10
-"CAF_FMG20","Kieffer.etal;PMID.32434947","Cancer-Associated Fibroblasts (CAF)",8
-"CAF_Neuzillet22","Neuzillet.etal;PMID.36102377","Cancer-Associated Fibroblasts (CAF)",4
-"CAF_Turley20","Dominguez.etal;PMID.31699795","Cancer-Associated Fibroblasts (CAF)",3
-"CAF_Tuveson19","Elyada.etal;PMID.31197017","Cancer-Associated Fibroblasts (CAF)",2
-"CCCA_MetaProg","Gavish.etal;PMID.37258682","Cancer",41
-"CCK_STIM","MartinSerrano.etal;PMID.35584893","Cholangiocarcinoma (CCK)",5
-"CCK_Sia13","Sia.etal;PMID.23295441","Cholangiocarcinoma (CCK)",2
-"ECM_Helms22","Helms.etal;PMID.34548310","Extracellular Matrix (ECM)",1
-"FibroAtlasGao","Yang-Gao.etal;PMID.39303725","Fibroblast",20
-"IMMU_GenJCI121924","Rodrigues.etal;PMID.30179225","Immune Cells",2
-"IMMU_MCPcounter","Becht.etal;PMID.27765066","Immune Cells",10
-"IMMU_Neutroatlas","Wu.etal;PMID.38447573","Immune Cells",10
-"IMMU_Tcellatlas","Chu.etal;PMID.37248301","Immune Cells",8
-"KIM.scRNAGatricCarcniogegenisis.cell","J.Kim;PMID:35087207","Normal Digestive scRNA-seq",7
-"MA.MOUSE.STOMACH","Z.Ma.etal;PMID: 34695382","Normal Digestive scRNA-seq",11
-"OrganoidAtlas","Xu.etal;PMID: 40355592","Organoid",48
-"PDAC_Bailey16","Bailey.etal;PMID.26909576","Pancreatic Ductal Adenocarcinoma (PDAC)",4
-"PDAC_CSY20","Chan-Seng-Yue.etal;PMID.31932696","Pancreatic Ductal Adenocarcinoma (PDAC)",12
-"PDAC_Hwang22","Hwang.etal;PMID.35902743","Pancreatic Ductal Adenocarcinoma (PDAC)",18
-"PDAC_Moffitt15","Moffitt.etal;PMID.26343385","Pancreatic Ductal Adenocarcinoma (PDAC)",14
-"PDAC_PDAssigner","Collisson.etal;PMID.21460848","Pancreatic Ductal Adenocarcinoma (PDAC)",3
-"PDAC_PDXph1","Nicolle.etal;PMID.29186684","Pancreatic Ductal Adenocarcinoma (PDAC)",2
-"PDAC_Puleo","Puleo.etal;PMID.30165049","Pancreatic Ductal Adenocarcinoma (PDAC)",10
-"SCHLESINGER.MOUSE","Y.Schlesinger;PMID:32908137","Normal Digestive scRNA-seq",14
-"Sathe.scrna","A.Sathe;PMID:32060101","Normal Digestive scRNA-seq",3
-"ductal_pancreas_mouse_atlas","Y.Schlesinger;PMID:38908487","Normal Digestive scRNA-seq",17
-"scIBD","H.Nie;PMID:38177426","Normal Digestive scRNA-seq",96
+"CAF.Dominguez20","Dominguez.etal;PMID.31699795","Cancer-Associated Fibroblasts (CAF)",3
+"CAF.Elyada19","Elyada.etal;PMID.31197017","Cancer-Associated Fibroblasts (CAF)",2
+"CAF.Kieffer20","Kieffer.etal;PMID.32434947","Cancer-Associated Fibroblasts (CAF)",8
+"CAF.Neuzillet22","Neuzillet.etal;PMID.36102377","Cancer-Associated Fibroblasts (CAF)",4
+"CCCA.Gavish23","Gavish.etal;PMID.37258682","Cancer",41
+"CCK.Sia13","Sia.etal;PMID.23295441","Cholangiocarcinoma (CCK)",2
+"CCK_STIM.Serrano23","MartinSerrano.etal;PMID.35584893","Cholangiocarcinoma (CCK)",5
+"ECM.Helms22","Helms.etal;PMID.34548310","Extracellular Matrix (ECM)",1
+"FibroAtlas.Gao24","Yang-Gao.etal;PMID.39303725","Fibroblast",20
+"IMMU.Rodrigues18","Rodrigues.etal;PMID.30179225","Immune Cells",2
+"IMMU_MCPcounter.Becht16","Becht.etal;PMID.27765066","Immune Cells",10
+"IMMU_Neutro.Wu24","Wu.etal;PMID.38447573","Immune Cells",10
+"IMMU_Tcell.Chu23","Chu.etal;PMID.37248301","Immune Cells",8
+"Organoid_Atlas.Xu25","Xu.etal;PMID: 40355592","Organoid",48
+"PDAC.Bailey16","Bailey.etal;PMID.26909576","Pancreatic Ductal Adenocarcinoma (PDAC)",4
+"PDAC.ChanSengYue20","Chan-Seng-Yue.etal;PMID.31932696","Pancreatic Ductal Adenocarcinoma (PDAC)",12
+"PDAC.Hwang22","Hwang.etal;PMID.35902743","Pancreatic Ductal Adenocarcinoma (PDAC)",18
+"PDAC.Moffitt15","Moffitt.etal;PMID.26343385","Pancreatic Ductal Adenocarcinoma (PDAC)",14
+"PDAC.Puleo18","Puleo.etal;PMID.30165049","Pancreatic Ductal Adenocarcinoma (PDAC)",10
+"PDAC_PDXph1.Nicolle17","Nicolle.etal;PMID.29186684","Pancreatic Ductal Adenocarcinoma (PDAC)",2
+"PDAC_ssigner.Colisson11","Collisson.etal;PMID.21460848","Pancreatic Ductal Adenocarcinoma (PDAC)",3
+"SPEM.Bockerstett20","K.Bockerstett;PMID:31481545","Digestive scRNA-seq",10
+"scADM_Mouse.Ma21","Z.Ma.etal;PMID: 34695382","Digestive scRNA-seq",11
+"scDuctalPancreas_Mouse.Schlesinger24","Y.Schlesinger;PMID:38908487","Digestive scRNA-seq",17
+"scGC.Kim22","J.Kim;PMID:35087207","Cancer Digestive scRNA-seq",7
+"scGI.Busslinger21","G.Busslinger.etal;PMID: 33691112","Digestive scRNA-seq",36
+"scGastricTME.Sathe20","A.Sathe;PMID:32060101","Cancer Digestive scRNA-seq",3
+"scIBD.Nie23","H.Nie;PMID:38177426","Digestive scRNA-seq",96
+"scPancreas_Mouse.Schlesinger20","Y.Schlesinger;PMID:32908137","Digestive scRNA-seq",14

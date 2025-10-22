@@ -394,49 +394,50 @@ gsignatures=list(
   id=c()
   )
 
+### nomenclare of the signature ids : type_sigName.1stAuthorYear
 gsignatures=gsignatures%>%
-addgs(geneset=ChanSengYueSigs,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Chan-Seng-Yue.etal;PMID.31932696",id="PDAC_CSY20")%>%
-addgs(geneset=pdxGeneL,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Nicolle.etal;PMID.29186684",id="PDAC_PDXph1")%>%
-addgs(geneset=puleoG,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Puleo.etal;PMID.30165049",id="PDAC_Puleo")%>%
-addgs(geneset=pdassigner,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Collisson.etal;PMID.21460848",id="PDAC_PDAssigner")%>%
-addgs(geneset=allmoffsig,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Moffitt.etal;PMID.26343385",id="PDAC_Moffitt15")%>%
-addgs(geneset=baileyMarkG,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Bailey.etal;PMID.26909576",id="PDAC_Bailey16")%>%
-addgs(geneset=HwangMarkG,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Hwang.etal;PMID.35902743",id="PDAC_Hwang22")%>%
+addgs(geneset=ChanSengYueSigs,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Chan-Seng-Yue.etal;PMID.31932696",id="PDAC.ChanSengYue20")%>%
+addgs(geneset=pdxGeneL,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Nicolle.etal;PMID.29186684",id="PDAC_PDXph1.Nicolle17")%>%
+addgs(geneset=puleoG,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Puleo.etal;PMID.30165049",id="PDAC.Puleo18")%>%
+addgs(geneset=pdassigner,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Collisson.etal;PMID.21460848",id="PDAC_ssigner.Colisson11")%>%
+addgs(geneset=allmoffsig,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Moffitt.etal;PMID.26343385",id="PDAC.Moffitt15")%>%
+addgs(geneset=baileyMarkG,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Bailey.etal;PMID.26909576",id="PDAC.Bailey16")%>%
+addgs(geneset=HwangMarkG,type="Pancreatic Ductal Adenocarcinoma (PDAC)",src="Hwang.etal;PMID.35902743",id="PDAC.Hwang22")%>%
 
-addgs(geneset=turleyCaf,type="Cancer-Associated Fibroblasts (CAF)",src="Dominguez.etal;PMID.31699795",id="CAF_Turley20")%>%
-addgs(geneset=FMGcd2020,type="Cancer-Associated Fibroblasts (CAF)",src="Kieffer.etal;PMID.32434947",id="CAF_FMG20")%>%
-addgs(geneset=TuvesonCAFsc,type="Cancer-Associated Fibroblasts (CAF)",src="Elyada.etal;PMID.31197017",id="CAF_Tuveson19")%>%
-addgs(geneset=CAFgenesigsymL,type="Cancer-Associated Fibroblasts (CAF)",src="Neuzillet.etal;PMID.36102377",id="CAF_Neuzillet22")%>%
+addgs(geneset=turleyCaf,type="Cancer-Associated Fibroblasts (CAF)",src="Dominguez.etal;PMID.31699795",id="CAF.Dominguez20")%>%
+addgs(geneset=FMGcd2020,type="Cancer-Associated Fibroblasts (CAF)",src="Kieffer.etal;PMID.32434947",id="CAF.Kieffer20")%>%
+addgs(geneset=TuvesonCAFsc,type="Cancer-Associated Fibroblasts (CAF)",src="Elyada.etal;PMID.31197017",id="CAF.Elyada19")%>%
+addgs(geneset=CAFgenesigsymL,type="Cancer-Associated Fibroblasts (CAF)",src="Neuzillet.etal;PMID.36102377",id="CAF.Neuzillet22")%>%
 
-addgs(geneset=split(mcpgenes[,2],mcpgenes[,1]),type="Immune Cells",src="Becht.etal;PMID.27765066",id="IMMU_MCPcounter")%>%
-addgs(geneset=ImmuneL,type="Immune Cells",src="Rodrigues.etal;PMID.30179225",id="IMMU_GenJCI121924")%>%
+addgs(geneset=split(mcpgenes[,2],mcpgenes[,1]),type="Immune Cells",src="Becht.etal;PMID.27765066",id="IMMU_MCPcounter.Becht16")%>%
+addgs(geneset=ImmuneL,type="Immune Cells",src="Rodrigues.etal;PMID.30179225",id="IMMU.Rodrigues18")%>%
 
 
-addgs(geneset=STIMgenes,type="Cholangiocarcinoma (CCK)",src="MartinSerrano.etal;PMID.35584893",id="CCK_STIM")%>%
-addgs(geneset=Biclassgenes,type="Cholangiocarcinoma (CCK)",src="Sia.etal;PMID.23295441",id="CCK_Sia13")%>%
+addgs(geneset=STIMgenes,type="Cholangiocarcinoma (CCK)",src="MartinSerrano.etal;PMID.35584893",id="CCK_STIM.Serrano23")%>%
+addgs(geneset=Biclassgenes,type="Cholangiocarcinoma (CCK)",src="Sia.etal;PMID.23295441",id="CCK.Sia13")%>%
 
 #addgs(geneset=drugbank,type="Drug",src="DrugBankDec2022",id="DrugBank")%>%
 
 
-addgs(geneset=list(PSCcaf=scan(file.path(.refpath,"ECMsignature_PMID34548310.txt"),what="character",sep="\n")),type="Extracellular Matrix (ECM)",src="Helms.etal;PMID.34548310",id="ECM_Helms22")%>%
+addgs(geneset=list(PSCcaf=scan(file.path(.refpath,"ECMsignature_PMID34548310.txt"),what="character",sep="\n")),type="Extracellular Matrix (ECM)",src="Helms.etal;PMID.34548310",id="ECM.Helms22")%>%
 
-addgs(geneset=canceratlasMP,type="Cancer",src="Gavish.etal;PMID.37258682",id="CCCA_MetaProg")%>%
+addgs(geneset=canceratlasMP,type="Cancer",src="Gavish.etal;PMID.37258682",id="CCCA.Gavish23")%>%
 
-addgs(geneset=PanCK_Tcellatlas,type="Immune Cells", src='Chu.etal;PMID.37248301',id="IMMU_Tcellatlas")%>%
+addgs(geneset=PanCK_Tcellatlas,type="Immune Cells", src='Chu.etal;PMID.37248301',id="IMMU_Tcell.Chu23")%>%
 
-addgs(geneset=PanCanNeutroWu,type="Immune Cells", src='Wu.etal;PMID.38447573',id="IMMU_Neutroatlas")%>%
+addgs(geneset=PanCanNeutroWu,type="Immune Cells", src='Wu.etal;PMID.38447573',id="IMMU_Neutro.Wu24")%>%
 
-addgs(geneset=FibroAtlasSigs, type="Fibroblast", src="Yang-Gao.etal;PMID.39303725", id="FibroAtlasGao")%>%
+addgs(geneset=FibroAtlasSigs, type="Fibroblast", src="Yang-Gao.etal;PMID.39303725", id="FibroAtlas.Gao24")%>%
 
-addgs(geneset=busi, type="Normal Digestive scRNA-seq", src="G.Busslinger.etal;PMID: 33691112", id='BUSSLINGER.HUMAN')%>%
-addgs(geneset=ma_mouse, type="Normal Digestive scRNA-seq", src="Z.Ma.etal;PMID: 34695382", id='MA.MOUSE.STOMACH')%>%
-addgs(geneset=schle, type="Normal Digestive scRNA-seq", src="Y.Schlesinger;PMID:32908137", id='SCHLESINGER.MOUSE')%>%
-addgs(geneset=schle_mmc4, type="Normal Digestive scRNA-seq", src="Y.Schlesinger;PMID:38908487", id='ductal_pancreas_mouse_atlas')%>%
-addgs(geneset=scIBD_geneset, type="Normal Digestive scRNA-seq", src="H.Nie;PMID:38177426", id='scIBD')%>%
-addgs(geneset=Sathe1vec, type="Normal Digestive scRNA-seq", src="A.Sathe;PMID:32060101", id='Sathe.scrna')%>%
-addgs(geneset=kim1vec, type="Normal Digestive scRNA-seq", src="J.Kim;PMID:35087207", id='KIM.scRNAGatricCarcniogegenisis.cell')%>%
-addgs(geneset=bokvec, type="Normal Digestive scRNA-seq", src="K.Bockerstett;PMID:31481545", id='BockerstettGut')%>%
-addgs(geneset=atlas_organoidVec, type="Organoid", src="Xu.etal;PMID: 40355592", id='OrganoidAtlas')
+addgs(geneset=busi, type="Digestive scRNA-seq", src="G.Busslinger.etal;PMID: 33691112", id='scGI.Busslinger21')%>%
+addgs(geneset=ma_mouse, type="Digestive scRNA-seq", src="Z.Ma.etal;PMID: 34695382", id='scADM_Mouse.Ma21')%>%
+addgs(geneset=schle, type="Digestive scRNA-seq", src="Y.Schlesinger;PMID:32908137", id='scPancreas_Mouse.Schlesinger20')%>%
+addgs(geneset=schle_mmc4, type="Digestive scRNA-seq", src="Y.Schlesinger;PMID:38908487", id='scDuctalPancreas_Mouse.Schlesinger24')%>%
+addgs(geneset=scIBD_geneset, type="Digestive scRNA-seq", src="H.Nie;PMID:38177426", id='scIBD.Nie23')%>%
+addgs(geneset=Sathe1vec, type="Cancer Digestive scRNA-seq", src="A.Sathe;PMID:32060101", id='scGastricTME.Sathe20')%>%
+addgs(geneset=kim1vec, type="Cancer Digestive scRNA-seq", src="J.Kim;PMID:35087207", id='scGC.Kim22')%>%
+addgs(geneset=bokvec, type="Digestive scRNA-seq", src="K.Bockerstett;PMID:31481545", id='SPEM.Bockerstett20')%>%
+addgs(geneset=atlas_organoidVec, type="Organoid", src="Xu.etal;PMID: 40355592", id='Organoid_Atlas.Xu25')
 
 
 

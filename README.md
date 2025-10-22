@@ -167,184 +167,184 @@ All gene sets and their annotations are available in the **signatures** object i
  </thead>
 <tbody>
   <tr>
-   <td style="text-align:left;"> BUSSLINGER.HUMAN </td>
-   <td style="text-align:left;"> G.Busslinger.etal;PMID: 33691112 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 36 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> BockerstettGut </td>
-   <td style="text-align:left;"> K.Bockerstett;PMID:31481545 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 10 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CAF_FMG20 </td>
-   <td style="text-align:left;"> Kieffer.etal;PMID.32434947 </td>
-   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
-   <td style="text-align:right;"> 8 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CAF_Neuzillet22 </td>
-   <td style="text-align:left;"> Neuzillet.etal;PMID.36102377 </td>
-   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
-   <td style="text-align:right;"> 4 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CAF_Turley20 </td>
+   <td style="text-align:left;"> CAF.Dominguez20 </td>
    <td style="text-align:left;"> Dominguez.etal;PMID.31699795 </td>
    <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
    <td style="text-align:right;"> 3 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> CAF_Tuveson19 </td>
+   <td style="text-align:left;"> CAF.Elyada19 </td>
    <td style="text-align:left;"> Elyada.etal;PMID.31197017 </td>
    <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> CCCA_MetaProg </td>
+   <td style="text-align:left;"> CAF.Kieffer20 </td>
+   <td style="text-align:left;"> Kieffer.etal;PMID.32434947 </td>
+   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
+   <td style="text-align:right;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CAF.Neuzillet22 </td>
+   <td style="text-align:left;"> Neuzillet.etal;PMID.36102377 </td>
+   <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CCCA.Gavish23 </td>
    <td style="text-align:left;"> Gavish.etal;PMID.37258682 </td>
    <td style="text-align:left;"> Cancer </td>
    <td style="text-align:right;"> 41 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> CCK_STIM </td>
-   <td style="text-align:left;"> MartinSerrano.etal;PMID.35584893 </td>
-   <td style="text-align:left;"> Cholangiocarcinoma (CCK) </td>
-   <td style="text-align:right;"> 5 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> CCK_Sia13 </td>
+   <td style="text-align:left;"> CCK.Sia13 </td>
    <td style="text-align:left;"> Sia.etal;PMID.23295441 </td>
    <td style="text-align:left;"> Cholangiocarcinoma (CCK) </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> ECM_Helms22 </td>
+   <td style="text-align:left;"> CCK_STIM.Serrano23 </td>
+   <td style="text-align:left;"> MartinSerrano.etal;PMID.35584893 </td>
+   <td style="text-align:left;"> Cholangiocarcinoma (CCK) </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ECM.Helms22 </td>
    <td style="text-align:left;"> Helms.etal;PMID.34548310 </td>
    <td style="text-align:left;"> Extracellular Matrix (ECM) </td>
    <td style="text-align:right;"> 1 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> FibroAtlasGao </td>
+   <td style="text-align:left;"> FibroAtlas.Gao24 </td>
    <td style="text-align:left;"> Yang-Gao.etal;PMID.39303725 </td>
    <td style="text-align:left;"> Fibroblast </td>
    <td style="text-align:right;"> 20 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> IMMU_GenJCI121924 </td>
+   <td style="text-align:left;"> IMMU.Rodrigues18 </td>
    <td style="text-align:left;"> Rodrigues.etal;PMID.30179225 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> IMMU_MCPcounter </td>
+   <td style="text-align:left;"> IMMU_MCPcounter.Becht16 </td>
    <td style="text-align:left;"> Becht.etal;PMID.27765066 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> IMMU_Neutroatlas </td>
+   <td style="text-align:left;"> IMMU_Neutro.Wu24 </td>
    <td style="text-align:left;"> Wu.etal;PMID.38447573 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> IMMU_Tcellatlas </td>
+   <td style="text-align:left;"> IMMU_Tcell.Chu23 </td>
    <td style="text-align:left;"> Chu.etal;PMID.37248301 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 8 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> KIM.scRNAGatricCarcniogegenisis.cell </td>
-   <td style="text-align:left;"> J.Kim;PMID:35087207 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 7 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> MA.MOUSE.STOMACH </td>
-   <td style="text-align:left;"> Z.Ma.etal;PMID: 34695382 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 11 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> OrganoidAtlas </td>
+   <td style="text-align:left;"> Organoid_Atlas.Xu25 </td>
    <td style="text-align:left;"> Xu.etal;PMID: 40355592 </td>
    <td style="text-align:left;"> Organoid </td>
    <td style="text-align:right;"> 48 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> PDAC_Bailey16 </td>
+   <td style="text-align:left;"> PDAC.Bailey16 </td>
    <td style="text-align:left;"> Bailey.etal;PMID.26909576 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 4 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> PDAC_CSY20 </td>
+   <td style="text-align:left;"> PDAC.ChanSengYue20 </td>
    <td style="text-align:left;"> Chan-Seng-Yue.etal;PMID.31932696 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 12 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> PDAC_Hwang22 </td>
+   <td style="text-align:left;"> PDAC.Hwang22 </td>
    <td style="text-align:left;"> Hwang.etal;PMID.35902743 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 18 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> PDAC_Moffitt15 </td>
+   <td style="text-align:left;"> PDAC.Moffitt15 </td>
    <td style="text-align:left;"> Moffitt.etal;PMID.26343385 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 14 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> PDAC_PDAssigner </td>
-   <td style="text-align:left;"> Collisson.etal;PMID.21460848 </td>
-   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
-   <td style="text-align:right;"> 3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PDAC_PDXph1 </td>
-   <td style="text-align:left;"> Nicolle.etal;PMID.29186684 </td>
-   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PDAC_Puleo </td>
+   <td style="text-align:left;"> PDAC.Puleo18 </td>
    <td style="text-align:left;"> Puleo.etal;PMID.30165049 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> SCHLESINGER.MOUSE </td>
-   <td style="text-align:left;"> Y.Schlesinger;PMID:32908137 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 14 </td>
+   <td style="text-align:left;"> PDAC_PDXph1.Nicolle17 </td>
+   <td style="text-align:left;"> Nicolle.etal;PMID.29186684 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> Sathe.scrna </td>
-   <td style="text-align:left;"> A.Sathe;PMID:32060101 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:left;"> PDAC_ssigner.Colisson11 </td>
+   <td style="text-align:left;"> Collisson.etal;PMID.21460848 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 3 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> ductal_pancreas_mouse_atlas </td>
+   <td style="text-align:left;"> SPEM.Bockerstett20 </td>
+   <td style="text-align:left;"> K.Bockerstett;PMID:31481545 </td>
+   <td style="text-align:left;"> Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> scADM_Mouse.Ma21 </td>
+   <td style="text-align:left;"> Z.Ma.etal;PMID: 34695382 </td>
+   <td style="text-align:left;"> Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> scDuctalPancreas_Mouse.Schlesinger24 </td>
    <td style="text-align:left;"> Y.Schlesinger;PMID:38908487 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:left;"> Digestive scRNA-seq </td>
    <td style="text-align:right;"> 17 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> scIBD </td>
+   <td style="text-align:left;"> scGC.Kim22 </td>
+   <td style="text-align:left;"> J.Kim;PMID:35087207 </td>
+   <td style="text-align:left;"> Cancer Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> scGI.Busslinger21 </td>
+   <td style="text-align:left;"> G.Busslinger.etal;PMID: 33691112 </td>
+   <td style="text-align:left;"> Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> scGastricTME.Sathe20 </td>
+   <td style="text-align:left;"> A.Sathe;PMID:32060101 </td>
+   <td style="text-align:left;"> Cancer Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> scIBD.Nie23 </td>
    <td style="text-align:left;"> H.Nie;PMID:38177426 </td>
-   <td style="text-align:left;"> Normal Digestive scRNA-seq </td>
+   <td style="text-align:left;"> Digestive scRNA-seq </td>
    <td style="text-align:right;"> 96 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> scPancreas_Mouse.Schlesinger20 </td>
+   <td style="text-align:left;"> Y.Schlesinger;PMID:32908137 </td>
+   <td style="text-align:left;"> Digestive scRNA-seq </td>
+   <td style="text-align:right;"> 14 </td>
   </tr>
 </tbody>
 <tfoot>
 <tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
 <tr><td style="padding: 0; " colspan="100%">
-<sup></sup> last update: 22/09/2025</td></tr>
+<sup></sup> last update: 22/10/2025</td></tr>
 </tfoot>
 </table>
 
