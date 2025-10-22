@@ -263,10 +263,22 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:right;"> 12 </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> PDAC.Grunwald21 </td>
+   <td style="text-align:left;"> Grunwald.etal;PMID.34644529 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> PDAC.Hwang22 </td>
    <td style="text-align:left;"> Hwang.etal;PMID.35902743 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 18 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> PDAC.Maurer18 </td>
+   <td style="text-align:left;"> Maurer.etal;PMID.30658994 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC.Moffitt15 </td>
