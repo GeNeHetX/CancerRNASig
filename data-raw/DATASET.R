@@ -535,7 +535,8 @@ update_RMD <- function(tab_summary){
   ) %>% 
     kableExtra::kable_styling(full_width = F) %>%
     kableExtra::footnote(
-      general = paste0("last update: ", format(Sys.Date(), "%d/%m/%Y"))
+      general = format(Sys.Date(), "%d/%m/%Y"),
+      general_title = "Last update: "
     )
   
   # Write the updated content back to the README file
