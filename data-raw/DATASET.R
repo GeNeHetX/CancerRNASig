@@ -387,6 +387,18 @@ names(scIBD_geneset) = gsub(" ", ".", names(scIBD_geneset))
   names(bokvec) <- gsub(" ", "_", names(bokvec))
 }
 
+### Liver signatures
+# F.Petitprez;doi:10.1101/540005;MSliverK 
+{
+  load(file=file.path(.refpath,"msliverk_signatures.RData")) #load signatures in "supervised_signatures" object
+  msliverk <- unlist(supervised_signatures, recursive = FALSE) # Unlist 1 level to have a list of signatures
+
+  # Clean names
+  names(msliverk) <- sub(".*\\.", "", names(msliverk))
+  names(msliverk) <- toupper(gsub("[- ]+", "_", names(msliverk)))
+
+}
+
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # Aggreg sigs
 
@@ -442,8 +454,8 @@ addgs(geneset=scIBD_geneset, type="Digestive scRNA-seq", src="H.Nie;PMID:3817742
 addgs(geneset=Sathe1vec, type="Cancer Digestive scRNA-seq", src="A.Sathe;PMID:32060101", id='scGastricTME.Sathe20')%>%
 addgs(geneset=kim1vec, type="Cancer Digestive scRNA-seq", src="J.Kim;PMID:35087207", id='scGC.Kim22')%>%
 addgs(geneset=bokvec, type="Digestive scRNA-seq", src="K.Bockerstett;PMID:31481545", id='SPEM.Bockerstett20')%>%
-addgs(geneset=atlas_organoidVec, type="Organoid", src="Xu.etal;PMID: 40355592", id='Organoid_Atlas.Xu25')
-
+addgs(geneset=atlas_organoidVec, type="Organoid", src="Xu.etal;PMID: 40355592", id='Organoid_Atlas.Xu25')%>%
+addgs(geneset=msliverk, type="Hepatocellular carcinomas (HCC)", src="Petitprez.etal;DOI: 10.1101/540005", id='HCC.Petitprez19')
 
 
 signatures=list(geneset=gsignatures$geneset,
