@@ -168,43 +168,43 @@ All gene sets and their annotations are available in the **signatures** object i
 <tbody>
   <tr>
    <td style="text-align:left;"> CAF.Dominguez20 </td>
-   <td style="text-align:left;"> Dominguez.etal;PMID.31699795 </td>
+   <td style="text-align:left;"> Dominguez.etal;PMID:31699795 </td>
    <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
    <td style="text-align:right;"> 3 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CAF.Elyada19 </td>
-   <td style="text-align:left;"> Elyada.etal;PMID.31197017 </td>
+   <td style="text-align:left;"> Elyada.etal;PMID:31197017 </td>
    <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CAF.Kieffer20 </td>
-   <td style="text-align:left;"> Kieffer.etal;PMID.32434947 </td>
+   <td style="text-align:left;"> Kieffer.etal;PMID:32434947 </td>
    <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
    <td style="text-align:right;"> 8 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CAF.Neuzillet22 </td>
-   <td style="text-align:left;"> Neuzillet.etal;PMID.36102377 </td>
+   <td style="text-align:left;"> Neuzillet.etal;PMID:36102377 </td>
    <td style="text-align:left;"> Cancer-Associated Fibroblasts (CAF) </td>
    <td style="text-align:right;"> 4 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CCCA.Gavish23 </td>
-   <td style="text-align:left;"> Gavish.etal;PMID.37258682 </td>
+   <td style="text-align:left;"> Gavish.etal;PMID:37258682 </td>
    <td style="text-align:left;"> Cancer </td>
    <td style="text-align:right;"> 41 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CCK.Sia13 </td>
-   <td style="text-align:left;"> Sia.etal;PMID.23295441 </td>
+   <td style="text-align:left;"> Sia.etal;PMID:23295441 </td>
    <td style="text-align:left;"> Cholangiocarcinoma (CCK) </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> CCK_STIM.Serrano23 </td>
-   <td style="text-align:left;"> MartinSerrano.etal;PMID.35584893 </td>
+   <td style="text-align:left;"> MartinSerrano.etal;PMID:35584893 </td>
    <td style="text-align:left;"> Cholangiocarcinoma (CCK) </td>
    <td style="text-align:right;"> 5 </td>
   </tr>
@@ -216,55 +216,61 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
   <tr>
    <td style="text-align:left;"> FibroAtlas.Gao24 </td>
-   <td style="text-align:left;"> Yang-Gao.etal;PMID.39303725 </td>
+   <td style="text-align:left;"> Yang-Gao.etal;PMID:39303725 </td>
    <td style="text-align:left;"> Fibroblast </td>
    <td style="text-align:right;"> 20 </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> HCC.Petitprez19 </td>
+   <td style="text-align:left;"> Petitprez.etal;DOI:10.1101/540005 </td>
+   <td style="text-align:left;"> Hepatocellular carcinomas (HCC) </td>
+   <td style="text-align:right;"> 73 </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> IMMU.Rodrigues18 </td>
-   <td style="text-align:left;"> Rodrigues.etal;PMID.30179225 </td>
+   <td style="text-align:left;"> Rodrigues.etal;PMID:30179225 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> IMMU_MCPcounter.Becht16 </td>
-   <td style="text-align:left;"> Becht.etal;PMID.27765066 </td>
+   <td style="text-align:left;"> Becht.etal;PMID:27765066 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> IMMU_Neutro.Wu24 </td>
-   <td style="text-align:left;"> Wu.etal;PMID.38447573 </td>
+   <td style="text-align:left;"> Wu.etal;PMID:38447573 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> IMMU_Tcell.Chu23 </td>
-   <td style="text-align:left;"> Chu.etal;PMID.37248301 </td>
+   <td style="text-align:left;"> Chu.etal;PMID:37248301 </td>
    <td style="text-align:left;"> Immune Cells </td>
    <td style="text-align:right;"> 8 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> Organoid_Atlas.Xu25 </td>
-   <td style="text-align:left;"> Xu.etal;PMID: 40355592 </td>
+   <td style="text-align:left;"> Xu.etal;PMID:40355592 </td>
    <td style="text-align:left;"> Organoid </td>
    <td style="text-align:right;"> 48 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC.Bailey16 </td>
-   <td style="text-align:left;"> Bailey.etal;PMID.26909576 </td>
+   <td style="text-align:left;"> Bailey.etal;PMID:26909576 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 4 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC.ChanSengYue20 </td>
-   <td style="text-align:left;"> Chan-Seng-Yue.etal;PMID.31932696 </td>
+   <td style="text-align:left;"> Chan-Seng-Yue.etal;PMID:31932696 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 12 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC.Grunwald21 </td>
-   <td style="text-align:left;"> Grunwald.etal;PMID.34644529 </td>
+   <td style="text-align:left;"> Grunwald.etal;PMID:34644529 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
@@ -276,31 +282,31 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC.Maurer18 </td>
-   <td style="text-align:left;"> Maurer.etal;PMID.30658994 </td>
+   <td style="text-align:left;"> Maurer.etal;PMID:30658994 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC.Moffitt15 </td>
-   <td style="text-align:left;"> Moffitt.etal;PMID.26343385 </td>
+   <td style="text-align:left;"> Moffitt.etal;PMID:26343385 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 14 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC.Puleo18 </td>
-   <td style="text-align:left;"> Puleo.etal;PMID.30165049 </td>
+   <td style="text-align:left;"> Puleo.etal;PMID:30165049 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC_PDXph1.Nicolle17 </td>
-   <td style="text-align:left;"> Nicolle.etal;PMID.29186684 </td>
+   <td style="text-align:left;"> Nicolle.etal;PMID:29186684 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> PDAC_ssigner.Colisson11 </td>
-   <td style="text-align:left;"> Collisson.etal;PMID.21460848 </td>
+   <td style="text-align:left;"> Collisson.etal;PMID:21460848 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 3 </td>
   </tr>
@@ -312,7 +318,7 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
   <tr>
    <td style="text-align:left;"> scADM_Mouse.Ma21 </td>
-   <td style="text-align:left;"> Z.Ma.etal;PMID: 34695382 </td>
+   <td style="text-align:left;"> Z.Ma.etal;PMID:34695382 </td>
    <td style="text-align:left;"> Digestive scRNA-seq </td>
    <td style="text-align:right;"> 11 </td>
   </tr>
@@ -330,7 +336,7 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
   <tr>
    <td style="text-align:left;"> scGI.Busslinger21 </td>
-   <td style="text-align:left;"> G.Busslinger.etal;PMID: 33691112 </td>
+   <td style="text-align:left;"> G.Busslinger.etal;PMID:33691112 </td>
    <td style="text-align:left;"> Digestive scRNA-seq </td>
    <td style="text-align:right;"> 36 </td>
   </tr>
@@ -353,11 +359,8 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:right;"> 14 </td>
   </tr>
 </tbody>
-<tfoot>
-<tr><td style="padding: 0; " colspan="100%"><span style="font-style: italic;">Note: </span></td></tr>
-<tr><td style="padding: 0; " colspan="100%">
-<sup></sup> last update: 22/10/2025</td></tr>
-</tfoot>
+<tfoot><tr><td style="padding: 0; " colspan="100%">
+<sup></sup> Last update: 10/11/2025</td></tr></tfoot>
 </table>
 
 ### For non-R users
