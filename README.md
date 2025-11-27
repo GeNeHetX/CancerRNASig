@@ -251,6 +251,12 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:right;"> 8 </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> IMMU_monoMac.Mulder21 </td>
+   <td style="text-align:left;"> K.Mulder;PMID:34331874 </td>
+   <td style="text-align:left;"> Immune Cells </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> Organoid_Atlas.Xu25 </td>
    <td style="text-align:left;"> Xu.etal;PMID:40355592 </td>
    <td style="text-align:left;"> Organoid </td>
@@ -360,7 +366,7 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Last update: 10/11/2025</td></tr></tfoot>
+<sup></sup> Last update: 27/11/2025</td></tr></tfoot>
 </table>
 
 ### For non-R users
