@@ -7,21 +7,21 @@
 callSignature(
   matrix,
   geneSymbols,
-  signature = c("Gempred", "GempredBiopsy", "Puleo", "McpCount", "Purist"),
-  toNorm = "none",
-  toScale = "none"
+  signature = NULL,
+  normType = "raw",
+  scaleType = "raw"
 )
 }
 \arguments{
-\item{geneSymbols}{gene symbols, a vector of same length as the number of rows in newex}
+\item{matrix}{gene expression matrix/dataframe, sample in columns, gene in rows}
 
-\item{signature}{signature to apply, can be Gempred, GempredBiopsy, Puleo, McpCount or Purist}
+\item{geneSymbols}{gene symbols, a vector of same length as the number of rows in matrix}
 
-\item{toNorm}{normlisation to apply if needed, can be none (by default), uq or vst}
+\item{signature}{signature to apply, can be Gempred, tGempred, Puleo, pdacMolGrad, Mcpcount or Purist}
 
-\item{toScale}{scale to apply if needed, can be none (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center}
+\item{normType}{normlisation to apply if needed, can be raw (by default), uq or vst}
 
-\item{newexp}{gene expression matrix/dataframe, sample in columns, gene in rows}
+\item{scaleType}{scale to apply if needed, can be raw (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center}
 }
 \value{
 a data frame with row names as colnames of newexp, columns are different according the signatures, can be signature score or/and signature conclusion
@@ -30,5 +30,5 @@ a data frame with row names as colnames of newexp, columns are different accordi
 Title callSignature
 }
 \examples{
-callSignature(raw_counts,geneannot,signature="Gempred",toNorm="uq",scale="ssc")
+callSignature(matrix,geneannot,signature="Gempred",normType="uq",scale="ssc")
 }
