@@ -545,7 +545,7 @@ usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE)
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # UPDATE README AND DATA FILES
 ### Write signature in json file for python or other langages
-write_json(toJSON(signatures), "./data-raw/geneSetSignatures.json", pretty = T)
+write_json(signatures, "./data-raw/geneSetSignatures.json", pretty = T)
 
 update_RMD <- function(tab_summary) {
   # Get README content
