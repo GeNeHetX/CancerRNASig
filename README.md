@@ -1,32 +1,32 @@
 # CancerRNASig
 CancerRNASig is an R package designed to facilitate the application of RNA-seq signatures published in the literature to your own datasets. It also provides an organized collection of published gene signatures related to cancer (mainly PDAC), stroma, and immunity.
 
+---
+
+# ⚠️ **WARNING — RESEARCH USE ONLY**  
+**This tool is intended for research purposes only.  
+It is not intended for diagnostic use or clinical decision-making.**
+
+---
+
 ## Prerequisites
 ```r
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-install.packages("devtools")
-
-install.packages("utils", repos="http://r-forge.r-project.org", dependencies=TRUE) 
-
-install.packages("estimate", repos="http://r-forge.r-project.org", dependencies=TRUE)
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("devtools")
 
 BiocManager::install("DESeq2")
 
-devtools::install_github("GeNeHetX/qutils")
 ```
 ## Installation & Usage
 The CancerRNASig R package can be installed directly from GitHub in a terminal using Rscript:
 ```bash
-Rscript -e "if (!require('devtools')) install.packages('devtools', repos='https://cloud.r-project.org'); devtools::install_github('GeNeHetX/CancerRNASig')"
-
+Rscript -e "devtools::install_github('GeNeHetX/CancerRNASig')"
 ```
 or within an R environment:
 ```r
-# Install devtools if needed
-install.packages("devtools")
-
 # Install CancerRNASig from GitHub
 devtools::install_github("GeNeHetX/CancerRNASig")
 ```

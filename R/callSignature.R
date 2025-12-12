@@ -41,7 +41,7 @@ callSignature <- function(matrix, geneSymbols = NULL, signature = NULL, normType
   data <- switch(normType,
     uq = {
       message("Launching UQ normalisation")
-      qutils::UQnorm(matrix)
+      CancerRNASig:::.UQnorm(matrix)
     },
     vst = {
       message("Launching VST normalisation")
