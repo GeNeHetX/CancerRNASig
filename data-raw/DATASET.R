@@ -101,7 +101,7 @@
 
   # Hwang
   {
-    a <- read.xlsx(file.path(.refpath, "41588_2022_1134_MOESM4_ESM.xlsx"), sheet = 2, startRow = 3)[, -1]
+    a <- read.xlsx(file.path(.refpath, "HwangMarkG22.xlsx"), sheet = 2, startRow = 3)[, -1]
 
     HwangMarkG <- as.list(a[-1, ])
 
@@ -126,14 +126,15 @@
   turleyCaf <- split(turleyCaf[, 2], turleyCaf[, 1])
   names(turleyCaf) <- c("hCAF0TGFB", "hCAF1early", "hCAF2il6lif")
 
-  FMGcd2020 <- openxlsx::read.xlsx(file.path(.refpath, "6_DataS2_22March2020.xlsx"), sheet = 2)
+  FMGcd2020 <- openxlsx::read.xlsx(file.path(.refpath, "CAF_Kieffer20_6_DataS2.xlsx"), sheet = 2)
   colnames(FMGcd2020) <- gsub(" |-", ".", FMGcd2020[1, ])
   FMGcd2020 <- FMGcd2020[-1, ]
   FMGcd2020 <- lapply(as.list(FMGcd2020), narm)
 
+
   TuvesonCAFsc <- list(
-    iCAF = read.xlsx(file.path(.refpath, "215864_2_supp_5552227_ps91bp.xlsx"), sheet = 1)[, 2],
-    myo = read.xlsx(file.path(.refpath, "215864_2_supp_5552227_ps91bp.xlsx"), sheet = 2)[, 2]
+    iCAF = read.xlsx(file.path(.refpath, "CAF_Elyada19_215864_2_supp.xlsx"), sheet = 1)[, 2],
+    myo = read.xlsx(file.path(.refpath, "CAF_Elyada19_215864_2_supp.xlsx"), sheet = 2)[, 2]
   )
 
   CAFgenesigsymL <- readRDS(file.path(.refpath, "CAFgenesigsymL.rds"))[c("POSTN", "MYH11", "PDPN", "subPOSTN")]
@@ -156,8 +157,7 @@
 
 
   # Pan-cancer T cell atlas Y.CHU
-
-  table <- read.csv(file.path(.refpath, "41591_2023_2371_MOESM3_ESM.csv"), sep = ";")
+  table <- read.csv(file.path(.refpath, "PanCK_Tcellatlas_Chu23.csv"), sep = ";")
   # table=read.csv('41591_2023_2371_MOESM3_ESM.csv', sep=';')
   table <- table[1:25, 2:9]
   colnames(table) <- table[1, ]
@@ -165,10 +165,9 @@
   PanCK_Tcellatlas <- as.list(table)
   PanCK_Tcellatlas <- lapply(PanCK_Tcellatlas, function(x) x[x != ""])
 
-
   # Pan-cancer Neutrophils, Wu PMID.38447573
   # table=read.xlsx(file.path(.refpath,'1-s2.0-S0092867424001260-mmc2.xlsx'),sheet=2)
-  tab <- read.delim(file.path(.refpath, "1-s2.0-S0092867424001260-mmc2_sheet2.txt"), sep = "\t")
+  tab <- read.delim(file.path(.refpath, "PanCanNeutroWu24_sheet2.txt"), sep = "\t")
   # tab$ok=tab$Adjusted.P.value< 10^-20 #& tab$Log2.Fold.Change> log2(1.5)
   # tapply(  tab$ok, tab$Cluster, sum)
   PanCanNeutroWu <- lapply(split(tab, tab$Cluster), \(x)x[which(rank(x$Adjusted.P.value, ties.method = "first") < 100), "Gene"])
@@ -201,15 +200,15 @@
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # cancer atlas
 {
-  canceratlasMP <- as.list(openxlsx::read.xlsx(file.path(.refpath, "41586_2023_6130_MOESM6_ESM.xlsx"), sheet = 1))
+  canceratlasMP <- as.list(openxlsx::read.xlsx(file.path(.refpath, "cancer_atlas_Gavish23.xlsx"), sheet = 1))
   names(canceratlasMP) <- gsub("\\.{2,3}", ".", gsub("-|\\/|\\(|\\)", ".", names(canceratlasMP)))
 
-  canceratlasRobNMF <- as.list(openxlsx::read.xlsx(file.path(.refpath, "41586_2023_6130_MOESM6_ESM.xlsx"), sheet = 2))
+  canceratlasRobNMF <- as.list(openxlsx::read.xlsx(file.path(.refpath, "cancer_atlas_Gavish23.xlsx"), sheet = 2))
 }
 
 {
   # Cell Atlas Organoid :
-  atlas_organoid_df <- read.xlsx(file.path(.refpath, "41588_2025_2182_MOESM3_ESM.xlsx"), sheet = 5)
+  atlas_organoid_df <- read.xlsx(file.path(.refpath, "Organoid_Atlas_Xu25.xlsx"), sheet = 5)
   atlas_organoidVec <- lapply(atlas_organoid_df, function(x) as.character(x))
   names(atlas_organoidVec) <- paste0("atlas_organoidVec_", colnames(atlas_organoid_df))
 }
@@ -222,32 +221,28 @@
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # Fibroblast Atlas
+{
+  tab_fibro <- openxlsx::read.xlsx(file.path(.refpath, "FibroAtlas_Gao24.xlsx"), sheet = 2)
+  ### Nomage des clusters à leur signature biologique (vu dans l'article)
+  fibroSigs <- c(
+    "c01", "c02", "c03", "c04", "c05", "c06", "c07", "c08", "c09", "c10",
+    "c11", "c12", "c13", "c14", "c15", "c16", "c17", "c18", "c19", "c20"
+  )
+  # SMC = smooth muscle cells
+  names(fibroSigs) <- c(
+    "SMC_MYH11", "LaminaPropriaFibro_ADAMDEC",
+    "Progenitor_like_fibro_COL15A1", "MyoFibro_LRRC15",
+    "Progenitor_like_fibroblast_PI16", "AlveolarFibro_ADH1B+",
+    "InflaFibro_IL6", "Pericyte", "Fibro_CTNNB1",
+    "SynovialLiningFibro_PRG4", "MyoFibro_HOPX", "Mesothelial",
+    "InflaFibro_HGF", "InflaFibro_HSPA6", "EpithelialCryptFibro_SOX6",
+    "MyoFibro_SFRP2", "ProlifevrativeFibro_STMN1",
+    "SMC_HHIP", "Myofibro_MMP1", "ApFibro_CD74"
+  )
+  tab_fibro$clusterName <- names(fibroSigs[as.numeric(sub("c", "", tab_fibro$cluster))])
 
-tab_fibro <- openxlsx::read.xlsx(file.path(.refpath, "mmc3.xlsx"), sheet = 2)
-
-### Nomage des clusters à leur signature biologique
-fibroSigs <- c(
-  "c01", "c02", "c03", "c04", "c05", "c06", "c07", "c08", "c09", "c10",
-  "c11", "c12", "c13", "c14", "c15", "c16", "c17", "c18", "c19", "c20"
-)
-
-# SMC = smooth muscle cells
-names(fibroSigs) <- c(
-  "SMC_MYH11", "LaminaPropriaFibro_ADAMDEC",
-  "Progenitor_like_fibro_COL15A1", "MyoFibro_LRRC15",
-  "Progenitor_like_fibroblast_PI16", "AlveolarFibro_ADH1B+",
-  "InflaFibro_IL6", "Pericyte", "Fibro_CTNNB1",
-  "SynovialLiningFibro_PRG4", "MyoFibro_HOPX", "Mesothelial",
-  "InflaFibro_HGF", "InflaFibro_HSPA6", "EpithelialCryptFibro_SOX6",
-  "MyoFibro_SFRP2", "ProlifevrativeFibro_STMN1",
-  "SMC_HHIP", "Myofibro_MMP1", "ApFibro_CD74"
-)
-
-tab_fibro$clusterName <- names(fibroSigs[as.numeric(sub("c", "", tab_fibro$cluster))])
-
-
-FibroAtlasSigs <- split(tab_fibro[, "gene"], tab_fibro$clusterName)
-
+  FibroAtlasSigs <- split(tab_fibro[, "gene"], tab_fibro$clusterName)
+}
 
 {
   # Busslinger.etal;PMID: 33691112:
@@ -343,9 +338,10 @@ FibroAtlasSigs <- split(tab_fibro[, "gene"], tab_fibro$clusterName)
 
 {
   # Y.Schlesinger;PMID:38908487
-  mmc4 <- read.xlsx(file.path(.refpath, "mmc4.xlsx"))
+
+  mmc4 <- read.xlsx(file.path(.refpath, "scDuctalPancreas_Mouse_Schlesinger24.xlsx"))
   mmc4 <- mmc4[which(mmc4$p_val_adj < 0.05), ]
-  filename4 <- tools::file_path_sans_ext(basename(file.path(.refpath, "mmc4.xlsx")))
+  filename4 <- tools::file_path_sans_ext(basename(file.path(.refpath, "scDuctalPancreas_Mouse_Schlesinger24.xlsx")))
   df <- data.frame(cell_type = c("Aft3_pop", "ApoE/C_pop", "LCN2_pop", "Acinar_S", "Tesc_pop", "Wfdc18_1_pop", "Obp2b_pop", "Wnt_res", "Yap_responsive", "Apo/Tesc_pop", "Wfdc18_2_pop", "EMT_pop", "Acinar-i", "Cxcl1-2_pop", "IFN_responsive", "Prolif", "Ciliated"))
   df$cluster <- names(table(mmc4$cluster))
   mmc4$cell_type <- df$cell_type[match(mmc4$cluster, df$cluster)]
@@ -376,7 +372,7 @@ FibroAtlasSigs <- split(tab_fibro[, "gene"], tab_fibro$clusterName)
 
 {
   # A.Sathe;PMID:32060101
-  Sathetab1 <- read.xlsx(file.path(.refpath, "Supplementary table S6.xlsx"))
+  Sathetab1 <- read.xlsx(file.path(.refpath, "scGastricTME_Sathe20_supplementary_table_S6.xlsx"))
   Sathe1vec <- split(Sathetab1[, "gene"], Sathetab1$cluster)
   # names(Sathe1vec) = paste0("Sathe_scrna_",c("gastricTumorCell_1", "gastricTumorCell_2", "normal"))
   names(Sathe1vec) <- c("gastricTumorCell_1", "gastricTumorCell_2", "normal")
@@ -401,7 +397,7 @@ FibroAtlasSigs <- split(tab_fibro[, "gene"], tab_fibro$clusterName)
 
 # K.Mulder;PMID:34331874 Macrophages
 {
-  mulder_deg <- read.xlsx(file.path(.refpath, "1-s2.0-S1074761321002934-mmc4.xlsx"), sheet = 2)
+  mulder_deg <- read.xlsx(file.path(.refpath, "DEG_macrophages_Mulder21.xlsx"), sheet = 2)
   mulder_deg <- mulder_deg[which(mulder_deg$p_val_adj < 0.05), ]
   cluster_annot <- list(
     "Mono_CD16pos"    = c(1, 5),
