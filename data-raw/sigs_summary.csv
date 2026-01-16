@@ -22,8 +22,8 @@
 "PDAC.Maurer18","Maurer.etal;PMID:30658994","Pancreatic Ductal Adenocarcinoma (PDAC)",2
 "PDAC.Moffitt15","Moffitt.etal;PMID:26343385","Pancreatic Ductal Adenocarcinoma (PDAC)",14
 "PDAC.Puleo18","Puleo.etal;PMID:30165049","Pancreatic Ductal Adenocarcinoma (PDAC)",10
+"PDAC_PDAssigner.Colisson11","Collisson.etal;PMID:21460848","Pancreatic Ductal Adenocarcinoma (PDAC)",3
 "PDAC_PDXph1.Nicolle17","Nicolle.etal;PMID:29186684","Pancreatic Ductal Adenocarcinoma (PDAC)",2
-"PDAC_ssigner.Colisson11","Collisson.etal;PMID:21460848","Pancreatic Ductal Adenocarcinoma (PDAC)",3
 "SPEM.Bockerstett20","K.Bockerstett;PMID:31481545","Digestive scRNA-seq",10
 "scADM_Mouse.Ma21","Z.Ma.etal;PMID:34695382","Digestive scRNA-seq",11
 "scDuctalPancreas_Mouse.Schlesinger24","Y.Schlesinger;PMID:38908487","Digestive scRNA-seq",17

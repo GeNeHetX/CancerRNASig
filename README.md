@@ -305,16 +305,16 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:right;"> 10 </td>
   </tr>
   <tr>
+   <td style="text-align:left;"> PDAC_PDAssigner.Colisson11 </td>
+   <td style="text-align:left;"> Collisson.etal;PMID:21460848 </td>
+   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
+   <td style="text-align:right;"> 3 </td>
+  </tr>
+  <tr>
    <td style="text-align:left;"> PDAC_PDXph1.Nicolle17 </td>
    <td style="text-align:left;"> Nicolle.etal;PMID:29186684 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
    <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> PDAC_ssigner.Colisson11 </td>
-   <td style="text-align:left;"> Collisson.etal;PMID:21460848 </td>
-   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
-   <td style="text-align:right;"> 3 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> SPEM.Bockerstett20 </td>
@@ -366,7 +366,7 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Last update: 27/11/2025</td></tr></tfoot>
+<sup></sup> Last update: 16/01/2026</td></tr></tfoot>
 </table>
 
 ### For non-R users
