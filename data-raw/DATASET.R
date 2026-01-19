@@ -614,6 +614,9 @@ write.csv(tab_summary, "./data-raw/sigs_summary.csv", row.names = FALSE)
 update_RMD(tab_summary)
 
 # source("data-raw/DATASET.R")
-# devtools::build()   # construit le package
-# devtools::install() # installe le package
-# devtools::reload(pkg = ".", quiet = FALSE)
+# devtools::document()
+# devtools::load_all()
+# devtools::install() # construit et installe le package
+# devtools::check() # pour github
+
+# devtools::build() # au besoin

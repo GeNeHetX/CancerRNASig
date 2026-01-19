@@ -4,9 +4,10 @@ CancerRNASig is an R package designed to facilitate the application of RNA-seq s
 ---
 
 # ⚠️ **WARNING — RESEARCH USE ONLY**  
+CancerRNASig is freely available for academic and non-profit purpose. Other users need a Commercial license.
+
 **This tool is intended for research purposes only.  
 It is not intended for diagnostic use or clinical decision-making.**
-
 ---
 
 ## Prerequisites
@@ -149,6 +150,12 @@ Each subsection below describes the method, the expected output, and provides th
      → **Output**: a data frame with samples as rows and a single column containing the tGemPred score.<br>
      → DOI: coming soon
 
+* **PDACMolGrad** : 
+
+     → **Description**: PDACMolGrad is implementing the Molecular Gradient method. This method predicts the aggressivity of pancreatic adenocarcinoma based on transcriptomic profiles from tumor tissues.<br>
+     → **Output**: a data frame with samples as rows and four projections based on the molecular gradients computed from four different types of expression datasets (PDX, Puleo, ICGCarray, ICGCrnaseq).<br>
+     → [DOI: 10.1016/j.ebiom.2020.102858](https://pmc.ncbi.nlm.nih.gov/articles/PMC7334821/#_ad93_)
+     
 ### Note for scRNA-seq data
 These signatures are designed for **bulk RNA-seq** but can also be applied to **pseudo-bulk scRNA-seq data**.
 To use scRNA-seq data, first aggregate counts per sample or cluster (pseudo-bulk), normalize appropriately, and then apply callSignature
@@ -320,7 +327,7 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:left;"> SPEM.Bockerstett20 </td>
    <td style="text-align:left;"> K.Bockerstett;PMID:31481545 </td>
    <td style="text-align:left;"> Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 15 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> scADM_Mouse.Ma21 </td>
@@ -366,7 +373,7 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Last update: 16/01/2026</td></tr></tfoot>
+<sup></sup> Last update: 19/01/2026</td></tr></tfoot>
 </table>
 
 ### For non-R users

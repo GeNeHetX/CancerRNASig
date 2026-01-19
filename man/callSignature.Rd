@@ -6,10 +6,11 @@
 \usage{
 callSignature(
   matrix,
-  geneSymbols,
+  geneSymbols = NULL,
   signature = NULL,
   normType = "raw",
-  scaleType = "raw"
+  scaleType = "raw",
+  ...
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ callSignature(
 \item{normType}{normlisation to apply if needed, can be raw (by default), uq or vst}
 
 \item{scaleType}{scale to apply if needed, can be raw (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center}
+
+\item{...}{Additional arguments.}
 }
 \value{
 a data frame with row names as colnames of newexp, columns are different according the signatures, can be signature score or/and signature conclusion
@@ -29,6 +32,18 @@ a data frame with row names as colnames of newexp, columns are different accordi
 \description{
 Title callSignature
 }
+\details{
+The \code{...} argument allows passing additional parameters to specific
+signature implementations.
+
+Currently supported extra parameters include:
+\itemize{
+  \item \strong{mingenes}: Minimum number of genes in common required to compute
+  the \code{"Gempred"} signature (default: 500).
+}
+
+Additional parameters may be ignored depending on the selected signature.
+}
 \examples{
-callSignature(matrix,geneannot,signature="Gempred",normType="uq",scale="ssc")
+callSignature(matrix, geneannot, signature = "Gempred", normType = "uq", scale = "ssc", ...)
 }
