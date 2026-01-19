@@ -253,6 +253,7 @@
       filename <- tools::file_path_sans_ext(basename(file_path))
       filename <- gsub(" ", ".", filename)
       shortname <- substr(filename, 18, nchar(filename))
+      shortname <- tolower(sub("\\..*", "", shortname))
       sheets <- getSheetNames(file_path)
 
       file_sheets <- lapply(sheets, function(sheet) {
@@ -267,9 +268,7 @@
         return(res)
       })
 
-      names(file_sheets) <- lapply(sheets, function(sheet) {
-        paste0(shortname, "_", sheet)
-      })
+      names(file_sheets) <- paste(shortname, gsub(" ", "_", sheets), sep = ".")
       all_sheets_list <- c(all_sheets_list, file_sheets)
     }
     return(all_sheets_list)
@@ -290,15 +289,16 @@
   gast_norm_mouse <- read.xlsx(file_path)
   clusters <- split(gast_norm_mouse$gene, gast_norm_mouse$cluster)
   shortname <- substr(filename, 10, nchar(filename))
-  names(clusters) <- paste0(shortname, "_", names(clusters))
+  # names(clusters) <- paste0(shortname, "_", names(clusters))
 
   file_path <- file.path(.refpath, "MA MOUSE STOMACH SPEM SIGNATURES.xlsx")
   filename2 <- tools::file_path_sans_ext(basename(file_path))
   filename2 <- gsub(" ", ".", filename2)
   gast_spem_mouse <- read.xlsx(file_path)
   add_list <- list(gast_spem_mouse[, 2], gast_spem_mouse[, 3])
-  shortname2 <- substr(filename2, 10, nchar(filename2))
-  names(add_list) <- paste0(shortname2, "_", colnames(gast_spem_mouse)[2:3])
+  # shortname2 <- substr(filename2, 10, nchar(filename2))
+  # names(add_list) <- paste0(shortname2, "_", colnames(gast_spem_mouse)[2:3])
+  names(add_list) <- colnames(gast_spem_mouse)[2:3]
   add_list <- lapply(add_list, function(x) {
     x[!is.na(x)]
   })
@@ -312,14 +312,13 @@
   schl <- read.xlsx(file.path(.refpath, "SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx"), startRow = 2)
   schl <- schl[which(schl$p_val_adj < 0.05), ]
   table_schl <- read.xlsx(file.path(.refpath, "SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx"), startRow = 10)
-  table_schl <- table_schl[1:15, 8:9]
-  colnames(table_schl) <- c("cluster", "cell")
-  table_schl$cell[table_schl$cluster == "19"] <- "unknown_clut19"
+  table_schl <- table_schl[1:14, 8:9]
+  # table_schl$cell[table_schl$cluster == "19"] <- "unknown_clut19"
 
   split_rows <- function(row) {
     clusters <- unlist(strsplit(as.character(row["cluster"]), "_"))
-    cell <- as.character(row["cell"])
-    new_rows <- data.frame(cluster = clusters, cell = cell, stringsAsFactors = FALSE)
+    cell <- as.character(row["cell_type"])
+    new_rows <- data.frame(cluster = clusters, cell_type = cell, stringsAsFactors = FALSE)
     return(new_rows)
   }
   new_rows_1 <- split_rows(table_schl[1, ])
@@ -329,10 +328,10 @@
   schl$cell <- table_schl$cell[match(schl$cluster, table_schl$cluster)]
 
   schle <- split(schl$gene, schl$cell)
-  filename3 <- tools::file_path_sans_ext(basename(file.path(.refpath, "SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx")))
-  filename3 <- gsub(" ", ".", filename3)
-  shortname3 <- substr(filename3, 19, nchar(filename3))
-  names(schle) <- paste0(shortname3, "_", names(schle))
+  # filename3 <- tools::file_path_sans_ext(basename(file.path(.refpath, "SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx")))
+  # filename3 <- gsub(" ", ".", filename3)
+  # shortname3 <- substr(filename3, 19, nchar(filename3))
+  # names(schle) <- paste0(shortname3, "_", names(schle))
 }
 
 
@@ -383,8 +382,21 @@
   # J.Kim;PMID:35087207
   kimtab1 <- read.xlsx(file.path(.refpath, "KIM_scRNAGatricCarcniogegenisis.xlsx"))
   kim1vec <- split(kimtab1[, "DEGs"], kimtab1$State)
-  # names(kim1vec) = paste0("KIM_scRNAGatricCarcniogegenisis_cell",names(kim1vec))
-  kim1vec <- lapply(kim1vec, unlist)
+
+  # vecteur de correspondance
+  FIG_2b_legend <- c(
+    "1" = "non_malignant",
+    "2" = "premalignant",
+    "3" = "Intestinal_like",
+    "4" = "Diffuse_like",
+    "D" = "Diffuse_Gastric_Cancer",
+    "I" = "Intestinal_Gastric_Cancer"
+  )
+
+  stages <- names(kim1vec)
+  letter <- sub("[0-9]+$", "", stages)
+  number <- sub("^[A-Z]", "", stages)
+  names(kim1vec) <- paste0(FIG_2b_legend[letter], "_", FIG_2b_legend[number], ".", letter, number)
 }
 
 {
@@ -392,7 +404,7 @@
   boktab <- read.xlsx(file.path(.refpath, "BockerstettGut.xlsx"))
   bokvec <- lapply(split(boktab$gene, boktab$cell), function(x) unlist(x, use.names = FALSE))
   # names(bokvec) <- paste0("BockerstettGut", gsub(" ", "_", names(bokvec)))
-  names(bokvec) <- gsub(" ", "_", names(bokvec))
+  # names(bokvec) <- gsub(" ", "_", names(bokvec))
 }
 
 # K.Mulder;PMID:34331874 Macrophages
@@ -428,7 +440,7 @@
 
   # Clean names
   names(msliverk) <- sub(".*\\.", "", names(msliverk))
-  names(msliverk) <- toupper(gsub("[- ]+", "_", names(msliverk)))
+  names(msliverk) <- tolower(gsub("[- ]+", "_", names(msliverk)))
 }
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
@@ -601,11 +613,7 @@ colnames(tab_summary) <- c("Annotation", "Source", "Type", "NumberOfSignatures")
 write.csv(tab_summary, "./data-raw/sigs_summary.csv", row.names = FALSE)
 update_RMD(tab_summary)
 
-# library(devtools)
 # source("data-raw/DATASET.R")
 # devtools::build()   # construit le package
 # devtools::install() # installe le package
-# devtools::load_all()# recharge le package dans la session
-
-
-# reload(pkg = ".", quiet = FALSE)
+# devtools::reload(pkg = ".", quiet = FALSE)
