@@ -14,7 +14,7 @@
 #' Currently supported extra parameters include:
 #' \itemize{
 #'   \item \strong{mingenes}: Minimum number of genes in common required to compute
-#'   the \code{"Gempred"} signature (default: 500).
+#'   the Gempred and Puleo signatures (default: 500).
 #' }
 #'
 #' Additional parameters may be ignored depending on the selected signature.
