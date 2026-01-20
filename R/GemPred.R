@@ -4,6 +4,7 @@
 #'
 #' @param newexp gene expression matrix/dataframe, sample in columns, gene in rows
 #' @param geneSymbols gene symbols, a vector of same length as the number of rows in newex
+#' @param mingenes Minimum number of overlapping genes (default 500)
 #'
 #' @return a data frame with row names as colnames of newexp, first column is gempred score, second is gempred sensitivity conclusion
 #' @keywords internal
@@ -11,8 +12,9 @@
 #' @examples
 #' # Example of how to call GemPred
 #' # result <- GemPred(newexp = gene_expression_matrix, geneSymbols = gene_symbols)
-#'
-.gemPred <- function(newexp, geneSymbols = NULL) {
+#' @export
+
+gemPred <- function(newexp, geneSymbols = NULL, mingenes = 500) {
   # newexp_GS = qutils::getUniqueGeneMat(newexp, geneSymbols, rowMeans(newexp))
   newexp_GS <- newexp
   if (is.null(geneSymbols)) {
@@ -20,7 +22,7 @@
   } else {
     useGeneSym <- T
   }
-  res_list <- lapply(colnames(newexp_GS), .lunch_GremPred, newexp_GS, useGeneSym)
+  res_list <- lapply(colnames(newexp_GS), .lunch_GremPred, newexp_GS, useGeneSym, mingenes)
   names(res_list) <- colnames(newexp_GS)
 
   gempred_df <- do.call(rbind, res_list)
@@ -38,10 +40,10 @@
   return(res)
 }
 
-.lunch_GremPred <- function(name, counts, useGeneSym) {
+.lunch_GremPred <- function(name, counts, useGeneSym, mingenes) {
   tmp_table <- counts[, c(name)]
   names(tmp_table) <- row.names(counts)
-  pred <- .gemPred_simplified(as.matrix(tmp_table), useGeneSym)
+  pred <- .gemPred_simplified(as.matrix(tmp_table), useGeneSym, mingenes)
   return(pred)
 }
 
@@ -59,6 +61,30 @@
   okm
 }
 
+.gemPred_simplified <- function(dat, useGeneSym = T, mingenes = 500) {
+  data(GP2model_simple)
+  if (useGeneSym) {
+    gp2GW <- CancerRNASig:::.getUGM(GP2model_simple, GP2model_simple$GeneSymbol, apply(GP2model_simple, 1, max))
+  } else {
+    gp2GW <- GP2model_simple
+    row.names(gp2GW) <- gp2GW$ENSG_ID
+  }
+
+  comg2 <- intersect(rownames(dat), row.names(gp2GW))
+
+  if (length(comg2) < mingenes) {
+    return(paste("Too few gene in common. (", length(comg2), ")"))
+  }
+  v2 <- dat[comg2, ]
+  gp2Sc <- crossprod(gp2GW[comg2, "weight"], v2)[1, ]
+
+  res <- data.frame(
+    gp2sc = gp2Sc,
+    row.names = colnames(dat)
+  )
+
+  res
+}
 
 .gemPred_full <- function(dat, useGeneSym = T, mingenes = 500, compScale = F, preScale = F) {
   data(GP2model)
@@ -88,31 +114,6 @@
     refedP = factor(c("gp-", "gp+")[1 + (gp2sc > GP2model$cutoff)]),
     gp2singlegw = gp2Sr,
     PROJ = sscP2,
-    row.names = colnames(dat)
-  )
-
-  res
-}
-
-.gemPred_simplified <- function(dat, useGeneSym = T, mingenes = 500) {
-  data(GP2model_simple)
-  if (useGeneSym) {
-    gp2GW <- CancerRNASig:::.getUGM(GP2model_simple, GP2model_simple$GeneSymbol, apply(GP2model_simple, 1, max))
-  } else {
-    gp2GW <- GP2model_simple
-    row.names(gp2GW) <- gp2GW$ENSG_ID
-  }
-
-  comg2 <- intersect(rownames(dat), row.names(gp2GW))
-
-  if (length(comg2) < mingenes) {
-    return(paste("Too few gene in common. (", length(comg2), ")"))
-  }
-  v2 <- dat[comg2, ]
-  gp2Sc <- crossprod(gp2GW[comg2, "weight"], v2)[1, ]
-
-  res <- data.frame(
-    gp2sc = gp2Sc,
     row.names = colnames(dat)
   )
 

@@ -5,20 +5,18 @@
 #'
 #' @param newexp gene expression matrix or dataframe with gene in row(names) and samples in columns(names).
 #' @param geneSymbols vector of gene symbols for the newexp dataset (simply set to rownames if the newexp is already in single values per gene symbols)
-#' #' @param normalize Normalization (i.e. calibration) of the molecular gradient systems
+#' @param normalize Normalization (i.e. calibration) of the molecular gradient systems
 #'
 #' @return data frame of four projections based on the molecular gradients computed from four different types of expression datasets
 #'
-#' @details
-#'
-#'
 #' @keywords internal
-#'
 #'
 #' @examples
 #' g <- rownames(CancerRNASig::molGradSys$PDX$gw)
 #' projectMolGrad(matrix(rnorm(length(g) * 10), ncol = 10), g)
-.projectMolGrad <- function(newexp, geneSymbols, normalize = c("newRef", "sameAsRef", "raw")) {
+#' @export
+
+projectMolGrad <- function(newexp, geneSymbols, normalize = c("newRef", "sameAsRef", "raw")) {
   data(molGradsys)
   normalize <- match.arg(normalize)
   if (nrow(newexp) != length(geneSymbols)) {

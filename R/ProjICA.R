@@ -4,16 +4,16 @@
 #' @param ICAgw ICA gene weights (S matrix)
 #' @param geneNormType Normalization of gene expression matrix (sc: sample scale is default)
 #' @param projNormType Normalization of components (raw:  is default)
-#' @param ming Minimum number of overlapping genes
+#' @param mingenes Minimum number of overlapping genes
 #'
 #' @return projected components
 #' @export
 #'
 #' @examples
-.qProjICA <- function(newexp, ICAgw = CancerRNASig:::puleoICAgw, geneNormType = "sc", projNormType = "raw", ming = 500) {
+qProjICA <- function(newexp, ICAgw = CancerRNASig:::puleoICAgw, geneNormType = "sc", projNormType = "raw", mingenes = 500) {
   comg <- intersect(rownames(newexp), rownames(ICAgw))
 
-  if (length(comg) < ming) {
+  if (length(comg) < mingenes) {
     stop("Too few genes in common in the expression dataset and the ICA weights")
   }
 

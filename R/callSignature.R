@@ -5,26 +5,44 @@
 #' @param signature signature to apply, can be Gempred, tGempred, Puleo, pdacMolGrad, Mcpcount or Purist
 #' @param normType normlisation to apply if needed, can be raw (by default), uq or vst
 #' @param scaleType scale to apply if needed, can be raw (by default), sc=sample center, gc=gene center, gsc=gene scale center, ssc=sample scale center
+#' @param ... Additional arguments.
+#'
+#' @details
+#' The \code{...} argument allows passing additional parameters to specific
+#' signature implementations.
+#'
+#' Currently supported extra parameters include:
+#' \itemize{
+#'   \item \strong{mingenes}: Minimum number of genes in common required to compute
+#'   the Gempred and Puleo signatures (default: 500).
+#' }
+#'
+#' Additional parameters may be ignored depending on the selected signature.
 #'
 #' @return a data frame with row names as colnames of newexp, columns are different according the signatures, can be signature score or/and signature conclusion
 #'
 #' @examples
-#' callSignature(matrix, geneannot, signature = "Gempred", normType = "uq", scale = "ssc")
+#' callSignature(matrix, geneannot, signature = "Gempred", normType = "uq", scale = "ssc", ...)
 #' @export
 
 
-callSignature <- function(matrix, geneSymbols = NULL, signature = NULL, normType = "raw", scaleType = "raw") {
+callSignature <- function(matrix,
+                          geneSymbols = NULL,
+                          signature = NULL,
+                          normType = "raw",
+                          scaleType = "raw",
+                          ...) {
   # -- Input validation & coercions -------------------------------------------------
   if (!is.matrix(matrix)) {
     matrix <- as.matrix(matrix)
   }
 
-  if (!is.character(geneSymbols) & !is.null(geneSymbols)) {
+  if (!is.character(geneSymbols) && !is.null(geneSymbols)) {
     stop("geneSymbols must be a character vector.")
   }
 
   if (is.null(geneSymbols)) {
-    if (all(grepl("^ENSG", rownames(matrix))) & !(signature %in% c("Gempred", "tGempred"))) {
+    if (all(grepl("^ENSG", rownames(matrix))) && !(signature %in% c("Gempred", "tGempred"))) {
       stop("Matrix rownames detected as Ensembl Gene IDs. Whitout geneSymbols provided, only gempred and tGempred signatures can be applied.")
     } else {
       geneSymbols <- rownames(matrix)
@@ -69,32 +87,28 @@ callSignature <- function(matrix, geneSymbols = NULL, signature = NULL, normType
   res <- switch(sig,
     Mcpcount = {
       message("Launching Mcpcount prediction")
-      CancerRNASig:::.mcpcount(data_unique, rownames(data_unique))
+      CancerRNASig::MCPcounter(data_unique, rownames(data_unique))
     },
     Puleo = {
       message("Launching Puleo prediction")
       # raw data, no normalisation
-      CancerRNASig:::.qProjICA(data_unique)
+      CancerRNASig::qProjICA(data_unique, ...)
     },
     Purist = {
       message("Launching Purist prediction")
-      CancerRNASig:::.purist(data_unique, rownames(data_unique))
+      CancerRNASig::purist(data_unique, rownames(data_unique))
     },
-
-    # need ENSG or Gene Symbols
     Gempred = {
       message("Launching Gemred prediction")
-      CancerRNASig:::.gemPred(data_unique, geneSymbols)
+      CancerRNASig::gemPred(data_unique, geneSymbols, ...)
     },
-    ## add GempredBiopsy - need ENSG
     tGempred = {
       message("Launching tGempred prediction")
-      CancerRNASig:::.GemPred_biopsy(data_unique, gnt = "raw", pnt = "raw")
+      CancerRNASig::GemPred_biopsy(data_unique, gnt = "raw", pnt = "raw")
     },
-    ## add pdacMolGrad signature
     pdacMolGrad = {
       message("Launching pdacMolGrad")
-      CancerRNASig:::.projectMolGrad(data_unique, row.names(data_unique), "raw")
+      CancerRNASig::projectMolGrad(data_unique, row.names(data_unique), "raw")
     },
 
     ## add estimate signature
