@@ -3,11 +3,12 @@ CancerRNASig is an R package designed to facilitate the application of RNA-seq s
 
 ---
 
-# ⚠️ **WARNING — RESEARCH USE ONLY**  
-CancerRNASig is freely available for academic and non-profit purpose. Other users need a Commercial license.
+## ⚠️ **WARNING — RESEARCH USE ONLY**  
+CancerRNASig is licensed under CC BY-NC 4.0, freely available for academic and non-profit purposes. Other users need a Commercial license.
 
-**This tool is intended for research purposes only.  
+**This tool is intended for research purposes only.
 It is not intended for diagnostic use or clinical decision-making.**
+
 ---
 
 ## Prerequisites
