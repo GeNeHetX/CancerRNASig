@@ -1,7 +1,7 @@
 Package: CancerRNASig
 Type: Package
 Title: RNA signatures for phenotyping in oncology
-Version: 0.0.9
+Version: 0.0.9001
 Authors: Remy NICOLLE, Camille PIGNOLET, Audrey BEAUFILS, Lucie GOMES
 License: Creative Commons Attribution-NonCommercial (CC BY-NC)
 RoxygenNote: 7.3.3

@@ -17,6 +17,6 @@ WARNING: This tool is intended for research purposes only. It is not intended fo
 }
 \examples{
 # Example of how to call GemPred_Biopsy
-# result <- CancerRNASig:::.GemPred_Biopsy(newexp = gene_expression_matrix)
+# result <- CancerRNASig::GemPred_Biopsy(newexp = gene_expression_matrix)
 }
 \keyword{internal}

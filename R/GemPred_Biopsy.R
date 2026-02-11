@@ -9,14 +9,14 @@
 #'
 #' @examples
 #' # Example of how to call GemPred_Biopsy
-#' # result <- CancerRNASig:::.GemPred_Biopsy(newexp = gene_expression_matrix)
+#' # result <- CancerRNASig::GemPred_Biopsy(newexp = gene_expression_matrix)
 #' @export
 
 GemPred_biopsy <- function(newexp, gnt = "sc", pnt = "raw") {
   data(t_GemPred_Biopsy)
   sig <- as.vector(t_GemPred_Biopsy$weight)
   names(sig) <- t_GemPred_Biopsy$ENG_ID
-  proj <- as.data.frame(CancerRNASig:::.qProjICA(newexp, ICAgw = as.matrix(sig), geneNormType = gnt, projNormType = pnt, ming = 1))
+  proj <- as.data.frame(CancerRNASig::qProjICA(newexp, ICAgw = as.matrix(sig), geneNormType = gnt, projNormType = pnt, ming = 1))
   colnames(proj) <- "newsig"
 
   return(proj)
