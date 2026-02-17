@@ -17,7 +17,6 @@
 "Organoid_Atlas.Xu25","Xu.etal;PMID:40355592","Organoid",48
 "PDAC.Bailey16","Bailey.etal;PMID:26909576","Pancreatic Ductal Adenocarcinoma (PDAC)",4
 "PDAC.ChanSengYue20","Chan-Seng-Yue.etal;PMID:31932696","Pancreatic Ductal Adenocarcinoma (PDAC)",12
-"PDAC.Grunwald21","Grunwald.etal;PMID:34644529","Pancreatic Ductal Adenocarcinoma (PDAC)",2
 "PDAC.Hwang22","Hwang.etal;PMID.35902743","Pancreatic Ductal Adenocarcinoma (PDAC)",18
 "PDAC.Maurer18","Maurer.etal;PMID:30658994","Pancreatic Ductal Adenocarcinoma (PDAC)",2
 "PDAC.Moffitt15","Moffitt.etal;PMID:26343385","Pancreatic Ductal Adenocarcinoma (PDAC)",14
@@ -25,6 +24,7 @@
 "PDAC_PDAssigner.Colisson11","Collisson.etal;PMID:21460848","Pancreatic Ductal Adenocarcinoma (PDAC)",3
 "PDAC_PDXph1.Nicolle17","Nicolle.etal;PMID:29186684","Pancreatic Ductal Adenocarcinoma (PDAC)",2
 "SPEM.Bockerstett20","K.Bockerstett;PMID:31481545","Digestive scRNA-seq",15
+"Stroma.Grunwald21","Grunwald.etal;PMID:34644529","Stroma pancreas",2
 "scADM_Mouse.Ma21","Z.Ma.etal;PMID:34695382","Digestive scRNA-seq",11
 "scDuctalPancreas_Mouse.Schlesinger24","Y.Schlesinger;PMID:38908487","Digestive scRNA-seq",17
 "scGC.Kim22","J.Kim;PMID:35087207","Cancer Digestive scRNA-seq",7

@@ -460,7 +460,7 @@ gsignatures <- gsignatures %>%
   addgs(geneset = puleoG, type = "Pancreatic Ductal Adenocarcinoma (PDAC)", src = "Puleo.etal;PMID:30165049", id = "PDAC.Puleo18") %>%
   addgs(geneset = pdassigner, type = "Pancreatic Ductal Adenocarcinoma (PDAC)", src = "Collisson.etal;PMID:21460848", id = "PDAC_PDAssigner.Colisson11") %>%
   addgs(geneset = allmoffsig, type = "Pancreatic Ductal Adenocarcinoma (PDAC)", src = "Moffitt.etal;PMID:26343385", id = "PDAC.Moffitt15") %>%
-  addgs(geneset = grunwaldsig, type = "Pancreatic Ductal Adenocarcinoma (PDAC)", src = "Grunwald.etal;PMID:34644529", id = "PDAC.Grunwald21") %>%
+  addgs(geneset = grunwaldsig, type = "Stroma pancreas", src = "Grunwald.etal;PMID:34644529", id = "Stroma.Grunwald21") %>%
   addgs(geneset = maurersig, type = "Pancreatic Ductal Adenocarcinoma (PDAC)", src = "Maurer.etal;PMID:30658994", id = "PDAC.Maurer18") %>%
   addgs(geneset = baileyMarkG, type = "Pancreatic Ductal Adenocarcinoma (PDAC)", src = "Bailey.etal;PMID:26909576", id = "PDAC.Bailey16") %>%
   addgs(geneset = HwangMarkG, type = "Pancreatic Ductal Adenocarcinoma (PDAC)", src = "Hwang.etal;PMID.35902743", id = "PDAC.Hwang22") %>%

@@ -283,12 +283,6 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:right;"> 12 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> PDAC.Grunwald21 </td>
-   <td style="text-align:left;"> Grunwald.etal;PMID:34644529 </td>
-   <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
-   <td style="text-align:right;"> 2 </td>
-  </tr>
-  <tr>
    <td style="text-align:left;"> PDAC.Hwang22 </td>
    <td style="text-align:left;"> Hwang.etal;PMID.35902743 </td>
    <td style="text-align:left;"> Pancreatic Ductal Adenocarcinoma (PDAC) </td>
@@ -329,6 +323,12 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:left;"> K.Bockerstett;PMID:31481545 </td>
    <td style="text-align:left;"> Digestive scRNA-seq </td>
    <td style="text-align:right;"> 15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Stroma.Grunwald21 </td>
+   <td style="text-align:left;"> Grunwald.etal;PMID:34644529 </td>
+   <td style="text-align:left;"> Stroma pancreas </td>
+   <td style="text-align:right;"> 2 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> scADM_Mouse.Ma21 </td>
@@ -374,7 +374,7 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Last update: 19/01/2026</td></tr></tfoot>
+<sup></sup> Last update: 17/02/2026</td></tr></tfoot>
 </table>
 
 ### For non-R users
