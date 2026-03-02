@@ -282,15 +282,15 @@
   }
 
   file_paths <- c(
-    file.path(.refpath, "BUSSLINGER HUMAN DUODENUM NORMAL CELLS SINGLE CELL.xlsx"),
-    file.path(.refpath, "BUSSLINGER HUMAN STOMACH NORMAL CELLS SINGLE CELL.xlsx")
+    file.path(.refpath, "BUSSLINGER_HUMAN_DUODENUM_NORMAL_CELLS_SINGLE_CELL.xlsx"),
+    file.path(.refpath, "BUSSLINGER_HUMAN_STOMACH_NORMAL_CELLS_SINGLE_CELL.xlsx")
   )
   busi <- load_and_process_excel_sheets(file_paths)
 }
 
 {
   # Z.Ma.etal;PMID: 34695382,
-  file_path <- file.path(.refpath, "MA MOUSE STOMACH NORMAL CELLS SINGLE CELL.xlsx")
+  file_path <- file.path(.refpath, "MA_MOUSE_STOMACH_NORMAL_CELLS_SINGLE_CELL.xlsx")
   filename <- tools::file_path_sans_ext(basename(file_path))
   filename <- gsub(" ", ".", filename)
   gast_norm_mouse <- read.xlsx(file_path)
@@ -298,7 +298,7 @@
   shortname <- substr(filename, 10, nchar(filename))
   # names(clusters) <- paste0(shortname, "_", names(clusters))
 
-  file_path <- file.path(.refpath, "MA MOUSE STOMACH SPEM SIGNATURES.xlsx")
+  file_path <- file.path(.refpath, "MA_MOUSE_STOMACH_SPEM_SIGNATURES.xlsx")
   filename2 <- tools::file_path_sans_ext(basename(file_path))
   filename2 <- gsub(" ", ".", filename2)
   gast_spem_mouse <- read.xlsx(file_path)
@@ -311,14 +311,15 @@
   })
 
   ma_mouse <- c(clusters, add_list)
+  ma_mouse = lapply(ma_mouse, toupper)
 }
 
 
 {
   # Y.Schlesinger;PMID:32908137
-  schl <- read.xlsx(file.path(.refpath, "SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx"), startRow = 2)
+  schl <- read.xlsx(file.path(.refpath, "SCHLESINGER_MOUSE_GASTRIC_NORMAL_AND_PANCREAS_POST_KRAS_CERULEINE.xlsx"), startRow = 2)
   schl <- schl[which(schl$p_val_adj < 0.05), ]
-  table_schl <- read.xlsx(file.path(.refpath, "SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx"), startRow = 10)
+  table_schl <- read.xlsx(file.path(.refpath, "SCHLESINGER_MOUSE_GASTRIC_NORMAL_AND_PANCREAS_POST_KRAS_CERULEINE.xlsx"), startRow = 10)
   table_schl <- table_schl[1:14, 8:9]
   # table_schl$cell[table_schl$cluster == "19"] <- "unknown_clut19"
 
@@ -335,6 +336,7 @@
   schl$cell <- table_schl$cell[match(schl$cluster, table_schl$cluster)]
 
   schle <- split(schl$gene, schl$cell)
+  schle = lapply(schle, toupper)
   # filename3 <- tools::file_path_sans_ext(basename(file.path(.refpath, "SCHLESINGER MOUSE GASTRIC NORMAL AND PANCREAS POST KRAS CERULEINE.xlsx")))
   # filename3 <- gsub(" ", ".", filename3)
   # shortname3 <- substr(filename3, 19, nchar(filename3))
@@ -343,16 +345,28 @@
 
 
 {
-  # Y.Schlesinger;PMID:38908487
+  # A.Fernandez;PMID:38908487
+  celltype = read.delim(file.path(.refpath, "Fernandez_findAllMarkers_celltypes.tsv"), sep='\t')
+  
+  celltype_ord <- celltype[order(celltype$p_val_adj), ]
+  split_list2 <- split(celltype_ord, celltype_ord$cluster)
+  top100_list2 <- lapply(split_list2, function(df) {
+    toupper(head(df$gene, 100))
+  })
+  names(top100_list2) = c("Aft3_population", "ApoE_C_population", "LCN2_population", "Acinar_S", "Tesc_population", 
+  "Wfdc18_1_population", "Obp2b_population", "Wnt_responsive", "Yap_responsive", "Apo_Tesc_population", "Wfdc18_2_population", 
+  "EMT_population", "Acinar_i", "Cxcl1_2_population", "IFN_responsive", "Prolif", "Ciliated")
 
-  mmc4 <- read.xlsx(file.path(.refpath, "scDuctalPancreas_Mouse_Schlesinger24.xlsx"))
-  mmc4 <- mmc4[which(mmc4$p_val_adj < 0.05), ]
-  filename4 <- tools::file_path_sans_ext(basename(file.path(.refpath, "scDuctalPancreas_Mouse_Schlesinger24.xlsx")))
-  df <- data.frame(cell_type = c("Aft3_pop", "ApoE/C_pop", "LCN2_pop", "Acinar_S", "Tesc_pop", "Wfdc18_1_pop", "Obp2b_pop", "Wnt_res", "Yap_responsive", "Apo/Tesc_pop", "Wfdc18_2_pop", "EMT_pop", "Acinar-i", "Cxcl1-2_pop", "IFN_responsive", "Prolif", "Ciliated"))
-  df$cluster <- names(table(mmc4$cluster))
-  mmc4$cell_type <- df$cell_type[match(mmc4$cluster, df$cluster)]
-  schle_mmc4 <- split(mmc4$gene, mmc4$cell_type)
-  # names(schle_mmc4) <- paste0(filename4, "_", names(schle_mmc4))
+
+  canaux_type = read.delim(file.path(.refpath, "Fernandez_findAllMarkers_typecanaux.tsv"), sep='\t')
+  canaux_type_ord <- canaux_type[order(canaux_type$p_val_adj), ]
+  split_list <- split(canaux_type_ord, canaux_type_ord$cluster)
+  top100_list <- lapply(split_list, function(df) {
+    toupper(head(df$gene, 100))
+  })
+
+  fernan = c(top100_list2, top100_list)
+
 }
 
 
@@ -490,7 +504,7 @@ gsignatures <- gsignatures %>%
   addgs(geneset = busi, type = "Digestive scRNA-seq", src = "G.Busslinger.etal;PMID:33691112", id = "scGI.Busslinger21") %>%
   addgs(geneset = ma_mouse, type = "Digestive scRNA-seq", src = "Z.Ma.etal;PMID:34695382", id = "scADM_Mouse.Ma21") %>%
   addgs(geneset = schle, type = "Digestive scRNA-seq", src = "Y.Schlesinger;PMID:32908137", id = "scPancreas_Mouse.Schlesinger20") %>%
-  addgs(geneset = schle_mmc4, type = "Digestive scRNA-seq", src = "Y.Schlesinger;PMID:38908487", id = "scDuctalPancreas_Mouse.Schlesinger24") %>%
+  addgs(geneset = fernan, type = "Digestive scRNA-seq", src = "A.Fernandez;PMID:38908487", id = "scDuctalPancreas_Mouse.Fernandez24") %>%
   addgs(geneset = scIBD_geneset, type = "Digestive scRNA-seq", src = "H.Nie;PMID:38177426", id = "scIBD.Nie23") %>%
   addgs(geneset = Sathe1vec, type = "Cancer Digestive scRNA-seq", src = "A.Sathe;PMID:32060101", id = "scGastricTME.Sathe20") %>%
   addgs(geneset = kim1vec, type = "Cancer Digestive scRNA-seq", src = "J.Kim;PMID:35087207", id = "scGC.Kim22") %>%

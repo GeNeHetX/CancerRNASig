@@ -337,10 +337,10 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:right;"> 11 </td>
   </tr>
   <tr>
-   <td style="text-align:left;"> scDuctalPancreas_Mouse.Schlesinger24 </td>
-   <td style="text-align:left;"> Y.Schlesinger;PMID:38908487 </td>
+   <td style="text-align:left;"> scDuctalPancreas_Mouse.Fernandez24 </td>
+   <td style="text-align:left;"> A.Fernandez;PMID:38908487 </td>
    <td style="text-align:left;"> Digestive scRNA-seq </td>
-   <td style="text-align:right;"> 17 </td>
+   <td style="text-align:right;"> 23 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> scGC.Kim22 </td>
