@@ -64,6 +64,13 @@
   rnam <- c("ClassicalA", "BasallikeA", "ClassicalB", "BasallikeB")
   names(ChanSengYueSigs)[rnami] <- rnam
 
+  stromai <- c(3, 4, 5, 8)
+  stromaname <- c("Fibroblast", "Hepatocyte", "Normal_pancreas", "Immune_cell")
+  names(ChanSengYueSigs)[stromai] <- stromaname
+
+  unknowni <- c(7, 9, 11, 12)
+  names(ChanSengYueSigs)[unknowni] <- paste0(names(ChanSengYueSigs)[unknowni],"_Unknown")
+
   # print(load(file.path(.refpath,"pdxGeneL.RData")))
   # write_json(toJSON(pdxGeneL),file.path(.refpath, "pdxGeneL.json"), pretty = T)
   pdxGeneL <- fromJSON(read_json(file.path(.refpath, "pdxGeneL.json"), simplifyVector = T))

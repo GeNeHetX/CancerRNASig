@@ -374,7 +374,7 @@ All gene sets and their annotations are available in the **signatures** object i
   </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Last update: 17/02/2026</td></tr></tfoot>
+<sup></sup> Last update: 02/03/2026</td></tr></tfoot>
 </table>
 
 ### For non-R users
