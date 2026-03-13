@@ -24,18 +24,6 @@ NULL
 #' @docType data
 "t_GemPred_Biopsy"
 
-#' @rdname CancerRNASig_data
-#' @docType data
-".estimategenes"
-
-#' @rdname CancerRNASig_data
-#' @docType data
-".mcpgenes"
-
-#' @rdname CancerRNASig_data
-#' @docType data
-".puleoICAgw"
-
 
 #' Import required base R functions
 #'

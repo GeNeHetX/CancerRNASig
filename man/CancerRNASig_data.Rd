@@ -7,9 +7,6 @@
 \alias{molGradsys}
 \alias{signatures}
 \alias{t_GemPred_Biopsy}
-\alias{.estimategenes}
-\alias{.mcpgenes}
-\alias{.puleoICAgw}
 \title{Datasets included in CancerRNASig}
 \format{
 Various objects used internally by the package.
@@ -21,12 +18,6 @@ An object of class \code{list} of length 4.
 An object of class \code{list} of length 3.
 
 An object of class \code{data.frame} with 2112 rows and 2 columns.
-
-An object of class \code{data.frame} with 2 rows and 142 columns.
-
-An object of class \code{data.frame} with 111 rows and 3 columns.
-
-An object of class \code{data.frame} with 11895 rows and 10 columns.
 }
 \source{
 Literature-derived gene signatures and models.
@@ -39,12 +30,6 @@ molGradsys
 signatures
 
 t_GemPred_Biopsy
-
-.estimategenes
-
-.mcpgenes
-
-.puleoICAgw
 }
 \description{
 Collection of datasets used for RNA signature prediction and

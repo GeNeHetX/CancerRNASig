@@ -61,3 +61,12 @@ genesymUniqExp <- function(newexp, geneSymbols, scoreFunc = NULL) {
         quantile(x[which(x > 0)], probs = 0.75)
     })) * 1000))
 }
+
+# Déclare les variables globales pour éviter les NOTEs R CMD check
+utils::globalVariables(c(
+  "GP2model_simple",
+  "estimategenes",
+  "mcpgenes",
+  "molGradsys",
+  "puleoICAgw"
+))

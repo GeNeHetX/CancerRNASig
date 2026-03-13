@@ -537,7 +537,7 @@ mcpgenes <- read.delim(file.path(.refpath, "mcpgenes.tsv"), sep = "\t", header =
 
 puleoICAgw <- read.delim(file.path(.refpath, "puleogw.tsv"), sep = "\t", header = T)
 
-molGradsys <- load( "data/molGradsys.rda")
+load( "data/molGradsys.rda") # from pdacmolgrad github repo
 
 # usethis::use_data(signatures,.puleoICAgw,.estimategenes,.mcpgenes,internal=FALSE,overwrite=T)
 #LOAD
