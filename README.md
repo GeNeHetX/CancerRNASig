@@ -372,9 +372,15 @@ All gene sets and their annotations are available in the **signatures** object i
    <td style="text-align:left;"> Digestive scRNA-seq </td>
    <td style="text-align:right;"> 14 </td>
   </tr>
+  <tr>
+   <td style="text-align:left;"> siNETs.Patte25 </td>
+   <td style="text-align:left;"> C.Patte;PMID:40038310 </td>
+   <td style="text-align:left;"> small intestinal NeuroEndocrine Tumors (siNETs) </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
 </tbody>
 <tfoot><tr><td style="padding: 0; " colspan="100%">
-<sup></sup> Last update: 02/03/2026</td></tr></tfoot>
+<sup></sup> Last update: 12/03/2026</td></tr></tfoot>
 </table>
 
 ### For non-R users

@@ -464,6 +464,12 @@
   names(msliverk) <- tolower(gsub("[- ]+", "_", names(msliverk)))
 }
 
+### siNETs signatures - C.Patte 2025 doi:10.1038/s41467-025-57305-8
+{
+  siNETs_excel <- read.xlsx(file.path(.refpath, "SupData_C.Patte_doi_41467_025_57305.xlsx"), sheet = 3, startRow = 2)
+  siNETsgenes <- split(siNETs_excel$gene_name, siNETs_excel$gene.cluster)
+}
+
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # Aggreg sigs
 
@@ -511,7 +517,8 @@ gsignatures <- gsignatures %>%
   addgs(geneset = bokvec, type = "Digestive scRNA-seq", src = "K.Bockerstett;PMID:31481545", id = "SPEM.Bockerstett20") %>%
   addgs(geneset = atlas_organoidVec, type = "Organoid", src = "Xu.etal;PMID:40355592", id = "Organoid_Atlas.Xu25") %>%
   addgs(geneset = msliverk, type = "Hepatocellular carcinomas (HCC)", src = "Petitprez.etal;DOI:10.1101/540005", id = "HCC.Petitprez19") %>%
-  addgs(geneset = mulder_genesets, type = "Immune Cells", src = "K.Mulder;PMID:34331874", id = "IMMU_monoMac.Mulder21")
+  addgs(geneset = mulder_genesets, type = "Immune Cells", src = "K.Mulder;PMID:34331874", id = "IMMU_monoMac.Mulder21")%>%
+  addgs(geneset = siNETsgenes, type = "small intestinal NeuroEndocrine Tumors (siNETs)", src = "C.Patte;PMID:40038310", id = "siNETs.Patte25")
 
 signatures <- list(
   geneset = gsignatures$geneset,
@@ -530,10 +537,11 @@ mcpgenes <- read.delim(file.path(.refpath, "mcpgenes.tsv"), sep = "\t", header =
 
 puleoICAgw <- read.delim(file.path(.refpath, "puleogw.tsv"), sep = "\t", header = T)
 
+molGradsys <- load( "data/molGradsys.rda")
 
 # usethis::use_data(signatures,.puleoICAgw,.estimategenes,.mcpgenes,internal=FALSE,overwrite=T)
-
-usethis::use_data(puleoICAgw, estimategenes, mcpgenes, internal = TRUE, overwrite = T)
+#LOAD
+usethis::use_data(puleoICAgw, estimategenes, mcpgenes, molGradsys, internal = TRUE, overwrite = T)
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # LOAD GEMPRED MODEL
@@ -563,13 +571,12 @@ usethis::use_data(puleoICAgw, estimategenes, mcpgenes, internal = TRUE, overwrit
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # LOAD GEMPRED SIMPLIFIED MODEL
 GP2model_simple <- read.csv(file.path(.refpath, "GP2model_simplified.csv"), sep = ",")
-usethis::use_data(GP2model_simple, overwrite = TRUE)
+usethis::use_data(GP2model_simple, overwrite = TRUE, internal = TRUE)
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # LOAD GEMPRED_BIOPSY MODEL
 t_GemPred_Biopsy <- read.csv(file.path(.refpath, "t_GemPred_Biopsy.csv"), sep = ";")
-usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE)
-
+usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE, internal = TRUE)
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # UPDATE README AND DATA FILES
