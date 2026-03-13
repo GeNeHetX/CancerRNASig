@@ -12,9 +12,8 @@
 #' @return a data frame with row names as colnames of newexp, first column is purist subtype, second is purist score
 #' @export
 #'
-#' @examples
 genesymUniqExp <- function(newexp, geneSymbols, scoreFunc = NULL) {
-    E <- CancerRNASig:::.checkGeneExp(newexp)
+    E <- .checkGeneExp(newexp)
     if (nrow(E) != length(geneSymbols)) {
         stop("Rows of newexp (expected to be genes) should have the same length as the proposed geneSymbols")
     }
@@ -24,7 +23,7 @@ genesymUniqExp <- function(newexp, geneSymbols, scoreFunc = NULL) {
     } else {
         w <- scoreFunc(E)
     }
-    CancerRNASig:::.getugm(E, geneSymbols, w)
+    .getugm(E, geneSymbols, w)
 }
 
 .getugm <- function(m, g, w) {

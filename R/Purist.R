@@ -6,7 +6,7 @@
 #' @return a data frame with row names as colnames of newexp, first column is purist subtype, second is purist score
 #' @export
 #'
-#' @examples
+#' 
 purist <- function(newexp, geneSymbols) {
   if (nrow(newexp) != length(geneSymbols)) {
     stop("geneSymbols should be a vector of gene symbols exactly corresponding to each row of the newexp dataset")

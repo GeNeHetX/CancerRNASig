@@ -7,16 +7,15 @@
 #' @return Gene set score
 #' @export
 #'
-#' @examples
 coexpScore=function(newexp,genesetlist){
 
-    E=CancerRNASig:::.checkGeneExp(newexp)
+    E=.checkGeneExp(newexp)
     E=E[which(matrixStats::rowSds(E)> (10^-12)),]
     E <- t(base::scale(t(E), center=TRUE, scale = FALSE))
 
-    CancerRNASig:::.checkCoregArgs(E, genesetlist)
+   .checkCoregArgs(E, genesetlist)
 
-    pp <- CancerRNASig:::.gesecaPreparePathways(E, genesetlist, minSize=1, 
+    pp <- .gesecaPreparePathways(E, genesetlist, minSize=1, 
     maxSize=(nrow(E)-1))
     genesetFiltered <- pp$filtered
     genesetSizes <- pp$sizes

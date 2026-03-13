@@ -62,9 +62,8 @@ gemPred <- function(newexp, geneSymbols = NULL, mingenes = 500) {
 }
 
 .gemPred_simplified <- function(dat, useGeneSym = T, mingenes = 500) {
-  data(GP2model_simple)
   if (useGeneSym) {
-    gp2GW <- CancerRNASig:::.getUGM(GP2model_simple, GP2model_simple$GeneSymbol, apply(GP2model_simple, 1, max))
+    gp2GW <- .getUGM(GP2model_simple, GP2model_simple$GeneSymbol, apply(GP2model_simple, 1, max))
   } else {
     gp2GW <- GP2model_simple
     row.names(gp2GW) <- gp2GW$ENSG_ID
@@ -86,36 +85,35 @@ gemPred <- function(newexp, geneSymbols = NULL, mingenes = 500) {
   res
 }
 
-.gemPred_full <- function(dat, useGeneSym = T, mingenes = 500, compScale = F, preScale = F) {
-  data(GP2model)
-  if (useGeneSym) {
-    gp2GW <- CancerRNASig:::.getUGM(GP2model$ICA$S, GP2model$genes, apply(GP2model$ICA$S, 1, max))
-  } else {
-    gp2GW <- GP2model$ICA$S
-  }
-  comg2 <- intersect(rownames(dat), rownames(gp2GW))
+# .gemPred_full <- function(dat, useGeneSym = T, mingenes = 500, compScale = F, preScale = F) {
+#   if (useGeneSym) {
+#     gp2GW <- .getUGM(GP2model$ICA$S, GP2model$genes, apply(GP2model$ICA$S, 1, max))
+#   } else {
+#     gp2GW <- GP2model$ICA$S
+#   }
+#   comg2 <- intersect(rownames(dat), rownames(gp2GW))
 
-  if (length(comg2) < mingenes) {
-    return(paste("Too few gene in common. (", length(comg2), ")"))
-  }
+#   if (length(comg2) < mingenes) {
+#     return(paste("Too few gene in common. (", length(comg2), ")"))
+#   }
 
-  invs2 <- MASS::ginv(as.matrix(gp2GW[comg2, ]))
-  v2 <- dat[comg2, ]
-  sscP2 <- t(invs2 %*% scale(v2, center = preScale, scale = preScale))
-  sscP2 <- scale(sscP2, scale = compScale, center = compScale)
-  colnames(sscP2) <- colnames(gp2GW)
+#   invs2 <- MASS::ginv(as.matrix(gp2GW[comg2, ]))
+#   v2 <- dat[comg2, ]
+#   sscP2 <- t(invs2 %*% scale(v2, center = preScale, scale = preScale))
+#   sscP2 <- scale(sscP2, scale = compScale, center = compScale)
+#   colnames(sscP2) <- colnames(gp2GW)
 
-  gp2sc <- unname(predict(GP2model$LM, data.frame(sscP2)))
+#   gp2sc <- unname(predict(GP2model$LM, data.frame(sscP2)))
 
-  gp2Sr <- crossprod(GP2model$simplified[comg2], v2)[1, ]
+#   gp2Sr <- crossprod(GP2model$simplified[comg2], v2)[1, ]
 
-  res <- data.frame(
-    gp2sc = gp2sc,
-    refedP = factor(c("gp-", "gp+")[1 + (gp2sc > GP2model$cutoff)]),
-    gp2singlegw = gp2Sr,
-    PROJ = sscP2,
-    row.names = colnames(dat)
-  )
+#   res <- data.frame(
+#     gp2sc = gp2sc,
+#     refedP = factor(c("gp-", "gp+")[1 + (gp2sc > GP2model$cutoff)]),
+#     gp2singlegw = gp2Sr,
+#     PROJ = sscP2,
+#     row.names = colnames(dat)
+#   )
 
-  res
-}
+#   res
+# }

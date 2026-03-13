@@ -6,7 +6,7 @@
 \usage{
 qProjICA(
   newexp,
-  ICAgw = CancerRNASig:::puleoICAgw,
+  ICAgw = puleoICAgw,
   geneNormType = "sc",
   projNormType = "raw",
   mingenes = 500

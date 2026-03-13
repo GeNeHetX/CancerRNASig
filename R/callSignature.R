@@ -1,6 +1,6 @@
 #' Title callSignature
 #'
-#' @param matrix gene expression matrix/dataframe, sample in columns, gene in rows
+#' @param m gene expression matrix/dataframe, sample in columns, gene in rows
 #' @param geneSymbols gene symbols, a vector of same length as the number of rows in matrix
 #' @param signature signature to apply, can be Gempred, tGempred, Puleo, pdacMolGrad, Mcpcount or Purist
 #' @param normType normlisation to apply if needed, can be raw (by default), uq or vst
@@ -22,11 +22,11 @@
 #' @return a data frame with row names as colnames of newexp, columns are different according the signatures, can be signature score or/and signature conclusion
 #'
 #' @examples
-#' callSignature(matrix, geneannot, signature = "Gempred", normType = "uq", scale = "ssc", ...)
+#' \dontrun{callSignature(m, geneannot, signature = "Gempred", normType = "uq", scaleType = "ssc")}
 #' @export
 
 
-callSignature <- function(matrix,
+callSignature <- function(m,
                           geneSymbols = NULL,
                           signature = NULL,
                           normType = "raw",
@@ -59,7 +59,7 @@ callSignature <- function(matrix,
   data <- switch(normType,
     uq = {
       message("Launching UQ normalisation")
-      CancerRNASig:::.UQnorm(matrix)
+      .UQnorm(matrix)
     },
     vst = {
       message("Launching VST normalisation")
@@ -72,12 +72,12 @@ callSignature <- function(matrix,
   )
 
   # -- Scaling -----------------------------------------------------------------
-  data <- CancerRNASig:::.qNormalize(data, scaleType)
+  data <- .qNormalize(data, scaleType)
 
   # -- Unique Gene Matrix -----------------------------------------------------
   # data_unique <- qutils::getUniqueGeneMat(data, geneSymbols, rowMeans(data))
   if (!is.null(geneSymbols)) {
-    data_unique <- CancerRNASig:::genesymUniqExp(data, geneSymbols, rowMeans)
+    data_unique <- genesymUniqExp(data, geneSymbols, rowMeans)
   } else {
     data_unique <- data
   }
@@ -112,7 +112,7 @@ callSignature <- function(matrix,
     },
 
     ## add estimate signature
-    stop("Unreachable state – unknown signature. Please choose from 'Gempred', 'tGempred', 'Puleo', 'pdacMolGrad','Mcpcount' or 'Purist'.") # sécurité
+    stop("Unreachable state : unknown signature. Please choose from 'Gempred', 'tGempred', 'Puleo', 'pdacMolGrad','Mcpcount' or 'Purist'.")
   )
 
   res

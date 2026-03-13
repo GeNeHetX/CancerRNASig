@@ -13,7 +13,6 @@
 #' @export
 
 GemPred_biopsy <- function(newexp, gnt = "sc", pnt = "raw") {
-  data(t_GemPred_Biopsy)
   sig <- as.vector(t_GemPred_Biopsy$weight)
   names(sig) <- t_GemPred_Biopsy$ENG_ID
   proj <- as.data.frame(CancerRNASig::qProjICA(newexp, ICAgw = as.matrix(sig), geneNormType = gnt, projNormType = pnt, ming = 1))

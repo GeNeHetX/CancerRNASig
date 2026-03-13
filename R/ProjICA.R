@@ -9,19 +9,18 @@
 #' @return projected components
 #' @export
 #'
-#' @examples
-qProjICA <- function(newexp, ICAgw = CancerRNASig:::puleoICAgw, geneNormType = "sc", projNormType = "raw", mingenes = 500) {
+qProjICA <- function(newexp, ICAgw = puleoICAgw, geneNormType = "sc", projNormType = "raw", mingenes = 500) {
   comg <- intersect(rownames(newexp), rownames(ICAgw))
 
   if (length(comg) < mingenes) {
     stop("Too few genes in common in the expression dataset and the ICA weights")
   }
 
-  scexp <- CancerRNASig:::.qNormalize(newexp[comg, ], type = geneNormType)
+  scexp <- .qNormalize(newexp[comg, ], type = geneNormType)
 
   invs <- MASS::ginv(as.matrix(ICAgw[comg, ]))
 
-  proj <- t(CancerRNASig:::.qNormalize(invs %*% scexp, projNormType))
+  proj <- t(.qNormalize(invs %*% scexp, projNormType))
 
   colnames(proj) <- colnames(ICAgw)
   proj
@@ -29,7 +28,7 @@ qProjICA <- function(newexp, ICAgw = CancerRNASig:::puleoICAgw, geneNormType = "
 
 
 .qNumerote <- function(n, l = max(nchar(1:n))) {
-  str_pad(1:n, width = l, side = "left", pad = 0)
+  stringr::str_pad(1:n, width = l, side = "left", pad = 0)
 }
 
 .qNormalize <- function(x, type) {
@@ -60,8 +59,8 @@ qProjICA <- function(newexp, ICAgw = CancerRNASig:::puleoICAgw, geneNormType = "
     resICA <- JADE::JADE(X, n.comp = k, maxiter = maxiter, eps = eps)
     rownames(resICA$A) <- colnames(X)
     rownames(resICA$S) <- rownames(X)
-    colnames(resICA$S) <- paste("ICA", CancerRNASig:::.qNumerote(ncol(resICA$S)), sep = "")
-    colnames(resICA$A) <- paste("ICA", CancerRNASig:::.qNumerote(ncol(resICA$A)), sep = "")
+    colnames(resICA$S) <- paste("ICA", .qNumerote(ncol(resICA$S)), sep = "")
+    colnames(resICA$A) <- paste("ICA", .qNumerote(ncol(resICA$A)), sep = "")
   })
   resICA
 }
@@ -70,12 +69,12 @@ qProjICA <- function(newexp, ICAgw = CancerRNASig:::puleoICAgw, geneNormType = "
 .qProjICA.ds <- function(icarez, dataset, geneNormType = "sc", projNormType = "raw") {
   # expg=getUniqueGeneMat(dataset$exp,dataset$probeannot[rownames(dataset$exp),dataset$genecol],rowSds(as.matrix(dataset$exp)))
   comg <- intersect(rownames(icarez$S), rownames(dataset$exp))
-  scexp <- CancerRNASig:::.qNormalize(dataset$exp[comg, ], type = geneNormType)
+  scexp <- .qNormalize(dataset$exp[comg, ], type = geneNormType)
 
 
   invs <- MASS::ginv(as.matrix(icarez$S[comg, ]))
 
-  proj <- t(CancerRNASig:::.qNormalize(invs %*% scexp, projNormType))
+  proj <- t(.qNormalize(invs %*% scexp, projNormType))
 
   # proj = scale(t(t((t(scexp) %*% t(invs)))))
 

@@ -6,6 +6,11 @@
 \usage{
 .estimate(ds, platform = c("illumina", "affymetrix", "agilent"))
 }
+\arguments{
+\item{ds}{input dataset}
+
+\item{platform}{platform type (e.g. "affymetrix", "agilent", "illumina")}
+}
 \description{
 Title qEstimate
 }

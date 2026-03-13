@@ -1,14 +1,12 @@
 #' Title qEstimate
-#'
-#'
-#' @return 
+#' 
+#' @param ds input dataset
+#' @param platform platform type (e.g. "affymetrix", "agilent", "illumina")
+#' 
 #' @export
 #'
-#' @examples
 .estimate=function (ds, platform = c("illumina","affymetrix", "agilent"))
 {
-  require(estimate)
-
     platform <- match.arg(platform)
     # ds <- read.delim(input.ds, header = TRUE, sep = "\t", skip = 2,
     #     row.names = 1, blank.lines.skip = TRUE, as.is = TRUE,
@@ -34,9 +32,9 @@
         m[, j] <- rank(m[, j], ties.method = "average")
     }
     m <- 10000 * m/Ng
-    gs <- as.matrix(CancerRNASig::estimategenes[, -1], dimnames = NULL)
+    gs <- as.matrix(estimategenes[, -1], dimnames = NULL)
     N.gs <- 2
-    gs.names <- row.names(CancerRNASig::estimategenes)
+    gs.names <- row.names(estimategenes)
     score.matrix <- matrix(0, nrow = N.gs, ncol = Ns)
     for (gs.i in 1:N.gs) {
         gene.set <- gs[gs.i, ]

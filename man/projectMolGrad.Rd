@@ -7,7 +7,7 @@
 projectMolGrad(
   newexp,
   geneSymbols,
-  normalize = c("newRef", "sameAsRef", "raw")
+  normalize = c("raw", "sameAsRef", "newRef")
 )
 }
 \arguments{
@@ -25,7 +25,9 @@ Project a transcriptomic dataset on the Pancreatic Adenocarcinoma Molecular Grad
 Will throw an error if there is only one sample (one column)
 }
 \examples{
-g <- rownames(CancerRNASig::molGradSys$PDX$gw)
-projectMolGrad(matrix(rnorm(length(g) * 10), ncol = 10), g)
+g <- rownames(CancerRNASig::molGradsys$Puleo$gw)
+newexp <- matrix(rnorm(length(g) * 10), ncol = 10)
+rownames(newexp) <- g
+projectMolGrad(newexp, g)
 }
 \keyword{internal}

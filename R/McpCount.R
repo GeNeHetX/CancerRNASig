@@ -5,8 +5,7 @@
 #'
 #' @return a data frame with samples in row and MCPcounter population quantification in columns
 #' @export
-#'
-#' @examples
+
 MCPcounter <- function(newexp, geneSymbols) {
   if (nrow(newexp) != length(geneSymbols)) {
     stop("geneSymbols should be a vector of gene symbols exactly corresponding to each row of the newexp dataset")
@@ -20,7 +19,7 @@ MCPcounter <- function(newexp, geneSymbols) {
     "Neutrophils", "Endothelial", "Fibroblasts"
   )
 
-  markers <- CancerRNASig:::mcpgenes
+  markers <- mcpgenes
   features <- subset(markers, markers$HUGO.symbols %in% rownames(genemat))
   features <- split(features[, "HUGO.symbols"], features[, "Cell.population"])
   missing.populations <- setdiff(markers.names, names(features))

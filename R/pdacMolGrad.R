@@ -12,12 +12,13 @@
 #' @keywords internal
 #'
 #' @examples
-#' g <- rownames(CancerRNASig::molGradSys$PDX$gw)
-#' projectMolGrad(matrix(rnorm(length(g) * 10), ncol = 10), g)
+#' g <- rownames(CancerRNASig::molGradsys$Puleo$gw)
+#' newexp <- matrix(rnorm(length(g) * 10), ncol = 10)
+#' rownames(newexp) <- g
+#' projectMolGrad(newexp, g)
 #' @export
 
-projectMolGrad <- function(newexp, geneSymbols, normalize = c("newRef", "sameAsRef", "raw")) {
-  data(molGradsys)
+projectMolGrad <- function(newexp, geneSymbols, normalize = c("raw", "sameAsRef", "newRef")) {
   normalize <- match.arg(normalize)
   if (nrow(newexp) != length(geneSymbols)) {
     stop("geneSymbols should be a vector of gene symbols exactly corresponding to each row of the newexp dataset")

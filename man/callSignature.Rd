@@ -5,7 +5,7 @@
 \title{Title callSignature}
 \usage{
 callSignature(
-  matrix,
+  m,
   geneSymbols = NULL,
   signature = NULL,
   normType = "raw",
@@ -14,7 +14,7 @@ callSignature(
 )
 }
 \arguments{
-\item{matrix}{gene expression matrix/dataframe, sample in columns, gene in rows}
+\item{m}{gene expression matrix/dataframe, sample in columns, gene in rows}
 
 \item{geneSymbols}{gene symbols, a vector of same length as the number of rows in matrix}
 
@@ -45,5 +45,5 @@ Currently supported extra parameters include:
 Additional parameters may be ignored depending on the selected signature.
 }
 \examples{
-callSignature(matrix, geneannot, signature = "Gempred", normType = "uq", scale = "ssc", ...)
+\dontrun{callSignature(m, geneannot, signature = "Gempred", normType = "uq", scaleType = "ssc")}
 }

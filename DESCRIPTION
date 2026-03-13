@@ -1,12 +1,26 @@
 Package: CancerRNASig
 Type: Package
 Title: RNA signatures for phenotyping in oncology
-Version: 0.0.9002
-Authors: Remy NICOLLE, Camille PIGNOLET, Audrey BEAUFILS, Lucie GOMES
-License: Creative Commons Attribution-NonCommercial (CC BY-NC)
+Version: 0.0.9003
+Description: Provides a curated collection of published RNA-seq signatures for gastrointestinal cancer subtyping and tumor microenvironment characterization.
+Authors@R: c(
+    person("Remy",    "NICOLLE",  role = c("aut", "cre"),
+           email = "remy.nicolle@inserm.fr"),
+    person("Camille", "PIGNOLET", role = "aut"),
+    person("Audrey",  "BEAUFILS", role = "aut"),
+    person("Lucie",   "GOMES",    role = "aut")
+    )
+License: CC BY-NC 4.0 + file LICENSE
 RoxygenNote: 7.3.3
 Depends: 
-    MASS, matrixStats, 
-    R (>= 3.5.0)
+    R (>= 4.1.0)
+Imports:
+    MASS,
+    matrixStats,
+    DESeq2,
+    stringr,
+    JADE
+Suggests:
+    estimate
 LazyData: true
 Encoding: UTF-8
