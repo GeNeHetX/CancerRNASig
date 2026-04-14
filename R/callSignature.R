@@ -33,8 +33,8 @@ callSignature <- function(m,
                           scaleType = "raw",
                           ...) {
   # -- Input validation & coercions -------------------------------------------------
-  if (!is.matrix(matrix)) {
-    matrix <- as.matrix(matrix)
+  if (!is.matrix(m)) {
+    m <- as.matrix(m)
   }
 
   if (!is.character(geneSymbols) && !is.null(geneSymbols)) {
@@ -42,10 +42,10 @@ callSignature <- function(m,
   }
 
   if (is.null(geneSymbols)) {
-    if (all(grepl("^ENSG", rownames(matrix))) && !(signature %in% c("Gempred", "tGempred"))) {
+    if (all(grepl("^ENSG", rownames(m))) && !(signature %in% c("Gempred", "tGempred"))) {
       stop("Matrix rownames detected as Ensembl Gene IDs. Whitout geneSymbols provided, only gempred and tGempred signatures can be applied.")
     } else {
-      geneSymbols <- rownames(matrix)
+      geneSymbols <- rownames(m)
     }
   }
 
@@ -59,22 +59,22 @@ callSignature <- function(m,
   data <- switch(normType,
     uq = {
       message("Launching UQ normalisation")
-      .UQnorm(matrix)
+      .UQnorm(m)
     },
     vst = {
       message("Launching VST normalisation")
-      DESeq2::vst(matrix)
+      DESeq2::vst(m)
     },
     raw = {
       message("No normalisation applied")
-      matrix
+      m
     }
   )
 
   # -- Scaling -----------------------------------------------------------------
   data <- .qNormalize(data, scaleType)
 
-  # -- Unique Gene Matrix -----------------------------------------------------
+  # -- Unique Gene m -----------------------------------------------------
   # data_unique <- qutils::getUniqueGeneMat(data, geneSymbols, rowMeans(data))
   if (!is.null(geneSymbols)) {
     data_unique <- genesymUniqExp(data, geneSymbols, rowMeans)
