@@ -42,8 +42,8 @@ callSignature <- function(m,
   }
 
   if (is.null(geneSymbols)) {
-    if (all(grepl("^ENSG", rownames(m))) && !(signature %in% c("Gempred", "tGempred"))) {
-      stop("Matrix rownames detected as Ensembl Gene IDs. Whitout geneSymbols provided, only gempred and tGempred signatures can be applied.")
+    if (all(grepl("^ENSG", rownames(m))) && !(signature %in% c("Gempred", "tGempred", "Purist"))) {
+      stop("Matrix rownames detected as Ensembl Gene IDs. Whitout geneSymbols provided, only gempred, tGempred and Purist signatures can be applied.")
     } else {
       geneSymbols <- rownames(m)
     }

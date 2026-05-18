@@ -540,8 +540,6 @@ puleoICAgw <- read.delim(file.path(.refpath, "puleogw.tsv"), sep = "\t", header 
 load( "data/molGradsys.rda") # from pdacmolgrad github repo
 
 # usethis::use_data(signatures,.puleoICAgw,.estimategenes,.mcpgenes,internal=FALSE,overwrite=T)
-#LOAD
-usethis::use_data(puleoICAgw, estimategenes, mcpgenes, molGradsys, internal = TRUE, overwrite = T)
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # LOAD GEMPRED MODEL
@@ -571,12 +569,13 @@ usethis::use_data(puleoICAgw, estimategenes, mcpgenes, molGradsys, internal = TR
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # LOAD GEMPRED SIMPLIFIED MODEL
 GP2model_simple <- read.csv(file.path(.refpath, "GP2model_simplified.csv"), sep = ",")
-usethis::use_data(GP2model_simple, overwrite = TRUE, internal = TRUE)
-
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # LOAD GEMPRED_BIOPSY MODEL
 t_GemPred_Biopsy <- read.csv(file.path(.refpath, "t_GemPred_Biopsy.csv"), sep = ";")
-usethis::use_data(t_GemPred_Biopsy, overwrite = TRUE, internal = TRUE)
+
+# --- --- --- --- --- --- --- --- --- --- --- ---
+# Save all signatures and data in package
+usethis::use_data(GP2model_simple, t_GemPred_Biopsy, puleoICAgw, estimategenes, mcpgenes, molGradsys, internal = TRUE, overwrite = T)
 
 # --- --- --- --- --- --- --- --- --- --- --- ---
 # UPDATE README AND DATA FILES

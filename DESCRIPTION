@@ -11,7 +11,6 @@ Authors@R: c(
     person("Lucie",   "GOMES",    role = "aut")
     )
 License: CC BY-NC 4.0 + file LICENSE
-RoxygenNote: 7.3.3
 Depends: 
     R (>= 4.1.0)
 Imports:
@@ -24,3 +23,4 @@ Suggests:
     estimate
 LazyData: true
 Encoding: UTF-8
+Config/roxygen2/version: 8.0.0
