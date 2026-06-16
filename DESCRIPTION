@@ -20,7 +20,17 @@ Imports:
     stringr,
     JADE
 Suggests:
-    estimate
+    estimate,
+    fgsea,
+    ggplot2,
+    gridExtra,
+    forestplot,
+    limma,
+    circlize,
+    ConsensusClusterPlus,
+    NMF,
+    SAGx,
+    cluster
 LazyData: true
 Encoding: UTF-8
 Config/roxygen2/version: 8.0.0
