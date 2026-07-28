@@ -18,7 +18,8 @@ Imports:
     matrixStats,
     DESeq2,
     stringr,
-    JADE
+    JADE,
+    phenosigdb
 Suggests:
     estimate,
     fgsea,
@@ -34,3 +35,4 @@ Suggests:
 LazyData: true
 Encoding: UTF-8
 Config/roxygen2/version: 8.0.0
+RoxygenNote: 7.3.3
