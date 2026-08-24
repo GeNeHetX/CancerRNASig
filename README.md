@@ -94,7 +94,7 @@ Load the package and use the main function **callSignature** :
 library(CancerRNASig)
 
 res <- callSignature(
-  matrix       = counts_matrix,       # expression matrix (ENSG in rows, samples in columns)
+  m       = counts_matrix,       # expression matrix (ENSG in rows, samples in columns)
   geneSymbols  = geneSymbols,        # vector of gene symbols
   signature    = "Gempred",        # signature to apply
   normType       = "uq",             # normalization (raw, uq, vst)
